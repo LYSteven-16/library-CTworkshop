@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模組 3：模式偵探 — 模式識別</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* === Bridge Card === */
+  .bridge-card {
+    background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+    border: 2px solid #FDE68A;
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .bridge-card h3 {
+    color: #92400E;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .bridge-card p {
+    color: #78350F;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* === Chart Enhanced === */
+  .chart-container {
+    background: #FAFBFC;
+    border-radius: var(--radius-sm);
+    padding: 16px;
+  }
+  .chart-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .chart-tab {
+    padding: 6px 14px;
+    border: 2px solid #E5E7EB;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    color: var(--text);
+    transition: all var(--transition);
+  }
+  .chart-tab.active {
+    background: #3B82F6;
+    color: white;
+    border-color: #3B82F6;
+  }
+  .chart-tab:hover:not(.active) {
+    border-color: #93C5FD;
+    background: #EFF6FF;
+  }
+  .chart-canvas {
+    position: relative;
+    overflow-x: auto;
+  }
+  .chart-svg {
+    width: 100%;
+    max-width: 700px;
+    display: block;
+    margin: 0 auto;
+  }
+  .chart-tooltip {
+    position: absolute;
+    background: #1E3A8A;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+    white-space: nowrap;
+  }
+  .chart-tooltip.show { opacity: 1; }
+  .chart-pattern-label {
+    font-size: 11px;
+    font-weight: 700;
+    fill: white;
+  }
+
+  /* === Matching with Lines === */
+  .match-area {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    min-height: 200px;
+  }
+  .match-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2;
+  }
+  .match-item {
+    padding: 10px 16px;
+    border: 2px solid #E5E7EB;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    background: white;
+    transition: all var(--transition);
+    user-select: none;
+    min-width: 180px;
+  }
+  .match-item:hover:not(.matched) {
+    border-color: #93C5FD;
+    background: #EFF6FF;
+  }
+  .match-item.selected {
+    border-color: #3B82F6;
+    background: #DBEAFE;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+  }
+  .match-item.matched {
+    border-color: var(--success-green);
+    background: #D1FAE5;
+    cursor: default;
+    opacity: 0.85;
+  }
+  .match-icon {
+    margin-right: 6px;
+  }
+  .match-svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .match-line {
+    stroke: var(--success-green);
+    stroke-width: 2.5;
+    stroke-dasharray: 6 3;
+    fill: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .match-line.show { opacity: 1; }
+
+  /* === Anomaly Enhanced === */
+  .anomaly-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .anomaly-option {
+    padding: 14px 16px;
+    border: 2px solid #E5E7EB;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    background: white;
+    transition: all var(--transition);
+    text-align: center;
+  }
+  .anomaly-option:hover {
+    border-color: #F59E0B;
+    background: #FFFBEB;
+  }
+  .anomaly-option.selected {
+    border-color: #F59E0B;
+    background: #FEF3C7;
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+  }
+  .anomaly-option.correct {
+    border-color: var(--success-green);
+    background: #D1FAE5;
+  }
+  .anomaly-option.wrong {
+    border-color: #EF4444;
+    background: #FEE2E2;
+  }
+  .anomaly-reveal {
+    display: none;
+    margin-top: 16px;
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+    border: 2px solid #F59E0B;
+    animation: fadeIn 0.3s ease;
+  }
+  .anomaly-reveal p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #78350F;
+  }
+
+  /* === Prediction Enhanced === */
+  .predict-steps {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .predict-step {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    background: #F0F9FF;
+    border: 2px solid #BAE6FD;
+    font-size: 13px;
+  }
+  .predict-step-num {
+    display: inline-block;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #0EA5E9;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 22px;
+    margin-right: 6px;
+  }
+  .predict-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .predict-slider-row input[type="range"] {
+    flex: 1;
+    accent-color: #0EA5E9;
+  }
+  .predict-value {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 900;
+    color: #0EA5E9;
+    margin: 8px 0;
+  }
+  .predict-result {
+    display: none;
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    line-height: 1.7;
+    animation: fadeIn 0.3s ease;
+  }
+  .predict-result.success {
+    background: #D1FAE5;
+    border: 2px solid var(--success-green);
+    color: #065F46;
+  }
+  .predict-result.fail {
+    background: #FEF3C7;
+    border: 2px solid #F59E0B;
+    color: #92400E;
+  }
+
+  /* === Pattern Summary Card === */
+  .pattern-summary {
+    background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    border: 2px solid #93C5FD;
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .pattern-summary h4 {
+    color: #1E3A8A;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .pattern-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: white;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    border: 1px solid #BFDBFE;
+  }
+  .pattern-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="screenshot-banner">
+  <i class="fas fa-camera"></i>
+  <span>完成每個互動後，請截圖保存到你的工作單！最後需提交工作單。</span>
+  <i class="fas fa-camera"></i>
+</div>
+
+<nav class="navbar">
+  <div class="nav-title">
+    <i class="fas fa-book-open-reader"></i>
+    <span>模組 3 / 6 — 模式識別</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html"><i class="fas fa-house"></i> 返回首頁</a>
+    <a href="module2.html">← 上一模組</a>
+    <a href="module4.html">下一模組 →</a>
+  </div>
+</nav>
+
+<div class="page-container fade-in">
+
+  <div class="module-header">
+    <span class="module-tag" style="background:#0EA5E9">模組 3</span>
+    <h1>🔎 模式偵探 — 模式識別</h1>
+    <div class="time-hint"><i class="fas fa-clock"></i> 約 40 分鐘</div>
+    <div class="learning-obj">
+      <strong>學習目標：</strong>從一週的模擬人流數據中，識別出至少兩種規律模式（如午間低谷、晚間高峰），並推斷異常數據背後的合理原因。
+    </div>
+  </div>
+
+  <!-- Bridge from Module 2 -->
+  <div class="bridge-card">
+    <h3><i class="fas fa-arrow-right"></i> 從上一模組出發</h3>
+    <p>上一模組我們把圖書館人流系統<strong>分解</strong>成了採集、處理、展示三個模組。現在，想像 IR 感測器已經裝好，收集了一整週的數據——這些數據裡藏著<strong>規律</strong>和<strong>異常</strong>。你的任務是像偵探一樣，從數據中找出模式！</p>
+  </div>
+
+  <!-- Chart -->
+  <div class="section-card">
+    <h2><i class="fas fa-chart-line"></i> 一週人流量數據</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">切換不同日期，觀察折線圖的變化規律。將滑鼠移到數據點上可查看具體數值。</p>
+    <div class="chart-container">
+      <div class="chart-tabs" id="chartTabs"></div>
+      <div class="chart-canvas">
+        <svg class="chart-svg" id="flowChart" viewBox="0 0 700 280"></svg>
+        <div class="chart-tooltip" id="chartTooltip"></div>
+      </div>
+    </div>
+    <div class="pattern-summary" id="patternSummary" style="display:none;">
+      <h4><i class="fas fa-search"></i> 你發現了哪些模式？</h4>
+      <div class="pattern-grid">
+        <div class="pattern-item"><div class="pattern-dot" style="background:#EF4444;"></div> 上午 10-12 點：穩定高峰</div>
+        <div class="pattern-item"><div class="pattern-dot" style="background:#F59E0B;"></div> 12-13 點：午間低谷</div>
+        <div class="pattern-item"><div class="pattern-dot" style="background:#8B5CF6;"></div> 週三下午：異常突增</div>
+        <div class="pattern-item"><div class="pattern-dot" style="background:#10B981;"></div> 16 點後：晚間回落</div>
+      </div>
+    </div>
+    <button class="btn btn-outline" onclick="revealPatterns()" style="margin-top:12px;" id="patternBtn">
+      <i class="fas fa-eye"></i> 揭示常見模式
+    </button>
+  </div>
+
+  <!-- Round 1: Matching -->
+  <div class="section-card">
+    <h2><i class="fas fa-link"></i> 回合一：連線配對</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">先點擊左側折線形狀，再點擊右側場景描述進行配對。正確配對會出現連線！</p>
+    <div class="match-area" id="matchArea">
+      <svg class="match-svg" id="matchSvg"></svg>
+      <div class="match-column" id="matchLeft"></div>
+      <div class="match-column" id="matchRight"></div>
+    </div>
+    <div id="matchFeedback" style="text-align:center;margin-top:12px;"></div>
+  </div>
+
+  <!-- Round 2: Anomaly -->
+  <div class="section-card">
+    <h2><i class="fas fa-magnifying-glass-chart"></i> 回合二：異常偵測</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">週三下午 14:00-16:00 出現了異常高峰，人數從平時的 80 人飆升到 280 人。你認為發生了什麼？選擇一個最可能的解釋：</p>
+    <div class="anomaly-options" id="anomalyOptions">
+      <div class="anomaly-option" onclick="selectAnomaly(this, 0)">
+        <div style="font-size:24px;margin-bottom:4px;">🎓</div>
+        <strong>期末考試</strong><br><span style="font-size:12px;color:#6B7280;">學生集中溫習</span>
+      </div>
+      <div class="anomaly-option" onclick="selectAnomaly(this, 1)">
+        <div style="font-size:24px;margin-bottom:4px;">🎤</div>
+        <strong>作家講座</strong><br><span style="font-size:12px;color:#6B7280;">大型校園活動</span>
+      </div>
+      <div class="anomaly-option" onclick="selectAnomaly(this, 2)">
+        <div style="font-size:24px;margin-bottom:4px;">🌧️</div>
+        <strong>下雨天</strong><br><span style="font-size:12px;color:#6B7280;">學生留在室內</span>
+      </div>
+      <div class="anomaly-option" onclick="selectAnomaly(this, 3)">
+        <div style="font-size:24px;margin-bottom:4px;">📖</div>
+        <strong>新書到館</strong><br><span style="font-size:12px;color:#6B7280;">大量同學來借書</span>
+      </div>
+    </div>
+    <button class="btn btn-warning" onclick="revealAnomaly()" id="anomalyBtn" style="display:none;">
+      <i class="fas fa-check"></i> 揭曉答案
+    </button>
+    <div class="anomaly-reveal" id="anomalyReveal">
+      <p>📢 <strong>答案揭曉：</strong>週三下午舉辦了一場知名作家講座，吸引了 200 名學生參加，導致人流量異常飆升！</p>
+      <p style="margin-top:8px;">其他選項分析：期末考試不會只出現在週三下午；下雨天會讓人留在室內，但不會突然增加 200 人；新書到館不會造成如此大規模的增長。<strong>模式識別不僅要發現規律，也要能辨識偏離規律的異常值，並推斷其背後原因。</strong></p>
+    </div>
+  </div>
+
+  <!-- Round 3: Prediction -->
+  <div class="section-card">
+    <h2><i class="fas fa-wand-magic-sparkles"></i> 回合三：預測挑戰</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">週五下午下大雨，大多數課程結束。你預測 17:00 圖書館大約有多少人？先思考推理步驟：</p>
+    <div class="predict-steps">
+      <div class="predict-step">
+        <span class="predict-step-num">1</span>
+        <strong>基準值</strong>：平常週五 17:00 約 30 人
+      </div>
+      <div class="predict-step">
+        <span class="predict-step-num">2</span>
+        <strong>因素</strong>：下雨天 → 更多學生留在室內？
+      </div>
+      <div class="predict-step">
+        <span class="predict-step-num">3</span>
+        <strong>反因素</strong>：週五 + 大雨 → 更多學生直接回家？
+      </div>
+    </div>
+    <div class="predict-slider-row">
+      <span style="font-size:14px;color:var(--text-light)">0</span>
+      <input type="range" id="predictSlider" min="0" max="300" value="100" oninput="document.getElementById('predictValue').textContent=this.value+' 人'">
+      <span style="font-size:14px;color:var(--text-light)">300</span>
+    </div>
+    <div class="predict-value" id="predictValue">100 人</div>
+    <button class="btn btn-success" onclick="checkPrediction()" style="margin-top:8px;"><i class="fas fa-check"></i> 驗證預測</button>
+    <div class="predict-result" id="predictResult"></div>
+  </div>
+
+  <!-- Knowledge Card -->
+  <div style="text-align:center;margin:16px 0;">
+    <button class="knowledge-btn" onclick="showKnowledge('模式識別','模式識別（Pattern Recognition）是計算思維的第三步：從數據或經驗中發現重複出現的規律。\n\n就像天氣預報——觀察歷史天氣模式，就能預測明天是否下雨。\n\n在圖書館數據中，我們發現了：\n✅ 週期性模式 — 每天上午高峰、午間低谷\n✅ 趨勢模式 — 週末人數比工作日少\n✅ 異常模式 — 週三下午的突增（活動影響）\n\n發現模式後，下一步是把數據變成同學看得懂的資訊——這就是模組 4 的抽象化！')">
+      <i class="fas fa-lightbulb"></i> 知識卡片：模式識別
+    </button>
+  </div>
+
+  <div class="overlay" id="knowledgeOverlay">
+    <div class="overlay-card">
+      <h4><i class="fas fa-lightbulb" style="color:var(--warning-orange)"></i> <span id="knowledgeTitle"></span></h4>
+      <p id="knowledgeContent"></p>
+      <button class="btn btn-primary" onclick="closeKnowledge()">知道了！</button>
+    </div>
+  </div>
+
+  <div class="screenshot-cta">
+    <h3><i class="fas fa-camera"></i> 截圖提醒</h3>
+    <p>請將折線圖、配對結果、異常偵測和預測結果截圖，<br>貼到你的 Figma 工作單中對應的位置。</p>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;margin-top:24px;">
+    <a href="module2.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 模組 2</a>
+    <a href="index.html" class="btn btn-outline"><i class="fas fa-house"></i> 返回首頁</a>
+    <a href="module4.html" class="btn btn-primary">進入模組 4 → <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+</div>
+
+<script src="js/common.js"></script>
+<script>
+// ===== Chart =====
+const weeklyData = {
+  '週一': [20, 35, 80, 120, 90, 60, 45, 30, 15],
+  '週二': [15, 30, 70, 110, 95, 55, 40, 25, 10],
+  '週三': [25, 40, 90, 280, 260, 130, 50, 35, 20],
+  '週四': [18, 32, 75, 105, 85, 50, 38, 22, 12],
+  '週五': [12, 28, 65, 100, 80, 45, 30, 18, 8],
+  '週六': [5, 15, 40, 60, 50, 35, 25, 15, 5],
+  '週日': [3, 10, 30, 45, 40, 25, 18, 10, 3],
+};
+const timeLabels = ['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'];
+
+(function initChart() {
+  var tabsEl = document.getElementById('chartTabs');
+  Object.keys(weeklyData).forEach(function(day, i) {
+    var tab = document.createElement('button');
+    tab.className = 'chart-tab' + (i === 0 ? ' active' : '');
+    tab.textContent = day;
+    tab.onclick = function() {
+      document.querySelectorAll('.chart-tab').forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      drawChart(weeklyData[day]);
+    };
+    tabsEl.appendChild(tab);
+  });
+  drawChart(weeklyData['週一']);
+})();
+
+function drawChart(data) {
+  var svg = document.getElementById('flowChart');
+  var tooltip = document.getElementById('chartTooltip');
+  var w = 700, h = 280, pad = 50;
+  var maxVal = Math.max.apply(null, data.concat([10]));
+  var stepX = (w - pad * 2) / (data.length - 1);
+  var pathD = '';
+  var points = data.map(function(val, i) {
+    var x = pad + i * stepX;
+    var y = h - pad - (val / maxVal) * (h - pad * 2);
+    pathD += (i === 0 ? 'M' : ' L') + x + ',' + y;
+    return { x: x, y: y, val: val };
+  });
+  var areaD = pathD + ' L' + points[points.length-1].x + ',' + (h-pad) + ' L' + points[0].x + ',' + (h-pad) + ' Z';
+
+  // Detect pattern zones for current day
+  var patternZones = '';
+  var isWednesday = (document.querySelector('.chart-tab.active') || {}).textContent === '週三';
+  if (isWednesday) {
+    // Mark anomaly zone (14:00-16:00 = index 6-8)
+    var x1 = pad + 6 * stepX - stepX * 0.4;
+    var x2 = pad + 8 * stepX + stepX * 0.4;
+    patternZones = '<rect x="'+x1+'" y="'+pad+'" width="'+(x2-x1)+'" height="'+(h-pad*2)+'" fill="#EF4444" fill-opacity="0.08" rx="4"/>' +
+      '<text x="'+(x1+x2)/2+'" y="'+(pad+14)+'" text-anchor="middle" font-size="10" font-weight="700" fill="#EF4444">⚠ 異常區域</text>';
+  }
+
+  svg.innerHTML =
+    '<defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity="0.3"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0.05"/></linearGradient></defs>' +
+    Array.from({length:5}, function(_,i) {
+      var y = h - pad - (i/4) * (h - pad * 2);
+      return '<line x1="'+pad+'" y1="'+y+'" x2="'+(w-pad)+'" y2="'+y+'" stroke="#E5E7EB" stroke-width="1" stroke-dasharray="4,4"/>' +
+        '<text x="'+(pad-8)+'" y="'+(y+4)+'" text-anchor="end" fill="#9CA3AF" font-size="11">'+Math.round(maxVal*i/4)+'</text>';
+    }).join('') +
+    timeLabels.map(function(l,i) {
+      return '<text x="'+(pad+i*stepX)+'" y="'+(h-pad+25)+'" text-anchor="middle" fill="#6B7280" font-size="11">'+l+'</text>';
+    }).join('') +
+    patternZones +
+    '<path d="'+areaD+'" fill="url(#ag)"/>' +
+    '<path d="'+pathD+'" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+    points.map(function(p) {
+      return '<circle cx="'+p.x+'" cy="'+p.y+'" r="6" fill="white" stroke="#3B82F6" stroke-width="2.5" style="cursor:pointer;" data-val="'+p.val+'" data-time="'+timeLabels[points.indexOf(p)]+'"/>';
+    }).join('');
+
+  // Add hover events to circles
+  svg.querySelectorAll('circle').forEach(function(circle) {
+    circle.addEventListener('mouseenter', function(e) {
+      var rect = svg.getBoundingClientRect();
+      var cx = parseFloat(circle.getAttribute('cx'));
+      var cy = parseFloat(circle.getAttribute('cy'));
+      var scaleX = rect.width / 700;
+      var scaleY = rect.height / 280;
+      tooltip.textContent = circle.dataset.time + '：' + circle.dataset.val + ' 人';
+      tooltip.style.left = (cx * scaleX - 30) + 'px';
+      tooltip.style.top = (cy * scaleY - 35) + 'px';
+      tooltip.classList.add('show');
+      circle.setAttribute('r', '8');
+    });
+    circle.addEventListener('mouseleave', function() {
+      tooltip.classList.remove('show');
+      circle.setAttribute('r', '6');
+    });
+  });
+}
+
+function revealPatterns() {
+  document.getElementById('patternSummary').style.display = 'block';
+  document.getElementById('patternBtn').style.display = 'none';
+}
+
+// ===== Matching with Visual Lines =====
+var matchData = [
+  { left: {icon:'📈',text:'穩定高峰（上午10-12點）'}, right: {icon:'📚',text:'課間自習高峰'} },
+  { left: {icon:'📉',text:'午間低谷（12-13點）'}, right: {icon:'🍽️',text:'午飯時間'} },
+  { left: {icon:'🔺',text:'異常突增（週三下午）'}, right: {icon:'🎤',text:'作家講座活動'} },
+  { left: {icon:'📉',text:'晚間回落（16點後）'}, right: {icon:'🏠',text:'學生陸續離開'} },
+];
+var shuffledRight = matchData.slice().sort(function() { return Math.random() - 0.5; });
+var matchState = { left: null, right: null, leftEl: null, rightEl: null, matched: new Set() };
+var matchLines = [];
+
+(function initMatch() {
+  var leftEl = document.getElementById('matchLeft');
+  var rightEl = document.getElementById('matchRight');
+  matchData.forEach(function(m, i) {
+    var item = document.createElement('div');
+    item.className = 'match-item';
+    item.dataset.idx = i;
+    item.dataset.side = 'left';
+    item.innerHTML = '<span class="match-icon">' + m.left.icon + '</span> ' + m.left.text;
+    item.onclick = function() {
+      document.querySelectorAll('#matchLeft .match-item').forEach(function(x) { x.classList.remove('selected'); });
+      item.classList.add('selected');
+      matchState.left = i; matchState.leftEl = item;
+      tryMatch();
+    };
+    leftEl.appendChild(item);
+  });
+  shuffledRight.forEach(function(m) {
+    var idx = matchData.indexOf(m);
+    var item = document.createElement('div');
+    item.className = 'match-item';
+    item.dataset.idx = idx;
+    item.dataset.side = 'right';
+    item.innerHTML = '<span class="match-icon">' + m.right.icon + '</span> ' + m.right.text;
+    item.onclick = function() {
+      document.querySelectorAll('#matchRight .match-item').forEach(function(x) { x.classList.remove('selected'); });
+      item.classList.add('selected');
+      matchState.right = idx; matchState.rightEl = item;
+      tryMatch();
+    };
+    rightEl.appendChild(item);
+  });
+})();
+
+function tryMatch() {
+  if (matchState.left === null || matchState.right === null) return;
+  if (matchState.matched.has(matchState.left) || matchState.matched.has(matchState.right)) return;
+  if (matchState.left === matchState.right) {
+    matchState.leftEl.classList.add('matched'); matchState.leftEl.classList.remove('selected');
+    matchState.rightEl.classList.add('matched'); matchState.rightEl.classList.remove('selected');
+    matchState.matched.add(matchState.left);
+    // Draw visual line
+    drawMatchLine(matchState.leftEl, matchState.rightEl);
+    var n = matchState.matched.size;
+    document.getElementById('matchFeedback').innerHTML = n === matchData.length
+      ? '<span style="color:var(--success-green);font-weight:600;">🎉 全部配對正確！你已識別出所有模式！</span>'
+      : '<span style="color:var(--success-green);">✅ 配對正確！（' + n + '/' + matchData.length + '）</span>';
+    if (n === matchData.length) showConfetti();
+  } else {
+    showToast('配對不正確，再試試看！', 'error');
+    matchState.leftEl.classList.remove('selected');
+    matchState.rightEl.classList.remove('selected');
+  }
+  matchState.left = null; matchState.right = null; matchState.leftEl = null; matchState.rightEl = null;
+}
+
+function drawMatchLine(leftEl, rightEl) {
+  var area = document.getElementById('matchArea');
+  var svg = document.getElementById('matchSvg');
+  var areaRect = area.getBoundingClientRect();
+  var lRect = leftEl.getBoundingClientRect();
+  var rRect = rightEl.getBoundingClientRect();
+  var x1 = lRect.right - areaRect.left;
+  var y1 = lRect.top + lRect.height / 2 - areaRect.top;
+  var x2 = rRect.left - areaRect.left;
+  var y2 = rRect.top + rRect.height / 2 - areaRect.top;
+  var midX = (x1 + x2) / 2;
+  var line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  line.setAttribute('d', 'M'+x1+','+y1+' C'+midX+','+y1+' '+midX+','+y2+' '+x2+','+y2);
+  line.classList.add('match-line');
+  svg.appendChild(line);
+  // Animate in
+  requestAnimationFrame(function() {
+    line.classList.add('show');
+  });
+}
+
+// ===== Anomaly Enhanced =====
+var selectedAnomaly = -1;
+function selectAnomaly(el, idx) {
+  if (document.getElementById('anomalyReveal').style.display === 'block') return;
+  document.querySelectorAll('.anomaly-option').forEach(function(o) { o.classList.remove('selected'); });
+  el.classList.add('selected');
+  selectedAnomaly = idx;
+  document.getElementById('anomalyBtn').style.display = 'inline-block';
+}
+
+function revealAnomaly() {
+  if (selectedAnomaly === -1) {
+    showToast('請先選擇一個答案！', 'error');
+    return;
+  }
+  // Highlight correct/wrong
+  document.querySelectorAll('.anomaly-option').forEach(function(o, i) {
+    o.classList.remove('selected');
+    if (i === 1) o.classList.add('correct');
+    else if (i === selectedAnomaly && i !== 1) o.classList.add('wrong');
+  });
+  document.getElementById('anomalyReveal').style.display = 'block';
+  document.getElementById('anomalyBtn').style.display = 'none';
+}
+
+// ===== Prediction =====
+function checkPrediction() {
+  var predicted = parseInt(document.getElementById('predictSlider').value);
+  var actual = 120;
+  var deviation = Math.abs(predicted - actual) / actual;
+  var el = document.getElementById('predictResult');
+  el.style.display = 'block';
+  if (deviation <= 0.2) {
+    el.className = 'predict-result success';
+    el.innerHTML = '🎯 預測接近！你的預測：' + predicted + ' 人，實際約 ' + actual + ' 人。偏差 ' + (deviation*100).toFixed(1) + '%<br>下雨天讓更多學生留在校園，週五課程結束後他們選擇去圖書館溫習，而不是冒雨回家！';
+  } else {
+    el.className = 'predict-result fail';
+    el.innerHTML = '💡 再想想！你的預測：' + predicted + ' 人，實際約 ' + actual + ' 人。偏差 ' + (deviation*100).toFixed(1) + '%<br>提示：下雨天雖然讓人想回家，但大雨反而讓更多學生留在校園——圖書館成了避雨+溫習的好去處。';
+  }
+}
+</script>
+</body>
+</html>
