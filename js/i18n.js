@@ -1167,8 +1167,7 @@ function applyI18n(container) {
       m.addedNodes.forEach(function(node) {
         if (node.nodeType === 1) applyI18n(node);
         else if (node.nodeType === 3 && /[\u4e00-\u9fff]/.test(node.nodeValue || '')) {
-          var translated = t(node.nodeValue.trim());
-          if (translated !== node.nodeValue.trim()) node.nodeValue = translated;
+          applyI18n(node.parentNode);
         }
       });
     });
