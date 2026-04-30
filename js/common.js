@@ -57,3 +57,21 @@ function getStudentName() {
 function saveStudentName(name) {
   localStorage.setItem('ct_workshop_name', name);
 }
+
+// Check progress from localStorage
+function updateProgress() {
+  var progress = JSON.parse(localStorage.getItem('ct_workshop_progress') || '{}');
+  for (var i = 1; i <= 6; i++) {
+    var el = document.getElementById('prog-' + i);
+    if (el && progress['module' + i]) {
+      el.classList.add('done');
+    }
+  }
+}
+
+// Mark a module as complete
+function markComplete(moduleNum) {
+  var progress = JSON.parse(localStorage.getItem('ct_workshop_progress') || '{}');
+  progress['module' + moduleNum] = true;
+  localStorage.setItem('ct_workshop_progress', JSON.stringify(progress));
+}

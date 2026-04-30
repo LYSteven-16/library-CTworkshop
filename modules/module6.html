@@ -1,0 +1,815 @@
+<style>
+/* === Bridge Card === */
+  .bridge-card {
+    background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+    border: 2px solid #FDE68A;
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .bridge-card h3 {
+    color: #92400E;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .bridge-card p {
+    color: #78350F;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* === Journey Timeline === */
+  .journey-timeline {
+    position: relative;
+    padding: 20px 0;
+  }
+  .journey-timeline::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #3B82F6, #8B5CF6, #EC4899, #F59E0B, #10B981, #059669);
+    border-radius: 2px;
+  }
+  .journey-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .journey-step:hover {
+    transform: translateX(4px);
+  }
+  .journey-dot {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .journey-content {
+    flex: 1;
+    padding: 12px 16px;
+    background: white;
+    border-radius: var(--radius-sm);
+    border: 2px solid #E5E7EB;
+    transition: all var(--transition);
+  }
+  .journey-step:hover .journey-content {
+    border-color: #93C5FD;
+    box-shadow: 0 2px 8px rgba(59,130,246,0.1);
+  }
+  .journey-content h4 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .journey-content p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+  .journey-ct-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    margin-top: 6px;
+  }
+
+  /* === Quiz === */
+  .quiz-question {
+    padding: 20px;
+    background: #FAFBFC;
+    border-radius: var(--radius-sm);
+    border: 2px solid #E5E7EB;
+    margin-bottom: 16px;
+    transition: all var(--transition);
+  }
+  .quiz-question.correct {
+    border-color: var(--success-green);
+    background: #F0FDF4;
+  }
+  .quiz-question.wrong {
+    border-color: #EF4444;
+    background: #FEF2F2;
+  }
+  .quiz-q-text {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .quiz-option {
+    padding: 10px 16px;
+    border: 2px solid #E5E7EB;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    background: white;
+    transition: all var(--transition);
+  }
+  .quiz-option:hover {
+    border-color: #93C5FD;
+    background: #EFF6FF;
+  }
+  .quiz-option.selected {
+    border-color: #3B82F6;
+    background: #DBEAFE;
+  }
+  .quiz-option.correct-answer {
+    border-color: var(--success-green);
+    background: #D1FAE5;
+  }
+  .quiz-option.wrong-answer {
+    border-color: #EF4444;
+    background: #FEE2E2;
+  }
+  .quiz-explanation {
+    display: none;
+    margin-top: 10px;
+    padding: 12px;
+    background: #EFF6FF;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: #1E3A8A;
+    line-height: 1.6;
+    border-left: 4px solid #3B82F6;
+  }
+  .quiz-explanation.show { display: block; }
+  .quiz-score {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    border-radius: var(--radius-sm);
+    border: 2px solid #93C5FD;
+    margin-top: 16px;
+    display: none;
+  }
+  .quiz-score.show { display: block; }
+  .quiz-score-num {
+    font-size: 48px;
+    font-weight: 900;
+    color: #1E3A8A;
+  }
+
+  /* === Reflection Enhanced === */
+  .reflection-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .reflection-note {
+    padding: 16px 20px;
+    background: white;
+    border-radius: var(--radius-sm);
+    border: 2px solid #E5E7EB;
+    transition: all var(--transition);
+  }
+  .reflection-note:focus-within {
+    border-color: #8B5CF6;
+    box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+  }
+  .reflection-prompt {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .reflection-hint {
+    font-size: 12px;
+    color: #9CA3AF;
+    margin-bottom: 10px;
+  }
+  .reflection-note textarea {
+    width: 100%;
+    min-height: 60px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    line-height: 1.6;
+  }
+  .reflection-note textarea:focus {
+    outline: none;
+    border-color: #8B5CF6;
+  }
+
+  /* === Radar Enhanced === */
+  .radar-area {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .radar-sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    min-width: 240px;
+  }
+  .radar-slider-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .radar-slider-item label {
+    min-width: 80px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .radar-slider-item input[type="range"] {
+    flex: 1;
+    accent-color: #3B82F6;
+  }
+  .slider-val {
+    min-width: 28px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #3B82F6;
+  }
+  .radar-chart {
+    flex-shrink: 0;
+  }
+
+  /* === Certificate Enhanced === */
+  .certificate-frame {
+    display: none;
+    max-width: 480px;
+    margin: 24px auto 0;
+    padding: 36px 32px;
+    background: linear-gradient(135deg, #FFFBEB, #FEF3C7, #FDE68A);
+    border: 4px solid #D97706;
+    border-radius: 16px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(217,119,6,0.2);
+    animation: fadeIn 0.5s ease;
+  }
+  .cert-corner {
+    position: absolute;
+    width: 32px; height: 32px;
+    border: 3px solid #D97706;
+  }
+  .cert-corner.tl { top: 10px; left: 10px; border-right: none; border-bottom: none; border-radius: 6px 0 0 0; }
+  .cert-corner.tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-radius: 0 6px 0 0; }
+  .cert-corner.bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-radius: 0 0 0 6px; }
+  .cert-corner.br { bottom: 10px; right: 10px; border-left: none; border-top: none; border-radius: 0 0 6px 0; }
+  .cert-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: #92400E;
+    margin-bottom: 4px;
+  }
+  .cert-subtitle {
+    font-size: 13px;
+    color: #B45309;
+    margin-bottom: 16px;
+  }
+  .cert-name {
+    font-size: 32px;
+    font-weight: 900;
+    color: #1E3A8A;
+    margin: 12px 0;
+    text-shadow: 1px 1px 0 rgba(30,58,138,0.1);
+  }
+  .cert-text {
+    font-size: 14px;
+    color: #78350F;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .cert-date {
+    font-size: 13px;
+    color: #B45309;
+    margin-top: 12px;
+  }
+  .cert-seal {
+    font-size: 40px;
+    margin-top: 8px;
+  }
+  .cert-skills {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px 0;
+    flex-wrap: wrap;
+  }
+  .cert-skill-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+  }
+
+  /* === Extension === */
+  .extension-card {
+    background: linear-gradient(135deg, #F0FDF4, #D1FAE5);
+    border: 2px solid #A7F3D0;
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+  .extension-card h3 {
+    color: #065F46;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .extension-card p {
+    color: #047857;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .extension-scenarios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .extension-scenario {
+    padding: 12px;
+    background: white;
+    border-radius: var(--radius-sm);
+    border: 1px solid #A7F3D0;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+  .extension-scenario:hover {
+    border-color: #059669;
+    box-shadow: 0 2px 8px rgba(5,150,105,0.15);
+    transform: translateY(-2px);
+  }
+  .extension-scenario-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .extension-scenario strong {
+    display: block;
+    margin-bottom: 2px;
+    color: #065F46;
+  }
+  .extension-scenario span {
+    color: #6B7280;
+    font-size: 12px;
+  }
+</style>
+
+<div class="page-container fade-in">
+
+  <div class="module-header">
+    <span class="module-tag" style="background:var(--success-green)">模組 6</span>
+    <h1>🏆 系統整合與反思</h1>
+    <div class="time-hint"><i class="fas fa-clock"></i> 約 25 分鐘</div>
+    <div class="learning-obj">
+      <strong>學習目標：</strong>整合所學，回顧計算思維四個核心能力的應用，完成概念測驗、反思並領取證書。
+    </div>
+  </div>
+
+  <!-- Bridge from Module 5 -->
+  <div class="bridge-card">
+    <h3><i class="fas fa-arrow-right"></i> 從上一模組出發</h3>
+    <p>上一模組你設計了精確的計數算法——方向判斷、去抖過濾、人數更新，每個步驟都必須清楚有序，這就是<strong>算法設計</strong>的力量。現在，讓我們回頭看看整個旅程：從發現問題、分解系統、識別模式、抽象呈現到設計算法，你已經走完計算思維的完整流程！</p>
+  </div>
+
+  <!-- Journey Timeline -->
+  <div class="section-card">
+    <h2><i class="fas fa-route"></i> 學習旅程回顧</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">回顧你走過的六個模組，點擊查看每個模組的核心收穫。</p>
+    <div class="journey-timeline">
+      <div class="journey-step" onclick="toggleJourney(this)">
+        <div class="journey-dot" style="background:#EF4444;">1</div>
+        <div class="journey-content">
+          <h4>🔎 問題定義：找到痛點</h4>
+          <p>同學走進圖書館找不到座位 → 這是普遍痛點，值得用技術解決</p>
+          <span class="journey-ct-tag" style="background:#EF4444;">問題定義</span>
+          <div class="journey-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #E5E7EB;font-size:13px;color:#6B7280;">
+            ✅ 核心收穫：好問題是解決方案的起點。「同學需要即時知道擁不擁擠」這個定義，讓後續所有工作有了明確方向。
+          </div>
+        </div>
+      </div>
+      <div class="journey-step" onclick="toggleJourney(this)">
+        <div class="journey-dot" style="background:#F59E0B;">2</div>
+        <div class="journey-content">
+          <h4>🧅 分解：把大問題切成小模組</h4>
+          <p>人流系統 → 採集模組 + 處理模組 + 展示模組</p>
+          <span class="journey-ct-tag" style="background:#F59E0B;">分解</span>
+          <div class="journey-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #E5E7EB;font-size:13px;color:#6B7280;">
+            ✅ 核心收穫：分解讓每個模組可以獨立思考和開發。採集用感測器、處理用算法、展示用界面——三者解耦，各司其職。
+          </div>
+        </div>
+      </div>
+      <div class="journey-step" onclick="toggleJourney(this)">
+        <div class="journey-dot" style="background:#0EA5E9;">3</div>
+        <div class="journey-content">
+          <h4>📊 模式識別：發現規律與異常</h4>
+          <p>上午高峰、午間低谷、週三異常 → 發現模式才能預測和決策</p>
+          <span class="journey-ct-tag" style="background:#0EA5E9;">模式識別</span>
+          <div class="journey-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #E5E7EB;font-size:13px;color:#6B7280;">
+            ✅ 核心收穫：數據中藏著三種模式——週期性（每天高峰低谷）、趨勢性（週末人少）、異常值（活動突增）。識別它們是設計算法的前提。
+          </div>
+        </div>
+      </div>
+      <div class="journey-step" onclick="toggleJourney(this)">
+        <div class="journey-dot" style="background:#EC4899;">4</div>
+        <div class="journey-content">
+          <h4>🎨 抽象：從數據到界面</h4>
+          <p>原始計數 → 紅綠燈 / 熱力圖 / 建議時段 → 選擇性呈現</p>
+          <span class="journey-ct-tag" style="background:#EC4899;">抽象</span>
+          <div class="journey-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #E5E7EB;font-size:13px;color:#6B7280;">
+            ✅ 核心收穫：抽象不是刪掉數據，而是選擇性呈現。紅綠燈隱藏了具體人數，但讓判斷更快速；熱力圖保留了空間資訊，犧牲了精確數字。
+          </div>
+        </div>
+      </div>
+      <div class="journey-step" onclick="toggleJourney(this)">
+        <div class="journey-dot" style="background:#8B5CF6;">5</div>
+        <div class="journey-content">
+          <h4>⚙️ 算法設計：IR 感測器計數邏輯</h4>
+          <p>IR-A → IR-B = 進入 / IR-B → IR-A = 走出 + 去抖冷卻</p>
+          <span class="journey-ct-tag" style="background:#8B5CF6;">算法設計</span>
+          <div class="journey-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #E5E7EB;font-size:13px;color:#6B7280;">
+            ✅ 核心收穫：算法設計是精確的步驟序列。感測器遮擋順序判斷方向，去抖冷卻避免誤計——每個細節都影響結果的準確性。
+          </div>
+        </div>
+      </div>
+      <div class="journey-step" onclick="toggleJourney(this)">
+        <div class="journey-dot" style="background:#059669;">6</div>
+        <div class="journey-content">
+          <h4>🏆 整合反思：把一切串起來</h4>
+          <p>回顧所學、測驗理解、反思收穫、展望未來</p>
+          <span class="journey-ct-tag" style="background:#059669;">整合</span>
+          <div class="journey-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #E5E7EB;font-size:13px;color:#6B7280;">
+            ✅ 核心收穫：計算思維不是四個孤立的技能，而是一個循環——定義問題→分解→找模式→抽象呈現→設計算法→回到新問題。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Concept Quiz -->
+  <div class="section-card">
+    <h2><i class="fas fa-brain"></i> 概念測驗</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">用這 4 題測試你對計算思維的理解，選擇最適合的答案。</p>
+
+    <div class="quiz-question" id="quiz-0">
+      <div class="quiz-q-text">1. 「把圖書館人流監控系統拆成採集、處理、展示三個模組」屬於哪種計算思維？</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectQuiz(0, 0, this)">A. 模式識別</div>
+        <div class="quiz-option" onclick="selectQuiz(0, 1, this)">B. 分解</div>
+        <div class="quiz-option" onclick="selectQuiz(0, 2, this)">C. 抽象</div>
+        <div class="quiz-option" onclick="selectQuiz(0, 3, this)">D. 算法設計</div>
+      </div>
+      <div class="quiz-explanation" id="quiz-exp-0">分解是把大問題拆成可管理的小部分。把系統拆成三個獨立模組，每個模組負責一個明確功能，這就是分解的核心操作。</div>
+    </div>
+
+    <div class="quiz-question" id="quiz-1">
+      <div class="quiz-q-text">2. IR 感測器「先遮 IR-A 再遮 IR-B = 進入」這個判斷邏輯屬於哪種計算思維？</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectQuiz(1, 0, this)">A. 分解</div>
+        <div class="quiz-option" onclick="selectQuiz(1, 1, this)">B. 模式識別</div>
+        <div class="quiz-option" onclick="selectQuiz(1, 2, this)">C. 抽象</div>
+        <div class="quiz-option" onclick="selectQuiz(1, 3, this)">D. 算法設計</div>
+      </div>
+      <div class="quiz-explanation" id="quiz-exp-1">算法設計是解決問題的精確步驟序列。「先遮A再遮B=進入」是一個明確的條件判斷規則，配合去抖冷卻機制，構成了完整的計數算法。</div>
+    </div>
+
+    <div class="quiz-question" id="quiz-2">
+      <div class="quiz-q-text">3. 「用紅綠燈代替具體人數來表示擁擠程度」屬於哪種計算思維？</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectQuiz(2, 0, this)">A. 算法設計</div>
+        <div class="quiz-option" onclick="selectQuiz(2, 1, this)">B. 分解</div>
+        <div class="quiz-option" onclick="selectQuiz(2, 2, this)">C. 抽象</div>
+        <div class="quiz-option" onclick="selectQuiz(2, 3, this)">D. 模式識別</div>
+      </div>
+      <div class="quiz-explanation" id="quiz-exp-2">抽象是隱藏細節、保留關鍵資訊。紅綠燈隱藏了具體人數（87人），但保留了最重要的判斷資訊（擁擠/適中/空閒），讓用戶一眼就能做決定。</div>
+    </div>
+
+    <div class="quiz-question" id="quiz-3">
+      <div class="quiz-q-text">4. 「每天上午10-12點是高峰期」這個發現屬於哪種計算思維？</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectQuiz(3, 0, this)">A. 抽象</div>
+        <div class="quiz-option" onclick="selectQuiz(3, 1, this)">B. 算法設計</div>
+        <div class="quiz-option" onclick="selectQuiz(3, 2, this)">C. 分解</div>
+        <div class="quiz-option" onclick="selectQuiz(3, 3, this)">D. 模式識別</div>
+      </div>
+      <div class="quiz-explanation" id="quiz-exp-3">模式識別是從數據中發現重複出現的規律。觀察一週數據後發現每天上午都有高峰，這就是模式識別——找出數據中的規律和趨勢。</div>
+    </div>
+
+    <button class="btn btn-primary" onclick="submitQuiz()" id="quizSubmitBtn" style="margin-top:12px;">
+      <i class="fas fa-check-circle"></i> 提交答案
+    </button>
+    <div class="quiz-score" id="quizScore">
+      <div style="font-size:14px;color:#6B7280;margin-bottom:4px;">你的測驗成績</div>
+      <div class="quiz-score-num" id="quizScoreNum">0/4</div>
+      <div id="quizScoreMsg" style="font-size:14px;margin-top:8px;"></div>
+    </div>
+  </div>
+
+  <!-- Self-assessment -->
+  <div class="section-card">
+    <h2><i class="fas fa-star"></i> 自我評估</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">拖動滑塊評估你對每種計算思維能力的掌握程度（0-10）。</p>
+    <div class="radar-area">
+      <div class="radar-sliders">
+        <div class="radar-slider-item">
+          <label>🧩 分解</label>
+          <input type="range" min="0" max="10" value="5" oninput="updateRadar()">
+          <div class="slider-val" id="radar-decomp">5</div>
+        </div>
+        <div class="radar-slider-item">
+          <label>🔎 模式識別</label>
+          <input type="range" min="0" max="10" value="5" oninput="updateRadar()">
+          <div class="slider-val" id="radar-pattern">5</div>
+        </div>
+        <div class="radar-slider-item">
+          <label>🎨 抽象</label>
+          <input type="range" min="0" max="10" value="5" oninput="updateRadar()">
+          <div class="slider-val" id="radar-abstract">5</div>
+        </div>
+        <div class="radar-slider-item">
+          <label>⚙️ 算法設計</label>
+          <input type="range" min="0" max="10" value="5" oninput="updateRadar()">
+          <div class="slider-val" id="radar-algo">5</div>
+        </div>
+      </div>
+      <div class="radar-chart">
+        <canvas id="radarCanvas" width="260" height="260"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reflection Notes Enhanced -->
+  <div class="section-card">
+    <h2><i class="fas fa-note-sticky"></i> 反思便簽牆</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">完成以下三個反思句子，幫助你鞏固所學。</p>
+    <div class="reflection-notes">
+      <div class="reflection-note">
+        <div class="reflection-prompt">我以前以為解決這個問題只需要 ______，現在我知道還需要 ______。</div>
+        <div class="reflection-hint">💡 提示：想想你一開始覺得只要裝個感測器就行，後來發現還需要什麼？</div>
+        <textarea placeholder="例如：我以為只需要裝感測器，現在我知道還需要算法處理數據、界面呈現給用戶…"></textarea>
+      </div>
+      <div class="reflection-note">
+        <div class="reflection-prompt">在 ______ 環節中，我卡住了，但我通過 ______ 解決了。</div>
+        <div class="reflection-hint">💡 提示：哪個模組讓你覺得最困難？你是怎麼想通的？</div>
+        <textarea placeholder="例如：在去抖邏輯中我卡住了，但通過理解「冷卻期」的概念，我知道了要在靈敏和準確之間取捨…"></textarea>
+      </div>
+      <div class="reflection-note">
+        <div class="reflection-prompt">我覺得計算思維中最厲害的一招是 ______，因為 ______。</div>
+        <div class="reflection-hint">💡 提示：分解、模式識別、抽象、算法設計——哪個讓你最有「原來如此」的感覺？</div>
+        <textarea placeholder="例如：抽象，因為它讓我學會了「少即是多」——紅綠燈比顯示人數更有用…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Extension -->
+  <div class="extension-card">
+    <h3><i class="fas fa-rocket"></i> 延伸思考：計算思維能解決其他問題嗎？</h3>
+    <p>你學會的計算思維不只適用於圖書館！想想還有哪些場景可以用同樣的方法？</p>
+    <div class="extension-scenarios">
+      <div class="extension-scenario">
+        <div class="extension-scenario-icon">🍽️</div>
+        <strong>學校食堂</strong>
+        <span>排隊時間預測 + 菜品推薦</span>
+      </div>
+      <div class="extension-scenario">
+        <div class="extension-scenario-icon">🚌</div>
+        <strong>巴士到站</strong>
+        <span>即時到站預測 + 擁擠度提示</span>
+      </div>
+      <div class="extension-scenario">
+        <div class="extension-scenario-icon">🏀</div>
+        <strong>運動場地</strong>
+        <span>場地使用率 + 預約系統</span>
+      </div>
+      <div class="extension-scenario">
+        <div class="extension-scenario-icon">♻️</div>
+        <strong>垃圾回收</strong>
+        <span>分類識別 + 滿溢提醒</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate -->
+  <div class="section-card">
+    <h2><i class="fas fa-award"></i> 領取證書</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">恭喜完成全部六個模組的學習！點擊按鈕領取你的專屬證書。</p>
+    <div style="text-align:center;">
+      <button class="btn btn-primary" onclick="generateCertificate()" style="font-size:18px;padding:14px 32px;">
+        <i class="fas fa-trophy"></i> 領取我的證書
+      </button>
+    </div>
+    <div class="certificate-frame" id="certificateFrame">
+      <div class="cert-corner tl"></div>
+      <div class="cert-corner tr"></div>
+      <div class="cert-corner bl"></div>
+      <div class="cert-corner br"></div>
+      <div class="cert-title">🎓 計算思維自學工坊</div>
+      <div class="cert-subtitle">—— 解碼圖書館熱力圖 ——</div>
+      <div class="cert-name" id="certName">同學</div>
+      <div class="cert-text">
+        已成功完成全部六個模組的學習，<br>
+        展現了以下計算思維核心能力：
+      </div>
+      <div class="cert-skills">
+        <span class="cert-skill-badge" style="background:#EF4444;">問題定義</span>
+        <span class="cert-skill-badge" style="background:#F59E0B;">分解</span>
+        <span class="cert-skill-badge" style="background:#0EA5E9;">模式識別</span>
+        <span class="cert-skill-badge" style="background:#8B5CF6;">算法設計</span>
+        <span class="cert-skill-badge" style="background:#EC4899;">抽象</span>
+      </div>
+      <div class="cert-date" id="certDate"></div>
+      <div class="cert-seal">🏅</div>
+    </div>
+  </div>
+
+  <div class="screenshot-cta">
+    <h3><i class="fas fa-camera"></i> 最終截圖提醒</h3>
+    <p>請將旅程回顧、測驗成績、雷達圖、反思便簽和證書截圖，<br>貼到你的 Figma 工作單中，然後<strong>提交工作單</strong>！<br>🎉 恭喜完成全部課程！</p>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;margin-top:24px;">
+    <a href="#module5" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 模組 5</a>
+    <a href="#home" class="btn btn-success"><i class="fas fa-house"></i> 返回首頁</a>
+  </div>
+
+</div>
+
+<script>
+// ===== Journey Toggle =====
+function toggleJourney(step) {
+  var detail = step.querySelector('.journey-detail');
+  if (detail.style.display === 'none') {
+    detail.style.display = 'block';
+  } else {
+    detail.style.display = 'none';
+  }
+}
+
+// ===== Quiz =====
+var quizAnswers = [1, 3, 2, 3]; // B, D, C, D
+var quizSelections = [-1, -1, -1, -1];
+var quizSubmitted = false;
+
+function selectQuiz(qIdx, optIdx, el) {
+  if (quizSubmitted) return;
+  var q = document.getElementById('quiz-' + qIdx);
+  q.querySelectorAll('.quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+  el.classList.add('selected');
+  quizSelections[qIdx] = optIdx;
+}
+
+function submitQuiz() {
+  if (quizSubmitted) return;
+  // Check if all answered
+  var unanswered = quizSelections.indexOf(-1);
+  if (unanswered !== -1) {
+    showToast('請先回答第 ' + (unanswered + 1) + ' 題！', 'error');
+    return;
+  }
+  quizSubmitted = true;
+  var score = 0;
+  for (var i = 0; i < 4; i++) {
+    var q = document.getElementById('quiz-' + i);
+    var options = q.querySelectorAll('.quiz-option');
+    if (quizSelections[i] === quizAnswers[i]) {
+      score++;
+      q.classList.add('correct');
+      options[quizSelections[i]].classList.add('correct-answer');
+    } else {
+      q.classList.add('wrong');
+      options[quizSelections[i]].classList.add('wrong-answer');
+      options[quizAnswers[i]].classList.add('correct-answer');
+    }
+    document.getElementById('quiz-exp-' + i).classList.add('show');
+  }
+  document.getElementById('quizSubmitBtn').style.display = 'none';
+  var scoreEl = document.getElementById('quizScore');
+  scoreEl.classList.add('show');
+  document.getElementById('quizScoreNum').textContent = score + '/4';
+  var msgEl = document.getElementById('quizScoreMsg');
+  if (score === 4) {
+    msgEl.innerHTML = '🎉 滿分！你已完全掌握計算思維四大核心能力！';
+    showConfetti();
+  } else if (score >= 3) {
+    msgEl.innerHTML = '👍 很好！你對計算思維有紮實的理解，回顧錯題加深印象。';
+  } else {
+    msgEl.innerHTML = '💡 建議回顧前面的模組，特別注意每種計算思維的區別。';
+  }
+}
+
+// ===== Radar =====
+function updateRadar() {
+  var sliders = document.querySelectorAll('.radar-slider-item input[type="range"]');
+  document.getElementById('radar-decomp').textContent = sliders[0].value;
+  document.getElementById('radar-pattern').textContent = sliders[1].value;
+  document.getElementById('radar-abstract').textContent = sliders[2].value;
+  document.getElementById('radar-algo').textContent = sliders[3].value;
+  drawRadar();
+}
+
+function drawRadar() {
+  var canvas = document.getElementById('radarCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = 260, h = 260, cx = w / 2, cy = h / 2, r = 100;
+  ctx.clearRect(0, 0, w, h);
+  var labels = ['分解', '模式識別', '抽象', '算法設計'];
+  var sliders = document.querySelectorAll('.radar-slider-item input[type="range"]');
+  var values = sliders.length > 0
+    ? [parseInt(sliders[0].value), parseInt(sliders[1].value), parseInt(sliders[2].value), parseInt(sliders[3].value)]
+    : [5, 5, 5, 5];
+
+  // Grid
+  for (var level = 1; level <= 5; level++) {
+    var lr = (level / 5) * r;
+    ctx.beginPath();
+    for (var i = 0; i < 4; i++) {
+      var angle = (Math.PI * 2 * i / 4) - Math.PI / 2;
+      var x = cx + lr * Math.cos(angle);
+      var y = cy + lr * Math.sin(angle);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = '#E5E7EB';
+    ctx.stroke();
+  }
+  // Axes & Labels
+  for (var i = 0; i < 4; i++) {
+    var angle = (Math.PI * 2 * i / 4) - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + r * Math.cos(angle), cy + r * Math.sin(angle));
+    ctx.strokeStyle = '#D1D5DB';
+    ctx.stroke();
+    var lx = cx + (r + 22) * Math.cos(angle);
+    var ly = cy + (r + 22) * Math.sin(angle);
+    ctx.fillStyle = '#6B7280';
+    ctx.font = '12px Noto Sans TC';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(labels[i], lx, ly);
+  }
+  // Data polygon
+  ctx.beginPath();
+  for (var i = 0; i < 4; i++) {
+    var angle = (Math.PI * 2 * i / 4) - Math.PI / 2;
+    var val = values[i] / 10;
+    var x = cx + r * val * Math.cos(angle);
+    var y = cy + r * val * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(59, 130, 246, 0.25)';
+  ctx.fill();
+  ctx.strokeStyle = '#3B82F6';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // Points
+  for (var i = 0; i < 4; i++) {
+    var angle = (Math.PI * 2 * i / 4) - Math.PI / 2;
+    var val = values[i] / 10;
+    ctx.beginPath();
+    ctx.arc(cx + r * val * Math.cos(angle), cy + r * val * Math.sin(angle), 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#3B82F6';
+    ctx.fill();
+  }
+}
+
+// ===== Certificate =====
+function generateCertificate() {
+  var name = getStudentName() || '同學';
+  document.getElementById('certName').textContent = name;
+  var now = new Date();
+  document.getElementById('certDate').textContent = '完成日期：' + now.getFullYear() + ' 年 ' + (now.getMonth() + 1) + ' 月 ' + now.getDate() + ' 日';
+  document.getElementById('certificateFrame').style.display = 'block';
+  showConfetti();
+  showToast('🏆 恭喜完成全部課程！', 'success');
+}
+
+// Init
+window.addEventListener('DOMContentLoaded', function() {
+  drawRadar();
+});
+</script>

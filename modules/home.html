@@ -1,0 +1,486 @@
+<style>
+/* === Hero === */
+  .home-hero {
+    text-align: center;
+    padding: 48px 0 24px;
+  }
+  .home-hero h1 {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--deep-blue);
+    margin-bottom: 8px;
+  }
+  .home-hero .subtitle {
+    font-size: 18px;
+    color: var(--text-light);
+    margin-bottom: 24px;
+  }
+  .hero-visual {
+    width: 100%;
+    max-width: 640px;
+    height: 200px;
+    margin: 0 auto 32px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 40%, #0EA5E9 70%, #10B981 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 60%, rgba(255,255,255,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(255,255,255,0.08) 0%, transparent 40%);
+  }
+  .hero-icons {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .hero-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: white;
+  }
+  .hero-icon-circle {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .hero-icon-label {
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+  .hero-arrow {
+    color: rgba(255,255,255,0.5);
+    font-size: 18px;
+  }
+
+  /* === Name Input === */
+  .name-input-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .name-input-area label {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--deep-blue);
+  }
+  .name-input-area input {
+    padding: 10px 20px;
+    border: 2px solid var(--light-blue);
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-family: inherit;
+    width: 260px;
+    outline: none;
+    transition: border-color var(--transition);
+  }
+  .name-input-area input:focus {
+    border-color: var(--mid-blue);
+  }
+  .name-greeting {
+    text-align: center;
+    font-size: 15px;
+    color: var(--success-green);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .name-greeting.show { display: block; }
+
+  /* === CT Overview === */
+  .ct-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 768px) {
+    .ct-overview { grid-template-columns: repeat(2, 1fr); }
+  }
+  .ct-item {
+    padding: 16px 12px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    border: 2px solid;
+    transition: all var(--transition);
+  }
+  .ct-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  .ct-item-icon {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+  .ct-item-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .ct-item-desc {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  /* === Module Grid Enhanced === */
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .module-grid { grid-template-columns: 1fr; }
+  }
+  .module-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    cursor: pointer;
+    transition: all var(--transition);
+    border: 2px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .module-card .module-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .module-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .module-card p {
+    font-size: 14px;
+    color: var(--text-light);
+  }
+  .module-card .time-badge {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--mid-blue);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .module-card .ct-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    margin-top: 8px;
+  }
+  .module-card .module-progress {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #D1D5DB;
+    transition: all var(--transition);
+  }
+  .module-card .module-progress.done {
+    background: var(--success-green);
+    border-color: var(--success-green);
+    color: white;
+  }
+
+  /* === Flow Arrow === */
+  .flow-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0 24px;
+    color: var(--text-light);
+    font-size: 13px;
+  }
+  .flow-connector .flow-line {
+    height: 2px;
+    flex: 1;
+    max-width: 80px;
+    background: linear-gradient(to right, #D1D5DB, #93C5FD, #D1D5DB);
+  }
+  .flow-connector i { color: var(--mid-blue); }
+
+  /* === Instructions === */
+  .instructions-card {
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--light-blue);
+    border-radius: var(--radius);
+    border: 2px solid #93C5FD;
+  }
+  .instructions-card h3 {
+    margin-bottom: 12px;
+    color: var(--deep-blue);
+    font-size: 16px;
+  }
+  .instructions-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  @media (max-width: 600px) {
+    .instructions-steps { grid-template-columns: 1fr; }
+  }
+  .instruction-step {
+    text-align: center;
+    padding: 16px 12px;
+    background: white;
+    border-radius: var(--radius-sm);
+  }
+  .instruction-step-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .instruction-step strong {
+    display: block;
+    font-size: 14px;
+    color: var(--deep-blue);
+    margin-bottom: 4px;
+  }
+  .instruction-step span {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+</style>
+
+<div class="page-container fade-in">
+
+  <!-- Hero -->
+  <div class="home-hero">
+    <h1>🔍 解碼圖書館熱力圖</h1>
+    <p class="subtitle">計算思維自學工坊 — 用 6 個模組掌握 CT 四大核心能力</p>
+    <div class="hero-visual">
+      <div class="hero-icons">
+        <div class="hero-icon-item">
+          <div class="hero-icon-circle">🎯</div>
+          <span class="hero-icon-label">定義問題</span>
+        </div>
+        <i class="fas fa-arrow-right hero-arrow"></i>
+        <div class="hero-icon-item">
+          <div class="hero-icon-circle">🧅</div>
+          <span class="hero-icon-label">分解</span>
+        </div>
+        <i class="fas fa-arrow-right hero-arrow"></i>
+        <div class="hero-icon-item">
+          <div class="hero-icon-circle">📊</div>
+          <span class="hero-icon-label">模式識別</span>
+        </div>
+        <i class="fas fa-arrow-right hero-arrow"></i>
+        <div class="hero-icon-item">
+          <div class="hero-icon-circle">🎨</div>
+          <span class="hero-icon-label">抽象</span>
+        </div>
+        <i class="fas fa-arrow-right hero-arrow"></i>
+        <div class="hero-icon-item">
+          <div class="hero-icon-circle">⚙️</div>
+          <span class="hero-icon-label">算法設計</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Name Input -->
+  <div class="name-input-area">
+    <label for="studentName">👋 你的名字：</label>
+    <input type="text" id="studentName" placeholder="輸入名字，領取專屬證書">
+    <button class="btn btn-primary" onclick="saveName()">確認</button>
+    <button class="btn btn-outline" onclick="clearName()" id="clearNameBtn" style="display:none;">✕ 重設</button>
+  </div>
+  <div class="name-greeting" id="nameGreeting"></div>
+
+  <!-- CT Overview -->
+  <div class="ct-overview">
+    <div class="ct-item" style="background:#FEF2F2;border-color:#FECACA;">
+      <div class="ct-item-icon">🧩</div>
+      <div class="ct-item-name" style="color:#991B1B;">分解</div>
+      <div class="ct-item-desc" style="color:#B91C1C;">把大問題切成<br>可管理的小部分</div>
+    </div>
+    <div class="ct-item" style="background:#EFF6FF;border-color:#BFDBFE;">
+      <div class="ct-item-icon">🔎</div>
+      <div class="ct-item-name" style="color:#1E3A8A;">模式識別</div>
+      <div class="ct-item-desc" style="color:#1D4ED8;">從數據中發現<br>重複的規律</div>
+    </div>
+    <div class="ct-item" style="background:#FDF2F8;border-color:#FBCFE8;">
+      <div class="ct-item-icon">🎨</div>
+      <div class="ct-item-name" style="color:#9D174D;">抽象</div>
+      <div class="ct-item-desc" style="color:#BE185D;">隱藏細節<br>保留關鍵資訊</div>
+    </div>
+    <div class="ct-item" style="background:#F5F3FF;border-color:#DDD6FE;">
+      <div class="ct-item-icon">⚙️</div>
+      <div class="ct-item-name" style="color:#5B21B6;">算法設計</div>
+      <div class="ct-item-desc" style="color:#6D28D9;">設計精確的<br>步驟序列</div>
+    </div>
+  </div>
+
+  <!-- Module Grid -->
+  <div class="module-grid">
+    <a class="module-card" href="#module1" style="border-color:#FEE2E2;" onmouseenter="this.style.borderColor='#EF4444'" onmouseleave="this.style.borderColor='#FEE2E2'">
+      <div class="module-progress" id="prog-1"><i class="fas fa-check"></i></div>
+      <span class="module-num" style="background:#EF4444;">模組 1</span>
+      <h3>🎯 痛點挖掘</h3>
+      <p>問題引入：為什麼圖書館需要人流監控？投票、思考、排序，像工程師一樣定義問題。</p>
+      <span class="ct-tag" style="background:#EF4444;">問題定義</span>
+      <span class="time-badge"><i class="fas fa-clock"></i> 約 20 分鐘</span>
+    </a>
+    <a class="module-card" href="#module2" style="border-color:#FEF3C7;" onmouseenter="this.style.borderColor='#F59E0B'" onmouseleave="this.style.borderColor='#FEF3C7'">
+      <div class="module-progress" id="prog-2"><i class="fas fa-check"></i></div>
+      <span class="module-num" style="background:#F59E0B;">模組 2</span>
+      <h3>🧅 解構問題</h3>
+      <p>分解思維：洋蔥模型剝開問題層次，卡片分類拆分系統模組，數據流排序理清順序。</p>
+      <span class="ct-tag" style="background:#F59E0B;">分解</span>
+      <span class="time-badge"><i class="fas fa-clock"></i> 約 30 分鐘</span>
+    </a>
+    <a class="module-card" href="#module3" style="border-color:#CFFAFE;" onmouseenter="this.style.borderColor='#0EA5E9'" onmouseleave="this.style.borderColor='#CFFAFE'">
+      <div class="module-progress" id="prog-3"><i class="fas fa-check"></i></div>
+      <span class="module-num" style="background:#0EA5E9;">模組 3</span>
+      <h3>🔎 模式偵探</h3>
+      <p>模式識別：從一週人流數據中找出高峰低谷、異常突增，學會連線配對和預測。</p>
+      <span class="ct-tag" style="background:#0EA5E9;">模式識別</span>
+      <span class="time-badge"><i class="fas fa-clock"></i> 約 40 分鐘</span>
+    </a>
+    <a class="module-card" href="#module4" style="border-color:#FCE7F3;" onmouseenter="this.style.borderColor='#EC4899'" onmouseleave="this.style.borderColor='#FCE7F3'">
+      <div class="module-progress" id="prog-4"><i class="fas fa-check"></i></div>
+      <span class="module-num" style="background:#EC4899;">模組 4</span>
+      <h3>🎨 視覺化設計師</h3>
+      <p>抽象：從數據到界面，參考真實案例，搭建手機原型，選擇性呈現關鍵資訊。</p>
+      <span class="ct-tag" style="background:#EC4899;">抽象</span>
+      <span class="time-badge"><i class="fas fa-clock"></i> 約 35 分鐘</span>
+    </a>
+    <a class="module-card" href="#module5" style="border-color:#EDE9FE;" onmouseenter="this.style.borderColor='#8B5CF6'" onmouseleave="this.style.borderColor='#EDE9FE'">
+      <div class="module-progress" id="prog-5"><i class="fas fa-check"></i></div>
+      <span class="module-num" style="background:#8B5CF6;">模組 5</span>
+      <h3>⚙️ 算法工程師</h3>
+      <p>核心模組：IR 感應器計數邏輯、防抖算法、流程圖填空，設計精確的計數方案。</p>
+      <span class="ct-tag" style="background:#8B5CF6;">算法設計</span>
+      <span class="time-badge"><i class="fas fa-clock"></i> 約 40 分鐘</span>
+    </a>
+    <a class="module-card" href="#module6" style="border-color:#D1FAE5;" onmouseenter="this.style.borderColor='#10B981'" onmouseleave="this.style.borderColor='#D1FAE5'">
+      <div class="module-progress" id="prog-6"><i class="fas fa-check"></i></div>
+      <span class="module-num" style="background:#10B981;">模組 6</span>
+      <h3>🏆 系統整合與反思</h3>
+      <p>旅程回顧、概念測驗、自評雷達圖、反思便簽，完成後領取專屬證書！</p>
+      <span class="ct-tag" style="background:#059669;">整合</span>
+      <span class="time-badge"><i class="fas fa-clock"></i> 約 25 分鐘</span>
+    </a>
+  </div>
+
+  <!-- Instructions -->
+  <div class="instructions-card">
+    <h3><i class="fas fa-info-circle" style="color:var(--mid-blue)"></i> 使用說明</h3>
+    <div class="instructions-steps">
+      <div class="instruction-step">
+        <div class="instruction-step-icon">📖</div>
+        <strong>按順序完成</strong>
+        <span>從模組 1 到模組 6，<br>每個模組環環相扣</span>
+      </div>
+      <div class="instruction-step">
+        <div class="instruction-step-icon">📸</div>
+        <strong>互動後截圖</strong>
+        <span>完成每個互動後，<br>截圖保存到工作單</span>
+      </div>
+      <div class="instruction-step">
+        <div class="instruction-step-icon">📝</div>
+        <strong>提交工作單</strong>
+        <span>全部完成後，<br>提交 Figma 工作單</span>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--text-light);">
+      總學習時間約 <strong>3 小時</strong>，建議分 2-3 次完成。隨時可透過導航列返回此首頁。
+    </p>
+  </div>
+
+</div>
+
+<script>
+// Home-specific functions
+function saveName() {
+  var name = document.getElementById('studentName').value.trim();
+  if (name) {
+    saveStudentName(name);
+    var greet = document.getElementById('nameGreeting');
+    greet.textContent = '✅ 歡迎，' + name + '！點擊模組卡片開始學習吧 🎉';
+    greet.classList.add('show');
+    showToast('歡迎，' + name + '！🎉', 'success');
+    document.getElementById('clearNameBtn').style.display = 'inline-block';
+  } else {
+    localStorage.removeItem('ct_workshop_name');
+    var greet = document.getElementById('nameGreeting');
+    greet.textContent = '👋 開始你的學習旅程吧！';
+    greet.classList.add('show');
+    showToast('開始學習吧！證書將使用預設稱呼 😊', 'info');
+    document.getElementById('clearNameBtn').style.display = 'none';
+  }
+}
+
+function clearName() {
+  localStorage.removeItem('ct_workshop_name');
+  document.getElementById('studentName').value = '';
+  var greet = document.getElementById('nameGreeting');
+  greet.textContent = '';
+  greet.classList.remove('show');
+  document.getElementById('clearNameBtn').style.display = 'none';
+  showToast('名字已清除，請重新輸入 ✏️', 'info');
+}
+
+// updateProgress and markComplete are now in common.js
+
+// Init home page
+(function initHome() {
+  var saved = getStudentName();
+  if (saved) {
+    var nameInput = document.getElementById('studentName');
+    var greet = document.getElementById('nameGreeting');
+    if (nameInput) nameInput.value = saved;
+    if (greet) {
+      greet.textContent = '👋 歡迎回來，' + saved + '！繼續你的學習旅程吧';
+      greet.classList.add('show');
+    }
+    var clearBtn = document.getElementById('clearNameBtn');
+    if (clearBtn) clearBtn.style.display = 'inline-block';
+  }
+  updateProgress();
+})();
+</script>
