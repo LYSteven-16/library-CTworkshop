@@ -7,204 +7,219 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--deep-blue:#1E3A8A;--mid-blue:#3B82F6;--danger-red:#EF4444;--success-green:#10B981;--warning-orange:#F59E0B;--step-red:#EF4444;--step-amber:#F59E0B;--step-cyan:#0EA5E9;--step-pink:#EC4899;--step-purple:#8B5CF6}
+/* === Base variables (from style.css) === */
+:root {
+  --deep-blue:#1E3A8A; --light-blue:#DBEAFE; --mid-blue:#3B82F6;
+  --success-green:#10B981; --warning-orange:#F59E0B; --danger-red:#EF4444;
+  --bg:#F0F4F8; --card-bg:#FFFFFF; --text:#1F2937; --text-light:#6B7280;
+  --shadow:0 4px 24px rgba(0,0,0,0.08); --radius:16px; --radius-sm:10px;
+  --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+  --step-red:#EF4444;--step-amber:#F59E0B;--step-cyan:#0EA5E9;--step-pink:#EC4899;--step-purple:#8B5CF6;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans TC',sans-serif;background:#F3F4F6;display:flex;justify-content:center;padding:20px}
-.ws{width:210mm;background:white;box-shadow:0 4px 24px rgba(0,0,0,.12)}
-.ws-hd{background:linear-gradient(135deg,#1E3A8A,#3B82F6);padding:18px 20px;color:white;display:flex;justify-content:space-between;align-items:center}
-.ws-hd h1{font-size:20px;font-weight:900}.sub{font-size:11px;opacity:.8;margin-top:2px}
-.ws-meta{font-size:11px;text-align:right;line-height:1.8;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:6px}
-.ws-path{display:flex;align-items:center;justify-content:center;padding:12px 0 8px;background:#F9FAFB;border-bottom:1px solid #E5E7EB}
-.dot{width:24px;height:24px;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
-.line{width:22px;height:2px;background:#D1D5DB;flex-shrink:0}
-.ws-body{padding:14px 18px}
-.wm{margin-bottom:12px;page-break-inside:avoid;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden}
-.wh{display:flex;align-items:center;gap:8px;padding:8px 14px;color:white;font-weight:700;font-size:12px}
-.wn{font-size:10px;background:rgba(255,255,255,.25);padding:2px 8px;border-radius:10px}
-.wct{margin-left:auto;font-size:10px;background:rgba(0,0,0,.15);padding:2px 8px;border-radius:10px}
-.wb{padding:10px 14px}
-.lbl{font-size:10px;color:#1E3A8A;font-weight:600;margin:6px 0 3px}
-.txt{font-size:11px;color:#374151;line-height:1.6;padding:6px 8px;background:#F9FAFB;border-radius:6px;margin-bottom:4px;white-space:pre-wrap}
-.txt.em{color:#D1D5DB;font-style:italic}
-.vote-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px}
-.vt{padding:5px 12px;border-radius:20px;border:2px solid #E5E7EB;font-size:10px;color:#6B7280}
-.vt.sel{border-color:#EF4444;background:#FEF2F2;color:#B91C1C;font-weight:700}
-.sort{border:1px solid #E5E7EB;border-radius:6px;overflow:hidden;margin-bottom:4px}
-.si{display:flex;align-items:center;gap:8px;padding:6px 10px;border-bottom:1px solid #F3F4F6;font-size:11px}
-.si:last-child{border-bottom:none}.sn{width:20px;height:20px;border-radius:50%;background:#1E3A8A;color:white;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
-.flow{display:flex;align-items:center;gap:3px;flex-wrap:wrap;margin-bottom:4px}
-.fs{padding:5px 8px;border-radius:6px;font-size:9px;font-weight:600;border:2px solid #10B981;background:#D1FAE5;color:#065F46}
-.fa{color:#9CA3AF;font-size:10px;flex-shrink:0}
-.mr{display:flex;align-items:center;gap:6px;margin-bottom:3px;font-size:10px}
-.ml{padding:4px 8px;border-radius:6px;flex:1;background:#EFF6FF;border:1px solid #BFDBFE;text-align:right}
-.mr2{padding:4px 8px;border-radius:6px;flex:1;background:#FDF2F8;border:1px solid #FBCFE8}
-.mc{color:#0EA5E9;font-weight:700;flex-shrink:0}
-.anomaly{padding:6px 10px;background:#FEF3C7;border-radius:6px;font-size:11px;font-weight:600;color:#78350F;margin-bottom:4px}
-.chk{margin-bottom:4px}.ci{display:flex;align-items:center;gap:6px;padding:3px 0;font-size:10px}
-.cb{width:16px;height:16px;border-radius:4px;border:2px solid #D1D5DB;display:flex;align-items:center;justify-content:center;font-size:8px;color:transparent;flex-shrink:0}
-.ci.ok .cb{background:#10B981;border-color:#10B981;color:white}
-.phone{width:120px;margin:4px auto;background:#1F2937;border-radius:14px;padding:8px 6px 4px}
-.pi{font-size:8px;padding:2px 5px;margin-bottom:2px;background:#F3F4F6;border-radius:4px;border-left:3px solid #3B82F6}
-.deb{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:4px;text-align:center}
-.dm{background:#F9FAFB;border-radius:6px;padding:6px}.dn{font-size:16px;font-weight:900;color:#1E3A8A}.dl{font-size:8px;color:#6B7280;margin-top:2px}
-.fc{margin-bottom:4px}.fc2{display:flex;justify-content:center;gap:6px}
-.fcn{padding:4px 8px;border-radius:6px;border:2px solid;text-align:center;font-weight:600;font-size:9px}
-.fcn.s{border-color:#10B981;background:#D1FAE5}.fcn.d{border-color:#F59E0B;background:#FEF3C7}.fcn.f{border-color:#8B5CF6;background:#EDE9FE}
-.fcd{text-align:center;color:#9CA3AF;margin:1px 0;font-size:9px}
-.qz{margin-bottom:4px}.qq{font-size:10px;font-weight:500;margin-bottom:2px;color:#374151}
-.qo{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:2px}
-.qopt{padding:2px 8px;border-radius:12px;border:1px solid #E5E7EB;font-size:9px;color:#6B7280}
-.qopt.cor{background:#D1FAE5;border-color:#10B981;color:#065F46;font-weight:600}
-.qopt.wrg{background:#FEE2E2;border-color:#EF4444;color:#B91C1C;font-weight:600}
-.qopt.ans{background:#D1FAE5;border-color:#10B981;color:#065F46;font-weight:600}
-.rd{display:flex;gap:10px;justify-content:center;margin:4px 0}
-.ri{text-align:center;width:50px}.ro{height:70px;background:#F3F4F6;border-radius:4px;position:relative;overflow:hidden;margin:0 auto 3px;width:30px}
-.rb{position:absolute;bottom:0;left:0;right:0;border-radius:4px}.rl{font-size:8px;color:#4B5563;font-weight:600}.rs{font-size:10px;font-weight:700}
-.ws-ft{margin-top:10px;padding:6px 18px;border-top:1px solid #E5E7EB;font-size:8px;color:#9CA3AF;display:flex;justify-content:space-between}
+body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justify-content:center;padding:16px}
+.ws{width:210mm;background:white;box-shadow:0 2px 16px rgba(0,0,0,0.15)}
+
+/* === Worksheet header === */
+.ws-hd{background:linear-gradient(135deg,#1E3A8A,#3B82F6);padding:16px 20px;color:white;display:flex;justify-content:space-between;align-items:center}
+.ws-hd h1{font-size:20px;font-weight:900}.ws-hd .sub{font-size:10px;opacity:0.8}
+.ws-meta{font-size:10px;text-align:right;background:rgba(255,255,255,0.12);padding:4px 10px;border-radius:6px;line-height:1.6}
+
+.ct-path{display:flex;align-items:center;justify-content:center;padding:10px 0 6px;background:#F9FAFB;border-bottom:1px solid #E5E7EB}
+.ct-path .dot{width:22px;height:22px;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0}
+.ct-path .line{width:20px;height:2px;background:#D1D5DB;flex-shrink:0}
+
+.ws-body{padding:12px 16px}
+
+/* === Module blocks === */
+.ws-mod{margin-bottom:10px;page-break-inside:avoid;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden}
+.ws-mod-head{display:flex;align-items:center;gap:6px;padding:8px 12px;color:white;font-weight:700;font-size:12px}
+.ws-mod-head .tag{font-size:9px;background:rgba(255,255,255,0.2);padding:2px 6px;border-radius:8px}
+.ws-mod-head .ct-tag{margin-left:auto;font-size:9px;background:rgba(0,0,0,0.12);padding:2px 6px;border-radius:8px}
+.ws-mod-body{padding:10px 12px}
+
+/* === Module 1: Vote buttons === */
+.vote-options{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.vote-option{padding:8px 20px;background:white;border:2px solid #E5E7EB;border-radius:24px;cursor:default;font-size:13px;font-family:inherit;color:#6B7280}
+.vote-option.selected{border-color:var(--danger-red);background:#FEF2F2;color:#B91C1C;font-weight:700}
+
+/* === Sort items === */
+.sort-container{border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;margin-bottom:8px}
+.sort-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #F3F4F6;font-size:13px;background:white}
+.sort-item:last-child{border-bottom:none}
+.sort-num{width:24px;height:24px;border-radius:50%;background:var(--deep-blue);color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+
+/* === Flow slots (module 2) === */
+.flow-slots{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.flow-slot{min-width:80px;padding:8px 12px;border:2px dashed #D1D5DB;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;text-align:center;color:#9CA3AF}
+.flow-slot.filled{border-style:solid;border-color:var(--mid-blue);background:var(--light-blue);color:var(--deep-blue);font-weight:600}
+
+/* === Match items (module 3) === */
+.match-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.match-left,.match-right{padding:8px 12px;border:2px solid;border-radius:8px;font-size:12px;flex:1}
+.match-left{margin-right:0;text-align:right;background:var(--light-blue);border-color:#BFDBFE}
+.match-right{background:#FDF2F8;border-color:#FBCFE8}
+.match-arrow{color:var(--step-cyan);font-weight:700;flex-shrink:0;font-size:14px}
+
+/* === Anomaly options (module 3) === */
+.anomaly-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.anomaly-option{padding:10px;border:2px solid #E5E7EB;border-radius:8px;font-size:12px;background:white;text-align:center}
+.anomaly-option.selected{border-color:var(--warning-orange);background:#FEF3C7;font-weight:600}
+
+/* === Checklist (module 4) === */
+.checklist-item{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:#F8FAFC;border-radius:8px;margin-bottom:4px;font-size:12px}
+.checklist-item.checked{background:#D1FAE5}
+.check-box{width:20px;height:20px;border:2px solid #D1D5DB;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:transparent}
+.checklist-item.checked .check-box{background:var(--success-green);border-color:var(--success-green);color:white}
+
+/* === Phone prototype (module 4) === */
+.phone-slots{display:grid;grid-template-columns:1fr;gap:4px;max-width:140px;margin:4px auto;background:#1F2937;border-radius:12px;padding:8px 6px 4px}
+.phone-slot{min-height:32px;padding:4px 6px;border-radius:6px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);font-size:9px;display:flex;align-items:center}
+.phone-slot.filled{background:white;color:#1F2937;font-size:9px;padding:4px 6px;border-left:3px solid var(--mid-blue)}
+
+/* === Debounce metrics (module 5) === */
+.deb-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;margin-bottom:6px}
+.deb-m{padding:8px;background:#F9FAFB;border-radius:6px}
+.deb-n{font-size:16px;font-weight:900;color:var(--deep-blue)}
+.deb-l{font-size:8px;color:#6B7280;margin-top:2px}
+
+/* === Flowchart nodes (module 5) === */
+.fc-nodes{display:flex;flex-direction:column;align-items:center;gap:2px;margin-bottom:6px}
+.fc-n{display:inline-block;padding:5px 12px;border-radius:8px;border:2px solid;font-weight:600;font-size:10px;text-align:center}
+.fc-n.start{border-color:var(--success-green);background:#D1FAE5}
+.fc-n.decision{border-color:var(--warning-orange);background:#FEF3C7}
+.fc-n.filled{border-color:var(--step-purple);background:#EDE9FE}
+.fc-n.error{border-color:var(--danger-red);background:#FEE2E2}
+.fc-arrow{color:#9CA3AF;font-size:12px}
+.fc-branch{display:flex;justify-content:center;gap:12px}
+
+/* === Quiz (module 6) === */
+.quiz-question{padding:10px 14px;background:#FAFBFC;border:2px solid #E5E7EB;border-radius:8px;margin-bottom:8px}
+.quiz-question.correct{border-color:var(--success-green);background:#F0FDF4}
+.quiz-question.wrong{border-color:var(--danger-red);background:#FEF2F2}
+.quiz-options{display:flex;flex-direction:column;gap:4px}
+.quiz-option{padding:6px 12px;border:2px solid #E5E7EB;border-radius:8px;font-size:12px;background:white}
+.quiz-option.selected{border-color:var(--mid-blue);background:var(--light-blue)}
+.quiz-option.correct-answer{border-color:var(--success-green);background:#D1FAE5}
+.quiz-option.wrong-answer{border-color:var(--danger-red);background:#FEE2E2}
+
+/* === Radar (module 6) === */
+.rd-bars{display:flex;gap:14px;justify-content:center;margin:6px 0}
+.rd-bar{text-align:center;width:50px}
+.rd-bar-outer{height:70px;background:#F3F4F6;border-radius:6px;position:relative;overflow:hidden;margin:0 auto 3px;width:28px}
+.rd-bar-inner{position:absolute;bottom:0;left:0;right:0;border-radius:6px}
+.rd-bar-label{font-size:9px;color:#4B5563;font-weight:600}
+.rd-bar-score{font-size:11px;font-weight:700}
+
+/* === Text & labels === */
+.ws-label{font-size:11px;color:var(--deep-blue);font-weight:600;margin:8px 0 3px}
+.ws-label:first-child{margin-top:2px}
+.ws-text{font-size:12px;color:#374151;line-height:1.6;padding:8px 10px;background:#F9FAFB;border-radius:6px;margin-bottom:6px;white-space:pre-wrap}
+.ws-text.em{color:#D1D5DB;font-style:italic}
+.ws-foot{margin-top:8px;padding:6px 16px;border-top:1px solid #E5E7EB;font-size:8px;color:#9CA3AF;display:flex;justify-content:space-between}
+
 @media print{body{background:white;padding:0}.ws{box-shadow:none}@page{size:A4;margin:0}}
 </style>
 </head>
 <body>
 
 <div class="ws" id="wsRoot">
-  <div class="ws-hd">
-    <div><h1>🔍 解碼圖書館熱力圖</h1><div class="sub">計算思維自學工坊 — 學習工作單</div></div>
-    <div class="ws-meta" id="wsMeta"></div>
-  </div>
-  <div class="ws-path" id="wsPath"></div>
-  <div class="ws-body" id="wsBody"></div>
-  <div class="ws-ft">解碼圖書館熱力圖 — 計算思維自學工坊<span>系統自動生成</span></div>
+  <div class="ws-hd"><div><h1>🔍 解碼圖書館熱力圖</h1><div class="sub">計算思維自學工坊 — 學習工作單</div></div><div class="ws-meta" id="meta"></div></div>
+  <div class="ct-path" id="path"></div>
+  <div class="ws-body" id="body"></div>
+  <div class="ws-foot">解碼圖書館熱力圖 — 計算思維自學工坊<span>系統自動生成</span></div>
 </div>
 
 <script>
-(function() {
-  // Demo data for preview
-  if (!localStorage.getItem('ct_worksheet_data')) {
-    localStorage.setItem('ct_workshop_name', '王小華');
-    localStorage.setItem('ct_workshop_progress', JSON.stringify({module1:1,module2:1,module3:1,module4:1,module5:1,module6:1}));
-    localStorage.setItem('ct_worksheet_data', JSON.stringify({
-      m1_vote:'7 次以上', m1_thought:'可以做一個系統顯示哪裡有空位、什麼時段人比較少。',
-      m1_sort:['如何統計進館人數？','如何展示空座資訊？','如何預測擁擠時段？'],
-      m2_classify:'10/10', m2_flow:['📡 感測器','📶 網路傳輸','🧮 計數處理','🗄️ 儲存數據','📱 App 展示'],
-      m3_match:[{left:'上午10點人數最高',right:'時間規律'},{left:'週末人數銳減',right:'週期模式'},{left:'考試週爆滿',right:'事件觸發'},{left:'週五人數異常升高',right:'異常數據'}],
-      m3_anomaly:'雨天效應導致的異常突增', m3_predict:'110 人（實際 120 人，偏差 8.3%）',
-      m4_checklist:[{text:'顏色濃度表示擁擠度',checked:1},{text:'字型適合手機閱讀',checked:1},{text:'支援互動查看更多',checked:0},{text:'即時更新人數',checked:1},{text:'建議替代方案',checked:1},{text:'可切換樓層',checked:0}],
-      m4_design:['🏷️ 總人數','🏢 樓層空位','💡 建議時段','📈 趨勢折線圖','🔔 擁擠提醒'],
-      m4_reflect:'我保留了擁擠度的顏色指示，因為同學只需要知道「擠不擠」。',
-      m5_debounce:'300 ms', m5_debounce_result:{total:24,fp:1,missed:0,acc:95.8}, m5_flowchart:'正確 5/5',
-      m6_quiz:'3/4',
-      m6_quiz_detail:[{chosen:'B',correct:'B',right:1},{chosen:'D',correct:'D',right:1},{chosen:'C',correct:'C',right:1},{chosen:'A',correct:'D',right:0}],
-      m6_radar:{'分解':'7','模式識別':'8','抽象':'9','算法設計':'6'},
-      m6_reflect1:'以前以為只需要裝感測器，現在知道還需要算法和界面。',
-      m6_reflect2:'在去抖邏輯中卡住了，但理解冷卻期後想通了。',
-      m6_reflect3:'抽象最厲害——紅綠燈比顯示人數更有用。'
-    }));
-  }
+(function(){
+  // Demo data
+  if(!localStorage.getItem('ct_worksheet_data')){localStorage.setItem('ct_workshop_name','王小華');localStorage.setItem('ct_workshop_progress','{"module1":1,"module2":1,"module3":1,"module4":1,"module5":1,"module6":1}');localStorage.setItem('ct_worksheet_data',JSON.stringify({m1_vote:'7 次以上',m1_thought:'可以做一個系統顯示哪裡有空位、什麼時段人比較少。',m1_sort:['如何統計進館人數？','如何展示空座資訊？','如何預測擁擠時段？'],m2_classify:'10/10',m2_flow:['📡 感測器','📶 網路傳輸','🧮 計數處理','🗄️ 儲存數據','📱 App 展示'],m3_match:[{left:'上午10點人數最高',right:'時間規律'},{left:'週末人數銳減',right:'週期模式'},{left:'考試週爆滿',right:'事件觸發'},{left:'週五人數異常升高',right:'異常數據'}],m3_anomaly:'雨天效應導致的異常突增',m3_predict:'110 人（實際 120 人，偏差 8.3%）',m4_checklist:[{text:'顏色濃度表示擁擠度',checked:1},{text:'字型適合手機閱讀',checked:1},{text:'支援點擊互動',checked:0},{text:'即時更新人數',checked:1},{text:'建議替代方案',checked:1},{text:'可切換樓層視角',checked:0}],m4_design:['🏷️ 總人數：127 人','🏢 樓層空位','💡 建議時段','📈 趨勢折線圖','🔔 擁擠提醒'],m4_reflect:'我保留了擁擠度的顏色指示，因為同學只需要知道「擠不擠」。',m5_debounce:'300 ms',m5_debounce_result:{total:24,fp:1,missed:0,acc:95.8},m5_flowchart:'正確 5/5',m6_quiz:'3/4',m6_quiz_detail:[{chosen:'B',correct:'B',right:1},{chosen:'D',correct:'D',right:1},{chosen:'C',correct:'C',right:1},{chosen:'A',correct:'D',right:0}],m6_radar:{'分解':'7','模式識別':'8','抽象':'9','算法設計':'6'},m6_reflect1:'以前以為只需要裝感測器，現在知道還需要算法和界面。',m6_reflect2:'在去抖邏輯中卡住了，理解冷卻期後想通。',m6_reflect3:'抽象最厲害——紅綠燈比顯示人數更有用。'}))}
 
-  var D = JSON.parse(localStorage.getItem('ct_worksheet_data'));
-  var name = localStorage.getItem('ct_workshop_name') || '同學';
-  var prog = JSON.parse(localStorage.getItem('ct_workshop_progress')||'{}');
-  var now = new Date();
-  var ds = now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
+  var D=JSON.parse(localStorage.getItem('ct_worksheet_data'));
+  var name=localStorage.getItem('ct_workshop_name')||'同學';
+  var prog=JSON.parse(localStorage.getItem('ct_workshop_progress')||'{}');
+  var now=new Date(),ds=now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
+  document.getElementById('meta').innerHTML='<strong>'+name+'</strong>'+ds+'<br>完成 '+Object.keys(prog).length+' / 6 模組';
 
-  document.getElementById('wsMeta').innerHTML = '<strong>'+name+'</strong>'+ds+'<br>完成 '+Object.keys(prog).length+' / 6 模組';
-
-  var ctColors = ['#EF4444','#F59E0B','#0EA5E9','#EC4899','#8B5CF6'];
-  var pathHtml = '';
-  for (var i=0;i<5;i++) { pathHtml += '<div class="dot" style="background:'+ctColors[i]+'">'+(i+1)+'</div>'; if(i<4) pathHtml += '<div class="line"></div>'; }
-  document.getElementById('wsPath').innerHTML = pathHtml;
+  var ctC=['#EF4444','#F59E0B','#0EA5E9','#EC4899','#8B5CF6'],ph='';
+  for(var i=0;i<5;i++){ph+='<div class="dot" style="background:'+ctC[i]+'">'+(i+1)+'</div>';if(i<4)ph+='<div class="line"></div>'}
+  document.getElementById('path').innerHTML=ph;
 
   function g(k){return D[k]||''}
   function gg(k){var x=g(k);return x||'<span class="em">（未填寫）</span>'}
 
-  var body = document.getElementById('wsBody');
-  var h = '';
+  var h='';
 
-  // ===== Module 1 =====
-  (function(){
-    var m='<div class="lbl">📊 投票：你去圖書館時遇到過幾次沒座位？</div><div class="vote-row">';
-    ['0 次','1-3 次','4-6 次','7 次以上'].forEach(function(o){m+='<span class="vt'+(o===g('m1_vote')?' sel':'')+'">'+o+'</span>';});
-    m+='</div><div class="lbl">💭 思考泡泡</div><div class="txt'+(g('m1_thought')?'':' em')+'">'+gg('m1_thought')+'</div>';
-    var sa=g('m1_sort');
-    m+='<div class="lbl">📋 問題排序</div>';
-    if(sa&&sa.length){m+='<div class="sort">';sa.forEach(function(s,i){m+='<div class="si"><div class="sn">'+(i+1)+'</div>'+s+'</div>';});m+='</div>';}
-    else{m+='<div class="txt em">（未完成排序）</div>';}
-    h+=mBlock('模組 1 — 痛點挖掘','問題定義','#EF4444',m);
-  })();
+  // === Module 1 ===
+  h+=mh('模組 1 — 痛點挖掘','問題定義','#EF4444');
+  h+='<div class="ws-label">📊 投票：你去圖書館時遇到過幾次沒座位？</div><div class="vote-options">';
+  ['0 次','1-3 次','4-6 次','7 次以上'].forEach(function(o){h+='<div class="vote-option'+(o===g('m1_vote')?' selected':'')+'">'+o+'</div>'});
+  h+='</div><div class="ws-label">💭 思考泡泡</div><div class="ws-text'+(g('m1_thought')?'':' em')+'">'+gg('m1_thought')+'</div>';
+  var sa=g('m1_sort');h+='<div class="ws-label">📋 問題排序</div>';
+  if(sa&&sa.length){h+='<div class="sort-container">';sa.forEach(function(s,i){h+='<div class="sort-item"><div class="sort-num">'+(i+1)+'</div>'+s+'</div>'});h+='</div>'}
+  else{h+='<div class="ws-text em">（未完成排序）</div>'}
+  h+='</div></div>';
 
-  // ===== Module 2 =====
-  (function(){
-    var m='<div class="lbl">🔄 數據流排序</div>';
-    var fa=g('m2_flow');
-    if(fa&&fa.length){m+='<div class="flow">';fa.filter(Boolean).forEach(function(s,i){if(i>0)m+='<span class="fa">→</span>';m+='<span class="fs">'+s+'</span>';});m+='</div>';}
-    else{m+='<div class="txt em">（未完成）</div>';}
-    m+='<div class="lbl">📦 卡片分類</div><div class="txt'+(g('m2_classify')?'':' em')+'">'+gg('m2_classify')+'</div>';
-    h+=mBlock('模組 2 — 解構問題','分解','#F59E0B',m);
-  })();
+  // === Module 2 ===
+  h+=mh('模組 2 — 解構問題','分解','#F59E0B');
+  var fa=g('m2_flow');h+='<div class="ws-label">🔄 數據流排序</div>';
+  if(fa&&fa.length){h+='<div class="flow-slots">';fa.filter(Boolean).forEach(function(s,i){if(i>0)h+='<span class="fc-arrow">→</span>';h+='<div class="flow-slot filled">'+s+'</div>'});h+='</div>'}
+  else{h+='<div class="ws-text em">（未完成）</div>'}
+  h+='<div class="ws-label">📦 卡片分類</div><div class="ws-text'+(g('m2_classify')?'':' em')+'">'+gg('m2_classify')+'</div>';
+  h+='</div></div>';
 
-  // ===== Module 3 =====
-  (function(){
-    var m='';var ma=g('m3_match');
-    if(ma&&ma.length){m+='<div class="lbl">🔗 模式配對</div>';ma.forEach(function(p){m+='<div class="mr"><div class="ml">'+p.left+'</div><span class="mc">→</span><div class="mr2">'+p.right+'</div></div>';});}
-    m+='<div class="lbl">⚠️ 異常數據判斷</div><div class="anomaly">'+gg('m3_anomaly')+'</div>';
-    m+='<div class="lbl">🔮 雨天預測</div><div class="txt'+(g('m3_predict')?'':' em')+'">'+gg('m3_predict')+'</div>';
-    h+=mBlock('模組 3 — 模式偵探','模式識別','#0EA5E9',m);
-  })();
+  // === Module 3 ===
+  h+=mh('模組 3 — 模式偵探','模式識別','#0EA5E9');
+  var ma=g('m3_match');if(ma&&ma.length){h+='<div class="ws-label">🔗 模式配對</div>';ma.forEach(function(p){h+='<div class="match-row"><div class="match-left">'+p.left+'</div><span class="match-arrow">→</span><div class="match-right">'+p.right+'</div></div>'})}
+  h+='<div class="ws-label">⚠️ 異常數據判斷</div><div class="anomaly-options"><div class="anomaly-option selected">'+gg('m3_anomaly')+'</div></div>';
+  h+='<div class="ws-label">🔮 雨天預測</div><div class="ws-text'+(g('m3_predict')?'':' em')+'">'+gg('m3_predict')+'</div>';
+  h+='</div></div>';
 
-  // ===== Module 4 =====
-  (function(){
-    var m='';var cl=g('m4_checklist');
-    if(cl&&cl.length){m+='<div class="lbl">✅ 設計檢查清單</div><div class="chk">';cl.forEach(function(x){m+='<div class="ci'+(x.checked?' ok':'')+'"><span class="cb">✓</span>'+x.text+'</div>';});m+='</div>';}
-    var dsn=g('m4_design');
-    m+='<div class="lbl">📱 手機原型設計</div>';
-    if(dsn&&dsn.length){m+='<div class="phone">';dsn.forEach(function(s){m+='<div class="pi">'+s+'</div>';});m+='</div>';}
-    else{m+='<div class="txt em">（未設計）</div>';}
-    m+='<div class="lbl">💬 抽象反思</div><div class="txt'+(g('m4_reflect')?'':' em')+'">'+gg('m4_reflect')+'</div>';
-    h+=mBlock('模組 4 — 視覺化設計師','抽象','#EC4899',m);
-  })();
+  // === Module 4 ===
+  h+=mh('模組 4 — 視覺化設計師','抽象','#EC4899');
+  var cl=g('m4_checklist');if(cl&&cl.length){h+='<div class="ws-label">✅ 設計檢查清單</div>';cl.forEach(function(x){h+='<div class="checklist-item'+(x.checked?' checked':'')+'"><div class="check-box">✓</div><span>'+x.text+'</span></div>'})}
+  var dsn=g('m4_design');h+='<div class="ws-label">📱 手機原型設計</div>';
+  if(dsn&&dsn.length){h+='<div class="phone-slots">';dsn.forEach(function(s){h+='<div class="phone-slot filled">'+s+'</div>'});h+='</div>'}
+  else{h+='<div class="ws-text em">（未設計）</div>'}
+  h+='<div class="ws-label">💬 抽象反思</div><div class="ws-text'+(g('m4_reflect')?'':' em')+'">'+gg('m4_reflect')+'</div>';
+  h+='</div></div>';
 
-  // ===== Module 5 =====
-  (function(){
-    var m='';var dr=g('m5_debounce_result');
-    m+='<div class="lbl">⏱ 去抖測試：<b>'+gg('m5_debounce')+'</b></div>';
-    if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';
-      m+='<div class="deb"><div class="dm"><div class="dn">'+dr.total+'</div><div class="dl">總人數</div></div><div class="dm"><div class="dn" style="color:#F59E0B">'+dr.fp+'</div><div class="dl">誤報</div></div><div class="dm"><div class="dn" style="color:#10B981">'+dr.missed+'</div><div class="dl">漏計</div></div><div class="dm"><div class="dn" style="color:'+ac+'">'+dr.acc+'%</div><div class="dl">準確率</div></div></div>';
-    }
-    m+='<div class="lbl">🔀 流程圖填空</div><div class="fc">';
-    m+='<span class="fcn s">IR 感測器觸發</span><div class="fcd">⬇</div>';
-    m+='<span class="fcn d">方向判定</span><div class="fcd">⬇</div>';
-    m+='<div class="fc2"><span class="fcn f">enter_count += 1</span><span class="fcn f">exit_count += 1</span></div><div class="fcd">⬇</div>';
-    m+='<span class="fcn f">更新 current_count</span><div class="fcd">⬇</div>';
-    m+='<span class="fcn f">邊界保護</span><div class="fcd">⬇</div>';
-    m+='<span class="fcn f">去抖過濾</span></div>';
-    m+='<div style="text-align:center;font-weight:700;margin-top:4px;">'+gg('m5_flowchart')+'</div>';
-    h+=mBlock('模組 5 — 算法工程師','算法設計','#8B5CF6',m);
-  })();
+  // === Module 5 ===
+  h+=mh('模組 5 — 算法工程師','算法設計','#8B5CF6');
+  var dr=g('m5_debounce_result');h+='<div class="ws-label">⏱ 去抖測試：<b>'+gg('m5_debounce')+'</b></div>';
+  if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';h+='<div class="deb-metrics"><div class="deb-m"><div class="deb-n">'+dr.total+'</div><div class="deb-l">總人數</div></div><div class="deb-m"><div class="deb-n" style="color:#F59E0B">'+dr.fp+'</div><div class="deb-l">誤報</div></div><div class="deb-m"><div class="deb-n" style="color:#10B981">'+dr.missed+'</div><div class="deb-l">漏計</div></div><div class="deb-m"><div class="deb-n" style="color:'+ac+'">'+dr.acc+'%</div><div class="deb-l">準確率</div></div></div>'}
+  h+='<div class="ws-label">🔀 流程圖填空</div><div class="fc-nodes">';
+  h+='<span class="fc-n start">IR 感測器觸發</span><span class="fc-arrow">⬇</span>';
+  h+='<span class="fc-n decision">方向判定</span><span class="fc-arrow">⬇</span>';
+  h+='<div class="fc-branch"><span class="fc-n filled">enter_count += 1</span><span class="fc-n filled">exit_count += 1</span></div><span class="fc-arrow">⬇</span>';
+  h+='<span class="fc-n filled">更新 current_count</span><span class="fc-arrow">⬇</span>';
+  h+='<span class="fc-n filled">邊界保護</span><span class="fc-arrow">⬇</span>';
+  h+='<span class="fc-n filled">去抖過濾</span></div>';
+  h+='<div style="text-align:center;font-weight:700;margin-top:4px">'+gg('m5_flowchart')+'</div>';
+  h+='</div></div>';
 
-  // ===== Module 6 =====
-  (function(){
-    var m='<div class="lbl">🧠 概念測驗</div>';
-    var qq=['1. 拆成三個模組屬於？','2. 先遮A再遮B=進入屬於？','3. 紅綠燈代替人數屬於？','4. 每天10-12點是高峰屬於？'];
-    var qo=[['A.模式識別','B.分解','C.抽象','D.算法設計'],['A.分解','B.模式識別','C.抽象','D.算法設計'],['A.算法設計','B.分解','C.抽象','D.模式識別'],['A.抽象','B.算法設計','C.分解','D.模式識別']];
-    var qd=g('m6_quiz_detail');
-    m+='<div class="qz">';
-    for(var i=0;i<4;i++){m+='<div class="qq">'+qq[i]+'</div><div class="qo">';qo[i].forEach(function(o,j){var c='';if(qd&&qd[i]){if(qd[i].chosen===String.fromCharCode(65+j))c=qd[i].right?' cor':' wrg';else if(qd[i].correct===String.fromCharCode(65+j))c=' ans';}m+='<span class="qopt'+c+'">'+o+'</span>';});m+='</div>';}
-    m+='</div><div style="text-align:center;font-size:16px;font-weight:900">得分：'+gg('m6_quiz')+'</div>';
-    m+='<div class="lbl">📊 能力自評</div>';
-    var rd=g('m6_radar');var rl=['分解','模式識別','抽象','算法設計'];var rc=['#F59E0B','#0EA5E9','#EC4899','#8B5CF6'];
-    if(rd&&rd[rl[0]]){m+='<div class="rd">';rl.forEach(function(l,i){var s=rd[l]||5;m+='<div class="ri"><div class="ro"><div class="rb" style="height:'+(s*10)+'%;background:'+rc[i]+'"></div></div><div class="rl">'+l+'</div><div class="rs" style="color:'+rc[i]+'">'+s+'</div></div>';});m+='</div>';}
-    else{m+='<div class="txt em">（未完成）</div>';}
-    m+='<div class="lbl">💬 反思</div><div class="txt'+(g('m6_reflect1')?'':' em')+'">'+gg('m6_reflect1')+'</div><div class="txt'+(g('m6_reflect2')?'':' em')+'">'+gg('m6_reflect2')+'</div><div class="txt'+(g('m6_reflect3')?'':' em')+'">'+gg('m6_reflect3')+'</div>';
-    h+=mBlock('模組 6 — 系統整合與反思','整合','#10B981',m);
-  })();
-
-  body.innerHTML = h;
-
-  function mBlock(title,ct,color,content){
-    return '<div class="wm"><div class="wh" style="background:'+color+'"><span class="wn">'+title+'</span><span class="wct">'+ct+'</span></div><div class="wb">'+content+'</div></div>';
+  // === Module 6 ===
+  h+=mh('模組 6 — 系統整合與反思','整合','#10B981');
+  h+='<div class="ws-label">🧠 概念測驗</div>';
+  var qq=['1. 拆成三個模組屬於？','2. 先遮A再遮B=進入屬於？','3. 紅綠燈代替人數屬於？','4. 每天10-12點是高峰屬於？'];
+  var qo=[['A.模式識別','B.分解','C.抽象','D.算法設計'],['A.分解','B.模式識別','C.抽象','D.算法設計'],['A.算法設計','B.分解','C.抽象','D.模式識別'],['A.抽象','B.算法設計','C.分解','D.模式識別']];
+  var qd=g('m6_quiz_detail');
+  for(var i=0;i<4;i++){var clr='';if(qd&&qd[i]){clr=qd[i].right?' correct':' wrong'}
+    h+='<div class="quiz-question'+clr+'"><div style="font-size:12px;font-weight:600;margin-bottom:4px">'+qq[i]+'</div><div class="quiz-options">';
+    qo[i].forEach(function(o,j){var c='';if(qd&&qd[i]){if(qd[i].chosen===String.fromCharCode(65+j))c=qd[i].right?' correct-answer':' wrong-answer';else if(qd[i].correct===String.fromCharCode(65+j))c=' correct-answer'}h+='<div class="quiz-option'+c+'">'+o+'</div>'});
+    h+='</div></div>';
   }
+  h+='<div style="text-align:center;font-size:15px;font-weight:900;color:#F59E0B">得分：'+gg('m6_quiz')+'</div>';
+  h+='<div class="ws-label">📊 能力自評</div>';
+  var rd=g('m6_radar'),rl=['分解','模式識別','抽象','算法設計'],rc=['#F59E0B','#0EA5E9','#EC4899','#8B5CF6'];
+  if(rd&&rd[rl[0]]){h+='<div class="rd-bars">';rl.forEach(function(l,i){var s=rd[l]||5;h+='<div class="rd-bar"><div class="rd-bar-outer"><div class="rd-bar-inner" style="height:'+(s*10)+'%;background:'+rc[i]+'"></div></div><div class="rd-bar-label">'+l+'</div><div class="rd-bar-score" style="color:'+rc[i]+'">'+s+'</div></div>'});h+='</div>'}
+  else{h+='<div class="ws-text em">（未完成）</div>'}
+  h+='<div class="ws-label">💬 反思</div><div class="ws-text'+(g('m6_reflect1')?'':' em')+'">'+gg('m6_reflect1')+'</div><div class="ws-text'+(g('m6_reflect2')?'':' em')+'">'+gg('m6_reflect2')+'</div><div class="ws-text'+(g('m6_reflect3')?'':' em')+'">'+gg('m6_reflect3')+'</div>';
+  h+='</div></div>';
+
+  document.getElementById('body').innerHTML=h;
+  function mh(title,ct,color){return '<div class="ws-mod"><div class="ws-mod-head" style="background:'+color+'"><span class="tag">'+title+'</span><span class="ct-tag">'+ct+'</span></div><div class="ws-mod-body">'}
 })();
 </script>
-
 </body>
 </html>
