@@ -203,36 +203,36 @@
 <div class="page-container fade-in">
 
   <div class="module-header">
-    <span class="module-tag" style="background:#F59E0B">模組 2</span>
-    <h1>🧩 解構問題 — 分解思維</h1>
-    <div class="time-hint"><i class="fas fa-clock"></i> 約 30 分鐘</div>
+    <span class="module-tag" style="background:#F59E0B">Module 2</span>
+    <h1>🧩 Deconstructing — Decomposition</h1>
+    <div class="time-hint"><i class="fas fa-clock"></i> ~15 min</div>
     <div class="learning-obj">
-      <strong>學習目標：</strong>學會將「設計圖書館人流量監控系統」這個大問題分解為數據採集、傳輸、處理、展示四個功能模組，理解<strong>分解</strong>這一計算思維核心概念。
+      <strong>Objective:</strong> Learn to decompose "Design a library traffic monitoring system" into data collection, transmission, processing, and display modules. Understand <strong>decomposition</strong> as a core CT concept.
     </div>
   </div>
 
   <!-- Bridge from Module 1 -->
   <div class="bridge-card">
-    <h3><i class="fas fa-arrow-right"></i> 從上一模組出發</h3>
-    <p>上一模組我們定義了問題：<strong>「同學需要即時知道圖書館擁不擁擠」</strong>。但這個問題太大了——一個感測器怎麼變成同學手機上的資訊？<br>這就像要把一頭大象裝進冰箱，不可能一步完成。我們需要<strong>分解</strong>——把大問題切成可管理的小步驟。</p>
+    <h3><i class="fas fa-arrow-right"></i> Continuing from Module 1</h3>
+    <p>In Module 1 we defined the problem: <strong>"Students need real-time library crowding info"</strong>. But this problem is huge — how does a sensor become info on a phone?<br>Like putting an elephant in a fridge, impossible in one step. We need <strong>decomposition</strong> — breaking big problems into manageable parts.</p>
   </div>
 
   <!-- Onion Diagram -->
   <div class="section-card">
-    <h2><i class="fas fa-circle-nodes"></i> 洋蔥模型：問題分層拆解</h2>
-    <p style="margin-bottom:10px;color:var(--text-light);font-size:14px;">從外到內，將現實痛點逐層剝開。下方的洋蔥圖展示了分層結構，點擊下方每一層查看詳細說明。</p>
+    <h2><i class="fas fa-circle-nodes"></i> Onion Model: Layered Problem Breakdown</h2>
+    <p style="margin-bottom:10px;color:var(--text-light);font-size:14px;">Peel back the problem layer by layer. The onion diagram below shows the layered structure — click each layer for details.</p>
     <!-- Static onion diagram illustration -->
     <div style="display:flex;justify-content:center;margin:12px 0 16px;">
       <svg viewBox="0 0 320 320" width="280" height="280" xmlns="http://www.w3.org/2000/svg">
         <!-- Layer 1: Red - 現實痛點 -->
         <ellipse cx="160" cy="160" rx="150" ry="150" fill="#FEE2E2" stroke="#FECACA" stroke-width="2.5"/>
-        <text x="160" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#991B1B">🔴 第1層 現實痛點</text>
+        <text x="160" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#991B1B">🔴 Layer 1: Real Pain Point</text>
         <!-- Layer 2: Yellow - 數據需求 -->
         <ellipse cx="160" cy="168" rx="112" ry="112" fill="#FEF3C7" stroke="#FDE68A" stroke-width="2.5"/>
-        <text x="160" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">🟡 第2層 數據需求</text>
+        <text x="160" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#92400E">🟡 Layer 2: Data Needs</text>
         <!-- Layer 3: Green - 功能模組 -->
         <ellipse cx="160" cy="176" rx="74" ry="74" fill="#D1FAE5" stroke="#A7F3D0" stroke-width="2.5"/>
-        <text x="160" y="122" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">🟢 第3層 功能模組</text>
+        <text x="160" y="122" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">🟢 Layer 3: Functional Modules</text>
         <!-- Layer 4: Blue - 技術實現 -->
         <ellipse cx="160" cy="184" rx="38" ry="38" fill="#DBEAFE" stroke="#93C5FD" stroke-width="2.5"/>
         <text x="160" y="188" text-anchor="middle" font-size="10" font-weight="700" fill="#1E3A8A">🔵 技術</text>
@@ -242,14 +242,14 @@
       <div class="onion-layer" onclick="showOnion(0)" id="onion-0">
         <div class="onion-layer-header" style="background:#FEE2E2;border:2px solid #FECACA;">
           <span class="onion-badge" style="background:#991B1B;">第 1 層</span>
-          <span class="onion-layer-title">🔴 現實痛點：找不到座位</span>
+          <span class="onion-layer-title">🔴 Real Pain Point: No Seats Available</span>
           <i class="fas fa-chevron-down onion-arrow" id="onion-arrow-0"></i>
         </div>
         <div class="onion-layer-body" id="onionDetail-0">
-          <p>這是我們的起點——使用者體驗到的問題。同學走進圖書館，不知道哪裡有空位，浪費時間在各樓層間跑來跑去。</p>
+          <p>This is the starting point — the user's experience. Students wander between floors, wasting time.</p>
           <ul>
-            <li>誰受影響？所有使用圖書館的同學</li>
-            <li>痛點本質：資訊不對稱——圖書館有沒有空位，同學不知道</li>
+            <li>Who's affected? Every student using the library</li>
+            <li>Core: Information asymmetry — students don't know if there are seats</li>
             <li>如果能看到即時資訊，問題就解決了</li>
           </ul>
         </div>
@@ -257,45 +257,45 @@
       <div class="onion-layer" onclick="showOnion(1)" id="onion-1">
         <div class="onion-layer-header" style="background:#FEF3C7;border:2px solid #FDE68A;">
           <span class="onion-badge" style="background:#92400E;">第 2 層</span>
-          <span class="onion-layer-title">🟡 數據需求：即時人數 / 樓層</span>
+          <span class="onion-layer-title">🟡 Data Needs: Real-time Count / Floors</span>
           <i class="fas fa-chevron-down onion-arrow" id="onion-arrow-1"></i>
         </div>
         <div class="onion-layer-body" id="onionDetail-1">
-          <p>要解決痛點，我們需要什麼數據？把模糊的「不知道」變成具體的數據需求。</p>
+          <p>To solve this, what data do we need? Turn vague unknowns into specific data requirements.</p>
           <ul>
-            <li>現在圖書館有多少人？→ 需要即時在館人數</li>
-            <li>哪個樓層還有空位？→ 需要各樓層人數</li>
-            <li>什麼時候人最少？→ 需要歷史趨勢數據</li>
+            <li>How many now? → Need real-time occupancy</li>
+            <li>Which floor has seats? → Per-floor counts</li>
+            <li>When is it quietest? → Need historical trends</li>
           </ul>
         </div>
       </div>
       <div class="onion-layer" onclick="showOnion(2)" id="onion-2">
         <div class="onion-layer-header" style="background:#D1FAE5;border:2px solid #A7F3D0;">
           <span class="onion-badge" style="background:#065F46;">第 3 層</span>
-          <span class="onion-layer-title">🟢 功能模組：採集 → 處理 → 展示</span>
+          <span class="onion-layer-title">🟢 Functional Modules: Collection → Processing → Display</span>
           <i class="fas fa-chevron-down onion-arrow" id="onion-arrow-2"></i>
         </div>
         <div class="onion-layer-body" id="onionDetail-2">
           <p>這就是<strong>分解</strong>的結果！一個大系統被拆成了三個獨立的功能模組，每個都有明確的輸入和輸出。</p>
           <ul>
-            <li><strong>採集</strong>：感測器讀取進出信號 → 輸出原始數據</li>
-            <li><strong>處理</strong>：算法計數+去抖 → 輸出精確人數</li>
-            <li><strong>展示</strong>：界面呈現給使用者 → 輸出視覺化資訊</li>
+            <li><strong>採集</strong>：感測器讀取進出信號 → Output raw data</li>
+            <li><strong>處理</strong>：算法計數+去抖 → Output accurate count</li>
+            <li><strong>展示</strong>：界面呈現給使用者 → Output visual info</li>
           </ul>
         </div>
       </div>
       <div class="onion-layer" onclick="showOnion(3)" id="onion-3">
         <div class="onion-layer-header" style="background:#DBEAFE;border:2px solid #93C5FD;">
           <span class="onion-badge" style="background:#1E3A8A;">第 4 層</span>
-          <span class="onion-layer-title">🔵 技術實現：紅外線 + 算法設計</span>
+          <span class="onion-layer-title">🔵 Tech: Infrared + Algorithm Design</span>
           <i class="fas fa-chevron-down onion-arrow" id="onion-arrow-3"></i>
         </div>
         <div class="onion-layer-body" id="onionDetail-3">
-          <p>最核心的技術層——具體用什麼技術來實現每個模組？</p>
+          <p>The core technical layer — what tech implements each module?</p>
           <ul>
-            <li>採集：紅外線感測器對（IR-A / IR-B）偵測遮擋順序</li>
-            <li>處理：計數算法 + 去抖邏輯（模組 5 會深入學習）</li>
-            <li>展示：手機 App 界面，紅綠燈 + 熱力圖（模組 4 已經設計過）</li>
+            <li>Collection: IR sensor pairs (IR-A / IR-B) detect blocking order</li>
+            <li>Processing: counting algorithm + debounce logic (Module 5 deep dive)</li>
+            <li>Display: Mobile App UI, traffic lights + heatmap (designed in Module 4)</li>
           </ul>
         </div>
       </div>
@@ -304,10 +304,10 @@
 
   <!-- Card Classification -->
   <div class="section-card">
-    <h2><i class="fas fa-puzzle-piece"></i> 卡片分類：將組件歸入正確模組</h2>
-    <p style="margin-bottom:8px;color:var(--text-light);font-size:14px;">① 點擊左側卡片選取 → ② 點擊右側對應分類框放入。正確分類會變綠 ✅</p>
+    <h2><i class="fas fa-puzzle-piece"></i> Card Classification: Sort into Correct Modules</h2>
+    <p style="margin-bottom:8px;color:var(--text-light);font-size:14px;">① Click a card on the left → ② Click a category on the right. Correct = green ✅</p>
     <div class="classify-hint">
-      <i class="fas fa-lightbulb"></i> 提示：想想每個組件在系統中扮演什麼角色——是負責「讀取數據」、「傳送數據」、「處理數據」還是「呈現數據」？
+      <i class="fas fa-lightbulb"></i> Tip: What role does each component play — reading, transmitting, processing, or presenting data?
     </div>
     <div class="classify-progress">
       <span>已分類：<strong id="classifyCount">0</strong> / 10</span>
@@ -315,38 +315,38 @@
     </div>
     <div class="classify-area">
       <div class="card-pool">
-        <h4>📦 待分類組件</h4>
+        <h4>📦 Components to Classify</h4>
         <div class="classify-cards" id="classifyCards"></div>
       </div>
       <div class="classify-bins" id="classifyBins">
         <div class="classify-bin" data-category="collect" onclick="classifyTo(this)">
-          <h5><i class="fas fa-satellite-dish"></i> 數據採集</h5>
+          <h5><i class="fas fa-satellite-dish"></i> Data Collection</h5>
           <div class="bin-cards" id="bin-collect"></div>
         </div>
         <div class="classify-bin" data-category="transmit" onclick="classifyTo(this)">
-          <h5><i class="fas fa-wifi"></i> 數據傳輸</h5>
+          <h5><i class="fas fa-wifi"></i> Data Transmission</h5>
           <div class="bin-cards" id="bin-transmit"></div>
         </div>
         <div class="classify-bin" data-category="process" onclick="classifyTo(this)">
-          <h5><i class="fas fa-microchip"></i> 數據處理</h5>
+          <h5><i class="fas fa-microchip"></i> Data Processing</h5>
           <div class="bin-cards" id="bin-process"></div>
         </div>
         <div class="classify-bin" data-category="display" onclick="classifyTo(this)">
-          <h5><i class="fas fa-mobile-screen"></i> 數據展示</h5>
+          <h5><i class="fas fa-mobile-screen"></i> Data Display</h5>
           <div class="bin-cards" id="bin-display"></div>
         </div>
       </div>
     </div>
     <div style="text-align:center;margin-top:16px;">
-      <button class="btn btn-warning" onclick="checkClassification()"><i class="fas fa-check-circle"></i> 檢查我的分類</button>
+      <button class="btn btn-warning" onclick="checkClassification()"><i class="fas fa-check-circle"></i> Check Classification</button>
     </div>
   </div>
 
   <!-- Data Flow Builder (replaces static diagram) -->
   <div class="section-card">
-    <h2><i class="fas fa-diagram-project"></i> 數據流排序</h2>
-    <p style="margin-bottom:8px;color:var(--text-light);font-size:14px;">這些組件在系統中以什麼順序工作？點擊下方組件放入對應位置，點擊已放置的組件可移除。</p>
-    <p style="margin-bottom:14px;color:var(--text-light);font-size:14px;">💡 <strong>提示：</strong>數據從感測器產生，經過傳輸和處理，最後到達使用者。</p>
+    <h2><i class="fas fa-diagram-project"></i> Data Flow Order</h2>
+    <p style="margin-bottom:8px;color:var(--text-light);font-size:14px;">What order do these components work in? Click to place, click to remove.</p>
+    <p style="margin-bottom:14px;color:var(--text-light);font-size:14px;">💡 <strong>Tip:</strong> Data flows from sensors, through transmission and processing, to the user.</p>
     <div class="flow-build-area">
       <div class="flow-slots" id="flowSlots">
         <div class="flow-slot" id="fslot-0" onclick="clearFlowSlot(0)">?</div>
@@ -361,7 +361,7 @@
       </div>
       <div class="flow-choices" id="flowChoices"></div>
       <div style="text-align:center;margin-top:14px;">
-        <button class="btn btn-success" onclick="checkFlow()"><i class="fas fa-check"></i> 檢查順序</button>
+        <button class="btn btn-success" onclick="checkFlow()"><i class="fas fa-check"></i> Check Order</button>
         <button class="btn btn-warning" onclick="resetFlow()" style="margin-left:8px;"><i class="fas fa-rotate-left"></i> 重置</button>
       </div>
     </div>
@@ -369,8 +369,8 @@
 
   <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
-    <button class="knowledge-btn" onclick="showKnowledge('分解思維','分解（Decomposition）是計算思維的第二步：把大問題切成可管理的小塊。\n\n就像拆解一台電腦——顯示器、主機板、硬碟、電源，每個部件都有明確職責，可以獨立理解和維修。\n\n在圖書館系統中：\n• 「設計人流量監控系統」太大，無法一步完成\n• 分解後：採集 → 傳輸 → 處理 → 展示，每個子問題可以獨立解決\n• 感測器壞了？只需修採集模組，不影響其他部分\n\n分解的好處：\n1. 降低複雜度——每次只關注一個子問題\n2. 便於分工——不同人負責不同模組\n3. 易於維護——哪裡壞了修哪裡\n4. 可重用——採集模組可以用在其他場景')">
-      <i class="fas fa-lightbulb"></i> 知識卡片：分解思維
+    <button class="knowledge-btn" onclick="showKnowledge('Decomposition','分解（Decomposition）是計算思維的第二步：把大問題切成可管理的小塊。\n\n就像拆解一台電腦——顯示器、主機板、硬碟、電源，每個部件都有明確職責，可以獨立理解和維修。\n\n在圖書館系統中：\n• 「設計人流量監控系統」太大，無法一步完成\n• 分解後：採集 → 傳輸 → 處理 → 展示，每個子問題可以獨立解決\n• 感測器壞了？只需修採集模組，不影響其他部分\n\n分解的好處：\n1. 降低複雜度——每次只關注一個子問題\n2. 便於分工——不同人負責不同模組\n3. 易於維護——哪裡壞了修哪裡\n4. 可重用——採集模組可以用在其他場景')">
+      <i class="fas fa-lightbulb"></i> Knowledge Card: Decomposition
     </button>
   </div>
 
@@ -489,7 +489,7 @@ function checkClassification() {
   var total = classifyData.length;
   var classified = Object.keys(cardClassifications).length;
   if (classified < total) {
-    showToast('還有 ' + (total - classified) + ' 張卡片未分類，請先完成所有分類', 'info');
+    showToast(' left. ' + (total - classified) + '  cards not classified. Complete all first.', 'info');
     return;
   }
   classifyData.forEach(function(card) {
@@ -505,7 +505,7 @@ function checkClassification() {
     showToast('🎉 全部正確！太棒了！', 'success');
     showConfetti();
   } else {
-    showToast('正確 ' + correct + '/' + total + '，紅色標記的卡片試試換個分類！', correct >= total * 0.6 ? 'info' : 'error');
+    showToast('正確 ' + correct + '/' + total + ', try a different category for red ones!', correct >= total * 0.6 ? 'info' : 'error');
   }
   // Save classification results
   saveWorksheetData('m2_classify', correct + '/' + total);
@@ -589,11 +589,11 @@ function checkFlow() {
   });
 
   if (allCorrect) {
-    showToast('🎉 數據流順序正確！這就是系統的完整工作流程！', 'success');
+    showToast('🎉 Data flow correct! This is the complete workflow!', 'success');
     showConfetti();
     saveWorksheetData('m2_flow', flowSlots.map(function(s){return s?s.name:''}));
   } else {
-    showToast('有些位置不對，紅色的請重新排列！提示：數據從哪裡產生？', 'error');
+    showToast('Some positions wrong. Red ones need re-ordering! Hint: where does data originate?', 'error');
   }
 }
 
