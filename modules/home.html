@@ -18,15 +18,17 @@
   .hero-visual {
     width: 100%;
     max-width: 640px;
-    height: 200px;
+    min-height: 200px;
     margin: 0 auto 32px;
     border-radius: var(--radius);
     background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 40%, #0EA5E9 70%, #10B981 100%);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    padding: 24px 16px;
   }
   .hero-visual::before {
     content: '';
