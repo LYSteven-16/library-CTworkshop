@@ -77,7 +77,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 .qo.ca{border-color:#10B981;background:#D1FAE5;font-weight:600}.qo.wa{border-color:#EF4444;background:#FEE2E2;font-weight:600}
 
 /* === Radar SVG === */
-.rd-wrap{text-align:center;margin:8px auto;width:240px;height:240px}
+.rd-wrap{text-align:center;margin:8px auto;width:260px;height:260px}
 
 /* === Phone (module4 exact) === */
 .phone-frame{width:200px;background:#0F172A;border:3px solid #1F2937;border-radius:24px;padding:6px;margin:4px auto;flex-shrink:0;position:relative}
@@ -199,8 +199,8 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   else{h+='<div class="txt em">（未完成檢查清單）</div>'}
   var dsn=g('m4_design');h+='<div class="lbl">📱 手機原型設計</div>';
   if(dsn&&dsn.length){
-    h+='<div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen">';
-    dsn.forEach(function(id){var comp=uiComponents.find(function(c){return c.id===id});if(comp){h+='<div class="phone-slot filled">'+comp.render()+'</div>'}else{h+='<div class="phone-slot filled">'+id+'</div>'}});
+    h+='<div style="width:200px;background:#0F172A;border:3px solid #1F2937;border-radius:24px;padding:6px;margin:4px auto"><div style="width:60px;height:16px;background:#1F2937;border-radius:0 0 10px 10px;margin:0 auto 4px"></div><div style="min-height:200px;background:#F8FAFC;border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;overflow:hidden">';
+    dsn.forEach(function(id){var comp=uiComponents.find(function(c){return c.id===id});if(comp){h+='<div style="min-height:42px;border-radius:10px;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:8px;display:block;border:2px solid transparent">'+comp.render()+'</div>'}else{h+='<div style="min-height:42px;border-radius:10px;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:8px;display:block;border:2px solid transparent">'+id+'</div>'}});
     h+='</div></div>';
   }else{h+='<div class="txt em">（未設計）</div>'}
   h+='<div class="lbl">💬 抽象反思</div><div class="txt'+(g('m4_reflect')?'':' em')+'">'+gg('m4_reflect')+'</div>';
@@ -246,7 +246,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   if(rd&&rd['分解']){
     var rl=['分解','模式識別','抽象','算法設計'];
     var vals=[parseInt(rd[rl[0]])||5,parseInt(rd[rl[1]])||5,parseInt(rd[rl[2]])||5,parseInt(rd[rl[3]])||5];
-    var W=240,H=240,cx=120,cy=120,R=80;
+    var W=260,H=260,cx=130,cy=130,R=85;
     var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">';
     for(var lv=1;lv<=5;lv++){var lr=(lv/5)*R;var pts=[];for(var i=0;i<4;i++){var a=(Math.PI*2*i/4)-Math.PI/2;pts.push((cx+lr*Math.cos(a)).toFixed(1)+','+(cy+lr*Math.sin(a)).toFixed(1))}svg+='<polygon points="'+pts.join(' ')+'" fill="none" stroke="#E5E7EB" stroke-width="1"/>'}
     for(var i=0;i<4;i++){var a=(Math.PI*2*i/4)-Math.PI/2;svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+R*Math.cos(a)).toFixed(1)+'" y2="'+(cy+R*Math.sin(a)).toFixed(1)+'" stroke="#D1D5DB" stroke-width="1"/>'}
