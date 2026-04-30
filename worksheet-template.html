@@ -117,13 +117,26 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 .ws-text{font-size:12px;color:#374151;line-height:1.6;padding:8px 10px;background:#F9FAFB;border-radius:6px;margin-bottom:6px;white-space:pre-wrap}
 .ws-text.em{color:#D1D5DB;font-style:italic}
 .ws-foot{margin-top:8px;padding:6px 16px;border-top:1px solid #E5E7EB;font-size:8px;color:#9CA3AF;display:flex;justify-content:space-between}
+.print-bar{padding:12px 16px;background:#F0F9FF;border-bottom:2px solid #BFDBFE;display:flex;align-items:center;gap:12px}
 
-@media print{body{background:white;padding:0}.ws{box-shadow:none}@page{size:A4;margin:0}}
+@media print {
+  body{background:white;padding:0;margin:0}
+  .ws{box-shadow:none;margin:0 auto}
+  .print-bar{display:none!important}
+  @page{size:A4;margin:0}
+}
 </style>
 </head>
 <body>
 
 <div class="ws" id="wsRoot">
+  <!-- Print button bar (hidden in print) -->
+  <div class="print-bar">
+    <button onclick="doPrint()" style="padding:10px 24px;font-size:16px;background:var(--deep-blue);color:white;border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:700;">
+      🖨️ 列印工作單（另存為 PDF）
+    </button>
+    <span style="color:#6B7280;font-size:13px;">點擊列印，在對話框中選擇「另存為 PDF」即可下載</span>
+  </div>
   <div class="ws-hd"><div><h1>🔍 解碼圖書館熱力圖</h1><div class="sub">計算思維自學工坊 — 學習工作單</div></div><div class="ws-meta" id="meta"></div></div>
   <div class="ct-path" id="path"></div>
   <div class="ws-body" id="body"></div>
@@ -221,6 +234,29 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 
   document.getElementById('body').innerHTML=h;
   function mh(title,ct,color){return '<div class="ws-mod"><div class="ws-mod-head" style="background:'+color+'"><span class="tag">'+title+'</span><span class="ct-tag">'+ct+'</span></div><div class="ws-mod-body">'}
+
+  // Print with one-page auto-scale
+  window.doPrint = function() {
+    var ws = document.getElementById('wsRoot');
+    var contentH = ws.scrollHeight;
+    var pageH = 297 * 3.7795; // A4 height in px
+    var scale = Math.min(1, (pageH - 20) / contentH);
+    // Inject print-only scale stylesheet
+    var style = document.createElement('style');
+    style.id = 'printScaleStyle';
+    style.textContent = '@media print { .ws { transform: scale(' + scale + '); transform-origin: top left; } }';
+    document.head.appendChild(style);
+    window.print();
+    setTimeout(function() {
+      var el = document.getElementById('printScaleStyle');
+      if (el) el.remove();
+    }, 1000);
+  };
+
+  // Auto-print if opened via ?print=1
+  if (window.location.search.indexOf('print=1') !== -1) {
+    setTimeout(function() { window.doPrint(); }, 600);
+  }
 })();
 </script>
 </body>
