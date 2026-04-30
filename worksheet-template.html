@@ -123,7 +123,6 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   body{background:white;padding:0;margin:0}
   .ws{box-shadow:none;margin:0 auto}
   .print-bar{display:none!important}
-  @page{size:A4;margin:0}
 }
 </style>
 </head>
@@ -235,16 +234,16 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   document.getElementById('body').innerHTML=h;
   function mh(title,ct,color){return '<div class="ws-mod"><div class="ws-mod-head" style="background:'+color+'"><span class="tag">'+title+'</span><span class="ct-tag">'+ct+'</span></div><div class="ws-mod-body">'}
 
-  // Print with one-page auto-scale
+  // Print with PDF page size matching content height
   window.doPrint = function() {
     var ws = document.getElementById('wsRoot');
     var contentH = ws.scrollHeight;
-    var pageH = 297 * 3.7795; // A4 height in px
-    var scale = Math.min(1, (pageH - 20) / contentH);
-    // Inject print-only scale stylesheet
+    // Convert px to mm for custom page size (1px ≈ 0.2646mm at 96dpi)
+    var pageHmm = Math.ceil(contentH * 0.2646) + 10;
+    // Inject custom page size to match content
     var style = document.createElement('style');
     style.id = 'printScaleStyle';
-    style.textContent = '@media print { .ws { transform: scale(' + scale + '); transform-origin: top left; } }';
+    style.textContent = '@page { size: 210mm ' + pageHmm + 'mm; margin: 0; }';
     document.head.appendChild(style);
     window.print();
     setTimeout(function() {
