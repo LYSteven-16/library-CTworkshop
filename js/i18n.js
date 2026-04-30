@@ -143,10 +143,11 @@ function _getRegex() {
 }
 
 function applyI18n(container) {
-  if (currentLang() === 'zh') return;
+  if (currentLang() === 'zh') { console.log('[i18n] skipped (zh mode)'); return; }
   var re = _getRegex();
   var dict = I18N.en;
-  function tr(str) { return str.replace(re, function(m) { return dict[m] || m; }); }
+  var count = 0;
+  function tr(str) { return str.replace(re, function(m) { count++; return dict[m] || m; }); }
   var w = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
   var n;
   while (n = w.nextNode()) {
@@ -158,6 +159,7 @@ function applyI18n(container) {
       if (r !== c) n.nodeValue = (m ? m[1] : '') + r + (m ? m[3] : '');
     }
   }
+  console.log('[i18n] applied:', count, 'replacements in', container.tagName || 'container');
   container.querySelectorAll('[placeholder]').forEach(function(el) {
     var v = el.getAttribute('placeholder');
     if (v && /[\u4e00-\u9fff]/.test(v)) {
