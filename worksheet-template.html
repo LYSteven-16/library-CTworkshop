@@ -144,6 +144,14 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 (function(){
   var D=JSON.parse(localStorage.getItem('ct_worksheet_data')||'{}');
   var name=localStorage.getItem('ct_workshop_name')||'同學';
+  // ?test=1 快速預覽
+  if(window.location.search.indexOf('test=1')!==-1&&!localStorage.getItem('ct_worksheet_data')){
+    localStorage.setItem('ct_workshop_name','王小華');
+    localStorage.setItem('ct_workshop_progress','{"module1":1,"module2":1,"module3":1,"module4":1,"module5":1,"module6":1}');
+    localStorage.setItem('ct_worksheet_data',JSON.stringify({m1_vote:'7 次以上',m1_thought:'可以做一個系統顯示哪裡有空位、什麼時段人比較少。',m1_sort:['如何統計進館人數？','如何展示空座資訊？','如何預測擁擠時段？'],m2_classify:'10/10',m2_flow:['📡 感測器','📶 網路傳輸','🧮 計數處理','🗄️ 儲存數據','📱 App 展示'],m3_match:[{left:'上午10點人數最高',right:'時間規律'},{left:'週末人數銳減',right:'週期模式'},{left:'考試週爆滿',right:'事件觸發'},{left:'週五人數異常升高',right:'異常數據'}],m3_anomaly:'雨天效應導致的異常突增',m3_predict:'110 人（實際 120 人，偏差 8.3%）',m4_checklist:[{text:'顏色濃度表示擁擠度',checked:1},{text:'字型適合手機閱讀',checked:1},{text:'支援點擊互動',checked:0},{text:'即時更新人數',checked:1},{text:'建議替代方案',checked:1},{text:'可切換樓層視角',checked:0}],m4_design:['total','floor','suggest','heatmap','notify'],m4_reflect:'我保留了擁擠度的顏色指示，因為同學只需要知道「擠不擠」。',m5_debounce:'300 ms',m5_debounce_result:{total:24,fp:1,missed:0,acc:95.8},m5_flowchart:'正確 5/5',m6_quiz:'3/4',m6_quiz_detail:[{chosen:'B',correct:'B',right:1},{chosen:'D',correct:'D',right:1},{chosen:'C',correct:'C',right:1},{chosen:'A',correct:'D',right:0}],m6_radar:{'分解':'7','模式識別':'8','抽象':'9','算法設計':'6'},m6_reflect1:'以前以為只需要裝感測器，現在知道還需要算法和界面。',m6_reflect2:'在去抖邏輯中卡住了，理解冷卻期後想通。',m6_reflect3:'抽象最厲害——紅綠燈比顯示人數更有用。'}));
+    D=JSON.parse(localStorage.getItem('ct_worksheet_data'));
+    name=localStorage.getItem('ct_workshop_name');
+  }
   var prog=JSON.parse(localStorage.getItem('ct_workshop_progress')||'{}');
   var now=new Date(),ds=now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
   document.getElementById('meta').innerHTML='<strong>'+name+'</strong>'+ds+'<br>完成 '+Object.keys(prog).length+' / 6 模組';
