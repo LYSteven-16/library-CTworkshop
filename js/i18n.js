@@ -1114,7 +1114,20 @@ function t(key) {
   var lang = localStorage.getItem('ct_lang') || 'en';
   var dict = I18N[lang];
   if (dict && dict[key] !== undefined) return dict[key];
+  // Fallback: regex substring matching
+  if (typeof _i18nRegex === 'undefined') _buildI18nRegex();
+  if (_i18nRegex) return key.replace(_i18nRegex, function(match) { return dict[match] || match; });
   return key;
+}
+
+var _i18nRegex = null;
+function _buildI18nRegex() {
+  var dict = I18N.en;
+  var keys = Object.keys(dict).filter(function(k) { return dict[k] !== k; });
+  keys.sort(function(a, b) { return b.length - a.length; });
+  if (keys.length === 0) return;
+  var escaped = keys.map(function(k) { return k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); });
+  _i18nRegex = new RegExp('(' + escaped.join('|') + ')', 'g');
 }
 
 function currentLang() {
@@ -1128,13 +1141,12 @@ function setLang(lang) {
 function applyI18n(container) {
   var lang = currentLang();
   if (lang === 'zh') return;
+  if (typeof _i18nRegex === 'undefined') _buildI18nRegex();
   var dict = I18N.en;
-  var keys = Object.keys(dict).filter(function(k) { return dict[k] !== k; });
-  var escaped = keys.map(function(k) { return k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); });
-  var regex = escaped.length > 0 ? new RegExp('(' + escaped.join('|') + ')', 'g') : null;
+
   function translateText(str) {
-    if (!regex) return str;
-    return str.replace(regex, function(match) { return dict[match] || match; });
+    if (!_i18nRegex) return str;
+    return str.replace(_i18nRegex, function(match) { return dict[match] || match; });
   }
   var walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
   var node;
