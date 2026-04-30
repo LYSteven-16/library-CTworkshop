@@ -69,9 +69,58 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 .checklist-item.checked .check-box{background:var(--success-green);border-color:var(--success-green);color:white}
 
 /* === Phone prototype (module 4) === */
-.phone-slots{display:grid;grid-template-columns:1fr;gap:4px;max-width:140px;margin:4px auto;background:#1F2937;border-radius:12px;padding:8px 6px 4px}
-.phone-slot{min-height:32px;padding:4px 6px;border-radius:6px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);font-size:9px;display:flex;align-items:center}
-.phone-slot.filled{background:white;color:#1F2937;font-size:9px;padding:4px 6px;border-left:3px solid var(--mid-blue)}
+.dash-big-num{font-size: 32px;   font-weight: 900;   color: white;}
+.dash-big-label{font-size: 12px;   color: rgba(255,255,255,0.7);}
+.phone-screen{min-height: 430px;   background: #F8FAFC;   border-radius: 8px;   padding: 8px;   display: flex;   flex-direction: column;   gap: 6px;   overflow: hidden;}
+.phone-slot{min-height: 48px;   border: 2px dashed #CBD5E1;   border-radius: 10px;   display: flex;   align-items: center;   justify-content: center;   font-size: 11px;   color: #94A3B8;   cursor: pointer;   transition: all var(--transition);   padding: 6px;   background: rgba(255,255,255,0.5);}
+.phone-slot:hover{border-color: var(--mid-blue); background: rgba(59,130,246,0.05);}
+.phone-slot.filled{border-style: solid;   border-color: transparent;   background: white;   box-shadow: 0 1px 4px rgba(0,0,0,0.06);   padding: 8px;   display: block;}
+/* Slot preview styles */
+  .slot-total{text-align: center;   padding: 6px;}
+.slot-total .big-num{font-size: 36px;   font-weight: 900;   color: #1E3A8A;   line-height: 1.1;}
+.slot-total .big-label{font-size: 11px;   color: #6B7280;   font-weight: 500;}
+.slot-floor{display: flex;   flex-direction: column;   gap: 4px;}
+.floor-row{display: flex;   align-items: center;   gap: 6px;   font-size: 11px;}
+.floor-name{flex: 1; font-weight: 500; color: #374151;}
+.floor-bar-bg{width: 50px;   height: 8px;   background: #E5E7EB;   border-radius: 4px;   overflow: hidden;}
+.floor-bar-fill{height: 100%;   border-radius: 4px;}
+.floor-dot{width: 10px;   height: 10px;   border-radius: 50%;   flex-shrink: 0;}
+.slot-suggest{text-align: center;   padding: 6px;}
+.slot-suggest .suggest-icon{font-size: 20px; margin-bottom: 2px;}
+.slot-suggest .suggest-text{font-size: 12px;   font-weight: 600;   color: #065F46;}
+.slot-suggest .suggest-time{font-size: 11px;   color: #6B7280;}
+.slot-heatmap-mini{display: grid;   grid-template-columns: repeat(4, 1fr);   gap: 3px;   padding: 4px;   width: 100%;}
+.heatmap-mini-cell{height: 26px;   border-radius: 4px;   display: flex;   align-items: center;   justify-content: center;   font-size: 8px;   font-weight: 600;   color: white;}
+.slot-trend{padding: 4px;}
+.slot-trend canvas{width: 100%;   height: 40px;}
+.slot-notify{display: flex;   align-items: center;   gap: 8px;   padding: 6px;   font-size: 12px;}
+.slot-notify .bell-icon{font-size: 18px;}
+.slot-notify .notify-label{color: #374151; font-weight: 500;}
+.slot-notify .toggle-switch{width: 32px;   height: 18px;   background: #10B981;   border-radius: 9px;   position: relative;   margin-left: auto;}
+.slot-notify .toggle-switch::after{content: '';   width: 14px;   height: 14px;   background: white;   border-radius: 50%;   position: absolute;   top: 2px;   right: 2px;}
+.slot-history{padding: 4px 6px;   font-size: 11px;}
+.slot-history .hist-row{display: flex;   justify-content: space-between;   padding: 2px 0;   border-bottom: 1px solid #F1F5F9;   color: #374151;}
+.slot-history .hist-label{color: #9CA3AF;}
+/* Completion badge */
+  .completion-badge{display: none;   text-align: center;   padding: 16px;   background: linear-gradient(135deg, #D1FAE5, #6EE7B7);   border-radius: var(--radius-sm);   margin-top: 16px;   animation: popIn 0.4s ease;}
+.completion-badge.show{display: block;}
+.completion-badge i{font-size: 28px; color: #065F46;}
+.completion-badge p{font-size: 14px; color: #065F46; font-weight: 600; margin-top: 4px;}
+/* === Enhanced Checklist === */
+  .checklist-group{margin-bottom: 16px;}
+.checklist-group-title{font-size: 14px;   font-weight: 700;   color: var(--deep-blue);   margin-bottom: 8px;   display: flex;   align-items: center;   gap: 6px;}
+.checklist-item{display: flex;   align-items: flex-start;   gap: 10px;   padding: 10px 14px;   background: #F8FAFC;   border-radius: 8px;   cursor: pointer;   transition: all var(--transition);   margin-bottom: 6px;}
+.checklist-item:hover{background: var(--light-blue);}
+.checklist-item.checked{background: #D1FAE5;}
+.checklist-item .check-box{width: 22px;   height: 22px;   border: 2px solid #D1D5DB;   border-radius: 4px;   display: flex;   align-items: center;   justify-content: center;   transition: all var(--transition);   flex-shrink: 0;   margin-top: 1px;}
+.checklist-item.checked .check-box{background: var(--success-green);   border-color: var(--success-green);   color: white;}
+.checklist-item .check-text{font-size: 14px;   line-height: 1.5;}
+.checklist-item .check-hint{font-size: 12px;   color: var(--text-light);   margin-top: 2px;}
+/* === Reflection Question === */
+  .reflect-card{background: #FFFBEB;   border: 2px dashed var(--warning-orange);   border-radius: var(--radius-sm);   padding: 20px;   margin-top: 16px;}
+.reflect-card h4{font-size: 15px;   font-weight: 700;   color: #92400E;   margin-bottom: 10px;   display: flex;   align-items: center;   gap: 6px;}
+.reflect-card textarea{width: 100%;   border: 2px solid #FDE68A;   border-radius: 8px;   padding: 12px;   font-family: inherit;   font-size: 14px;   min-height: 70px;   outline: none;   resize: vertical;   background: white;   transition: border-color var(--transition);}
+.reflect-card textarea:focus{border-color: var(--warning-orange);}
 
 /* === Debounce metrics (module 5) === */
 .deb-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;margin-bottom:6px}
@@ -99,7 +148,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 .quiz-option.correct-answer{border-color:var(--success-green);background:#D1FAE5}
 .quiz-option.wrong-answer{border-color:var(--danger-red);background:#FEE2E2}
 
-/* === Radar (module 6) === */
+/* === Radar (module 6) — canvas drawn by drawRadar() === */
 .rd-canvas{display:block;margin:4px auto}
 
 /* === Text & labels === */
@@ -135,7 +184,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 <script>
 (function(){
   // Demo data
-  if(!localStorage.getItem('ct_worksheet_data')){localStorage.setItem('ct_workshop_name','王小華');localStorage.setItem('ct_workshop_progress','{"module1":1,"module2":1,"module3":1,"module4":1,"module5":1,"module6":1}');localStorage.setItem('ct_worksheet_data',JSON.stringify({m1_vote:'7 次以上',m1_thought:'可以做一個系統顯示哪裡有空位、什麼時段人比較少。',m1_sort:['如何統計進館人數？','如何展示空座資訊？','如何預測擁擠時段？'],m2_classify:'10/10',m2_flow:['📡 感測器','📶 網路傳輸','🧮 計數處理','🗄️ 儲存數據','📱 App 展示'],m3_match:[{left:'上午10點人數最高',right:'時間規律'},{left:'週末人數銳減',right:'週期模式'},{left:'考試週爆滿',right:'事件觸發'},{left:'週五人數異常升高',right:'異常數據'}],m3_anomaly:'雨天效應導致的異常突增',m3_predict:'110 人（實際 120 人，偏差 8.3%）',m4_checklist:[{text:'顏色濃度表示擁擠度',checked:1},{text:'字型適合手機閱讀',checked:1},{text:'支援點擊互動',checked:0},{text:'即時更新人數',checked:1},{text:'建議替代方案',checked:1},{text:'可切換樓層視角',checked:0}],m4_design:[{name:'🏷️ 總人數',html:'<span style="font-size:20px;font-weight:900;color:#1E3A8A">127</span><br><span style="font-size:9px;color:#6B7280">當前館內人數</span>'},{name:'🏢 樓層空位',html:'<div style="font-size:9px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#EF4444;margin-right:3px"></span>3F 自修 85%<br><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#F59E0B;margin-right:3px"></span>2F 閱覽 55%<br><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10B981;margin-right:3px"></span>1F 兒童 20%</div>'},{name:'💡 建議時段',html:'<span style="font-size:10px">🕐 建議 14:00 後前往<br><span style="color:#6B7280">預計 2F 空位較多</span></span>'},{name:'📈 趨勢折線圖',html:'<span style="font-size:9px;color:#6B7280">今日趨勢：8時→18時</span><br><span style="color:#3B82F6">📈 折線圖</span>'},{name:'🔔 擁擠提醒',html:'<span style="font-size:10px">🔔 擁擠提醒 <span style="display:inline-block;width:24px;height:14px;background:#10B981;border-radius:7px;vertical-align:middle"></span></span>'}],m4_reflect:'我保留了擁擠度的顏色指示，因為同學只需要知道「擠不擠」。',m5_debounce:'300 ms',m5_debounce_result:{total:24,fp:1,missed:0,acc:95.8},m5_flowchart:'正確 5/5',m6_quiz:'3/4',m6_quiz_detail:[{chosen:'B',correct:'B',right:1},{chosen:'D',correct:'D',right:1},{chosen:'C',correct:'C',right:1},{chosen:'A',correct:'D',right:0}],m6_radar:{'分解':'7','模式識別':'8','抽象':'9','算法設計':'6'},m6_reflect1:'以前以為只需要裝感測器，現在知道還需要算法和界面。',m6_reflect2:'在去抖邏輯中卡住了，理解冷卻期後想通。',m6_reflect3:'抽象最厲害——紅綠燈比顯示人數更有用。'}))}
+  if(!localStorage.getItem('ct_worksheet_data')){localStorage.setItem('ct_workshop_name','王小華');localStorage.setItem('ct_workshop_progress','{"module1":1,"module2":1,"module3":1,"module4":1,"module5":1,"module6":1}');localStorage.setItem('ct_worksheet_data',JSON.stringify({m1_vote:'7 次以上',m1_thought:'可以做一個系統顯示哪裡有空位、什麼時段人比較少。',m1_sort:['如何統計進館人數？','如何展示空座資訊？','如何預測擁擠時段？'],m2_classify:'10/10',m2_flow:['📡 感測器','📶 網路傳輸','🧮 計數處理','🗄️ 儲存數據','📱 App 展示'],m3_match:[{left:'上午10點人數最高',right:'時間規律'},{left:'週末人數銳減',right:'週期模式'},{left:'考試週爆滿',right:'事件觸發'},{left:'週五人數異常升高',right:'異常數據'}],m3_anomaly:'雨天效應導致的異常突增',m3_predict:'110 人（實際 120 人，偏差 8.3%）',m4_checklist:[{text:'顏色濃度表示擁擠度',checked:1},{text:'字型適合手機閱讀',checked:1},{text:'支援點擊互動',checked:0},{text:'即時更新人數',checked:1},{text:'建議替代方案',checked:1},{text:'可切換樓層視角',checked:0}],m4_design:['total','floor','suggest','heatmap','notify'],m4_reflect:'我保留了擁擠度的顏色指示，因為同學只需要知道「擠不擠」。',m5_debounce:'300 ms',m5_debounce_result:{total:24,fp:1,missed:0,acc:95.8},m5_flowchart:'正確 5/5',m6_quiz:'3/4',m6_quiz_detail:[{chosen:'B',correct:'B',right:1},{chosen:'D',correct:'D',right:1},{chosen:'C',correct:'C',right:1},{chosen:'A',correct:'D',right:0}],m6_radar:{'分解':'7','模式識別':'8','抽象':'9','算法設計':'6'},m6_reflect1:'以前以為只需要裝感測器，現在知道還需要算法和界面。',m6_reflect2:'在去抖邏輯中卡住了，理解冷卻期後想通。',m6_reflect3:'抽象最厲害——紅綠燈比顯示人數更有用。'}))}
 
   var D=JSON.parse(localStorage.getItem('ct_worksheet_data'));
   var name=localStorage.getItem('ct_workshop_name')||'同學';
