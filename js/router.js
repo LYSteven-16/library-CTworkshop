@@ -125,7 +125,8 @@ function executeScripts(container) {
     Array.from(oldScript.attributes).forEach(function(attr) {
       newScript.setAttribute(attr.name, attr.value);
     });
-    newScript.textContent = oldScript.textContent;
+    // Replace const/let with var to prevent re-declaration errors on re-visit
+    newScript.textContent = oldScript.textContent.replace(/\b(const|let)\s+(?=\w)/g, 'var ');
     oldScript.parentNode.replaceChild(newScript, oldScript);
   });
 }
