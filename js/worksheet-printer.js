@@ -49,14 +49,16 @@ function printWorksheet() {
 
   // === Module 3 ===
   html += modHead('模組 3 — 模式偵探','模式識別','#0EA5E9');
-  var ma=v('m3_match');if(ma&&ma.length){html+='<div class="lbl">🔗 模式配對</div>';ma.forEach(function(p){html+='<div class="mr"><div class="ml">'+p.left+'</div><span class="mv">→</span><div class="mrr">'+p.right+'</div></div>'})}
+  html+='<div class="lbl">🔗 模式配對</div>';
+  var ma=v('m3_match');if(ma&&ma.length){ma.forEach(function(p){html+='<div class="mr"><div class="ml">'+p.left+'</div><span class="mv">→</span><div class="mrr">'+p.right+'</div></div>'})}else{html+='<div class="txt em">（未完成配對）</div>'}
   html+='<div class="lbl">⚠️ 異常數據判斷</div><div class="anomaly">'+vv('m3_anomaly')+'</div>';
   html+='<div class="lbl">🔮 雨天預測</div><div class="txt">'+vv('m3_predict')+'</div>';
   html += '</div></div>';
 
   // === Module 4 ===
   html += modHead('模組 4 — 視覺化設計師','抽象','#EC4899');
-  var cl=v('m4_checklist');if(cl&&cl.length){html+='<div class="lbl">✅ 設計檢查清單</div>';cl.forEach(function(x){html+='<div class="ci'+(x.checked?' ok':'')+'"><div class="cb">✓</div><span>'+x.text+'</span></div>'})}
+  html+='<div class="lbl">✅ 設計檢查清單</div>';
+  var cl=v('m4_checklist');if(cl&&cl.length){cl.forEach(function(x){html+='<div class="ci'+(x.checked?' ok':'')+'"><div class="cb">✓</div><span>'+x.text+'</span></div>'})}else{html+='<div class="txt em">（未完成檢查清單）</div>'}
   var ds=v('m4_design');html+='<div class="lbl">📱 手機原型設計</div>';
   if(ds&&ds.length){html+='<div class="phone">';ds.forEach(function(s){html+='<div class="pi">'+s+'</div>'});html+='</div>'}
   else{html+='<div class="txt em">（未設計）</div>'}
@@ -66,7 +68,7 @@ function printWorksheet() {
   // === Module 5 ===
   html += modHead('模組 5 — 算法工程師','算法設計','#8B5CF6');
   var dr=v('m5_debounce_result');html+='<div class="lbl">⏱ 去抖測試：<b>'+vv('m5_debounce')+'</b></div>';
-  if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';html+='<div class="deb"><div class="dm"><div class="dn">'+dr.total+'</div><div class="dl">總人數</div></div><div class="dm"><div class="dn" style="color:#F59E0B">'+dr.fp+'</div><div class="dl">誤報</div></div><div class="dm"><div class="dn" style="color:#10B981">'+dr.missed+'</div><div class="dl">漏計</div></div><div class="dm"><div class="dn" style="color:'+ac+'">'+dr.acc+'%</div><div class="dl">準確率</div></div></div>'}
+  if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';html+='<div class="deb"><div class="dm"><div class="dn">'+dr.total+'</div><div class="dl">總人數</div></div><div class="dm"><div class="dn" style="color:#F59E0B">'+dr.fp+'</div><div class="dl">誤報</div></div><div class="dm"><div class="dn" style="color:#10B981">'+dr.missed+'</div><div class="dl">漏計</div></div><div class="dm"><div class="dn" style="color:'+ac+'">'+dr.acc+'%</div><div class="dl">準確率</div></div></div>'}else{html+='<div class="txt em">（未完成去抖測試）</div>'}
   html+='<div class="lbl">🔀 流程圖填空</div><div class="fc">';
   html+='<span class="fn s">IR 感測器觸發</span><span class="fd">⬇</span>';
   html+='<span class="fn d">方向判定</span><span class="fd">⬇</span>';

@@ -170,14 +170,16 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 
   // === Module 3 ===
   h+=mh('模組 3 — 模式偵探','模式識別','#0EA5E9');
-  var ma=g('m3_match');if(ma&&ma.length){h+='<div class="ws-label">🔗 模式配對</div>';ma.forEach(function(p){h+='<div class="match-row"><div class="match-left">'+p.left+'</div><span class="match-arrow">→</span><div class="match-right">'+p.right+'</div></div>'})}
+  var ma=g('m3_match');h+='<div class="ws-label">🔗 模式配對</div>';
+  if(ma&&ma.length){ma.forEach(function(p){h+='<div class="match-row"><div class="match-left">'+p.left+'</div><span class="match-arrow">→</span><div class="match-right">'+p.right+'</div></div>'})}else{h+='<div class="ws-text em">（未完成配對）</div>'}
   h+='<div class="ws-label">⚠️ 異常數據判斷</div><div class="anomaly-options"><div class="anomaly-option selected">'+gg('m3_anomaly')+'</div></div>';
   h+='<div class="ws-label">🔮 雨天預測</div><div class="ws-text'+(g('m3_predict')?'':' em')+'">'+gg('m3_predict')+'</div>';
   h+='</div></div>';
 
   // === Module 4 ===
   h+=mh('模組 4 — 視覺化設計師','抽象','#EC4899');
-  var cl=g('m4_checklist');if(cl&&cl.length){h+='<div class="ws-label">✅ 設計檢查清單</div>';cl.forEach(function(x){h+='<div class="checklist-item'+(x.checked?' checked':'')+'"><div class="check-box">✓</div><span>'+x.text+'</span></div>'})}
+  h+='<div class="ws-label">✅ 設計檢查清單</div>';
+  var cl=g('m4_checklist');if(cl&&cl.length){cl.forEach(function(x){h+='<div class="checklist-item'+(x.checked?' checked':'')+'"><div class="check-box">✓</div><span>'+x.text+'</span></div>'})}else{h+='<div class="ws-text em">（未完成檢查清單）</div>'}
   var dsn=g('m4_design');h+='<div class="ws-label">📱 手機原型設計</div>';
   if(dsn&&dsn.length){h+='<div class="phone-slots">';dsn.forEach(function(s){h+='<div class="phone-slot filled">'+s+'</div>'});h+='</div>'}
   else{h+='<div class="ws-text em">（未設計）</div>'}
@@ -187,7 +189,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   // === Module 5 ===
   h+=mh('模組 5 — 算法工程師','算法設計','#8B5CF6');
   var dr=g('m5_debounce_result');h+='<div class="ws-label">⏱ 去抖測試：<b>'+gg('m5_debounce')+'</b></div>';
-  if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';h+='<div class="deb-metrics"><div class="deb-m"><div class="deb-n">'+dr.total+'</div><div class="deb-l">總人數</div></div><div class="deb-m"><div class="deb-n" style="color:#F59E0B">'+dr.fp+'</div><div class="deb-l">誤報</div></div><div class="deb-m"><div class="deb-n" style="color:#10B981">'+dr.missed+'</div><div class="deb-l">漏計</div></div><div class="deb-m"><div class="deb-n" style="color:'+ac+'">'+dr.acc+'%</div><div class="deb-l">準確率</div></div></div>'}
+  if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';h+='<div class="deb-metrics"><div class="deb-m"><div class="deb-n">'+dr.total+'</div><div class="deb-l">總人數</div></div><div class="deb-m"><div class="deb-n" style="color:#F59E0B">'+dr.fp+'</div><div class="deb-l">誤報</div></div><div class="deb-m"><div class="deb-n" style="color:#10B981">'+dr.missed+'</div><div class="deb-l">漏計</div></div><div class="deb-m"><div class="deb-n" style="color:'+ac+'">'+dr.acc+'%</div><div class="deb-l">準確率</div></div></div>'}else{h+='<div class="ws-text em">（未完成去抖測試）</div>'}
   h+='<div class="ws-label">🔀 流程圖填空</div><div class="fc-nodes">';
   h+='<span class="fc-n start">IR 感測器觸發</span><span class="fc-arrow">⬇</span>';
   h+='<span class="fc-n decision">方向判定</span><span class="fc-arrow">⬇</span>';
