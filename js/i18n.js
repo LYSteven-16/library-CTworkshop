@@ -81,6 +81,16 @@ var I18N = {
     '🏆 系統整合與反思': '🏆 Integration & Reflection',
     '旅程回顧、概念測驗、自評雷達圖、反思便簽，完成後領取專屬證書！': 'Journey review, concept quiz, self-assessment radar, reflection notes — then get your certificate!',
     '模組 5 ⭐ 核心': 'Module 5 ⭐ Core',
+    '定義問題': 'Define Problem',
+    '把大問題切成': 'Break big problems into',
+    '可管理的小部分': 'manageable parts',
+    '從數據中發現': 'Discover from data',
+    '重複的規律': 'recurring patterns',
+    '隱藏細節': 'Hide details',
+    '保留關鍵資訊': 'keep key info',
+    '👋 你的名字：': '👋 Your Name: ',
+    '確認': 'Confirm',
+    '✕ 重設': '✕ Reset',
     '約 20 分鐘': '~20 min',
     '約 25 分鐘': '~25 min',
     '約 30 分鐘': '~30 min',
@@ -475,7 +485,7 @@ var I18N = {
   }
 };
 
-// Build zh from en keys (zh = key itself)
+// Build zh from en keys
 I18N.zh = {};
 Object.keys(I18N.en).forEach(function(k) { I18N.zh[k] = k; });
 

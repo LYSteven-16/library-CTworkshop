@@ -42,8 +42,9 @@
     position: relative;
     z-index: 1;
     display: flex;
-    gap: 16px;
+    gap: 12px;
     align-items: center;
+    width: 100%;
   }
   .hero-icon-item {
     display: flex;
@@ -51,17 +52,17 @@
     align-items: center;
     gap: 6px;
     color: white;
-    width: 120px;
-    min-height: 100px;
+    flex: 1;
+    min-width: 80px;
   }
   .hero-icon-circle {
-    width: 52px; height: 52px;
+    width: 48px; height: 48px;
     border-radius: 50%;
     background: rgba(255,255,255,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 20px;
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255,255,255,0.3);
     flex-shrink: 0;
@@ -71,11 +72,13 @@
     font-weight: 600;
     opacity: 0.9;
     text-align: center;
-    word-break: break-word;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   .hero-arrow {
     color: rgba(255,255,255,0.5);
-    font-size: 18px;
+    font-size: 16px;
+    flex-shrink: 0;
   }
 
   /* === Name Input === */
