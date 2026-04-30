@@ -93,12 +93,9 @@ function updateNavbar(config) {
   var navLinks = document.getElementById('navLinks');
   var navbar = document.getElementById('navbar');
 
-  if (config.navLinks.length === 0) {
-    navbar.style.display = 'none';
-  } else {
-    navbar.style.display = '';
-    navTitle.textContent = t(config.navTitle);
-    navLinks.innerHTML = config.navLinks.map(function(link) {
+  navbar.style.display = '';
+  navTitle.textContent = t(config.navTitle);
+  navLinks.innerHTML = config.navLinks.map(function(link) {
       var icon = link.icon ? '<i class="fas ' + link.icon + '"></i> ' : '';
       return '<a href="#' + link.hash + '">' + icon + t(link.text) + '</a>';
     }).join('');
@@ -121,7 +118,6 @@ function updateNavbar(config) {
       var ltb = document.getElementById('langToggle');
       ltb.textContent = currentLang() === 'en' ? '中' : 'EN';
     }
-  }
 }
 
 function updateBanner(config) {
