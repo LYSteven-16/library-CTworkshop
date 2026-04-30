@@ -232,203 +232,154 @@ document.getElementById('wsMeta').innerHTML = '<strong>' + name + '</strong>' + 
 function v(key) { return D[key] || ''; }
 function vv(key) { var x = v(key); return x ? x : '<span class="empty">（未填寫）</span>'; }
 
-// Build body HTML dynamically
-var body = document.getElementById('wsBody');
+// Build body HTML dynamically — each module is self-contained
 var html = '';
 
 // ===== Module 1 =====
-html += modSection('模組 1 — 痛點挖掘', '問題定義', 'var(--step-red)');
-html += '<div class="ws-label">📊 投票：你去圖書館時遇到過幾次沒座位？</div>';
-var voteOpts = ['0 次', '1-3 次', '4-6 次', '7 次以上'];
-var voteVal = v('m1_vote');
-html += '<div class="ws-vote">';
-voteOpts.forEach(function(o) {
-  html += '<div class="ws-vote-btn' + (o === voteVal ? ' selected' : '') + '">' + o + '</div>';
-});
-html += '</div>';
-
-html += '<div class="ws-label">💭 思考泡泡：你的想法</div>';
-html += '<div class="ws-text' + (!v('m1_thought') ? ' empty' : '') + '">' + vv('m1_thought') + '</div>';
-
-var sortArr = v('m1_sort');
-html += '<div class="ws-label">📋 問題排序（按重要性）</div>';
-if (sortArr && sortArr.length) {
-  html += '<div class="ws-sort">';
-  sortArr.forEach(function(s, i) {
-    html += '<div class="ws-sort-item"><div class="ws-sort-num">' + (i+1) + '</div><span>' + s + '</span></div>';
-  });
-  html += '</div>';
-} else {
-  html += '<div class="ws-text empty">（未完成排序）</div>';
-}
+(function() {
+  var m = '';
+  m += '<div class="ws-label">📊 投票：你去圖書館時遇到過幾次沒座位？</div><div class="ws-vote">';
+  var voteOpts = ['0 次', '1-3 次', '4-6 次', '7 次以上'];
+  var voteVal = v('m1_vote');
+  voteOpts.forEach(function(o) { m += '<div class="ws-vote-btn' + (o === voteVal ? ' selected' : '') + '">' + o + '</div>'; });
+  m += '</div>';
+  m += '<div class="ws-label">💭 思考泡泡：你的想法</div><div class="ws-text' + (!v('m1_thought') ? ' empty' : '') + '">' + vv('m1_thought') + '</div>';
+  var sortArr = v('m1_sort');
+  m += '<div class="ws-label">📋 問題排序（按重要性）</div>';
+  if (sortArr && sortArr.length) {
+    m += '<div class="ws-sort">';
+    sortArr.forEach(function(s, i) { m += '<div class="ws-sort-item"><div class="ws-sort-num">' + (i+1) + '</div><span>' + s + '</span></div>'; });
+    m += '</div>';
+  } else { m += '<div class="ws-text empty">（未完成排序）</div>'; }
+  html += makeModule('模組 1 — 痛點挖掘', '問題定義', 'var(--step-red)', m);
+})();
 
 // ===== Module 2 =====
-html += modSection('模組 2 — 解構問題', '分解', 'var(--step-amber)');
-
-html += '<div class="ws-label">🔄 數據流排序（你的排列）</div>';
-var flowArr = v('m2_flow');
-if (flowArr && flowArr.length) {
-  html += '<div class="ws-flow">';
-  flowArr.filter(Boolean).forEach(function(s, i) {
-    if (i > 0) html += '<span class="ws-flow-arrow">→</span>';
-    html += '<div class="ws-flow-slot filled">' + s + '</div>';
-  });
-  html += '</div>';
-} else {
-  html += '<div class="ws-text empty">（未完成數據流排序）</div>';
-}
-
-html += '<div class="ws-label">📦 卡片分類結果</div>';
-html += '<div class="ws-text">' + vv('m2_classify') + '</div>';
+(function() {
+  var m = '';
+  m += '<div class="ws-label">🔄 數據流排序（你的排列）</div>';
+  var flowArr = v('m2_flow');
+  if (flowArr && flowArr.length) {
+    m += '<div class="ws-flow">';
+    flowArr.filter(Boolean).forEach(function(s, i) {
+      if (i > 0) m += '<span class="ws-flow-arrow">→</span>';
+      m += '<div class="ws-flow-slot filled">' + s + '</div>';
+    });
+    m += '</div>';
+  } else { m += '<div class="ws-text empty">（未完成數據流排序）</div>'; }
+  m += '<div class="ws-label">📦 卡片分類結果</div><div class="ws-text">' + vv('m2_classify') + '</div>';
+  html += makeModule('模組 2 — 解構問題', '分解', 'var(--step-amber)', m);
+})();
 
 // ===== Module 3 =====
-html += modSection('模組 3 — 模式偵探', '模式識別', 'var(--step-cyan)');
-
-var matchArr = v('m3_match');
-if (matchArr && matchArr.length) {
-  html += '<div class="ws-label">🔗 模式配對（你的連線）</div><div class="ws-match">';
-  matchArr.forEach(function(p) {
-    html += '<div class="ws-match-row"><div class="ws-match-left">' + p.left + '</div><div class="ws-match-conn">→</div><div class="ws-match-right">' + p.right + '</div></div>';
-  });
-  html += '</div>';
-}
-
-html += '<div class="ws-label">⚠️ 異常數據判斷</div>';
-html += '<div style="padding:6px 12px;background:#FEF3C7;border-radius:6px;font-size:12px;font-weight:600;color:#78350F;">' + vv('m3_anomaly') + '</div>';
-
-html += '<div class="ws-label">🔮 雨天預測</div>';
-html += '<div class="ws-text">' + vv('m3_predict') + '</div>';
+(function() {
+  var m = '';
+  var matchArr = v('m3_match');
+  if (matchArr && matchArr.length) {
+    m += '<div class="ws-label">🔗 模式配對（你的連線）</div><div class="ws-match">';
+    matchArr.forEach(function(p) { m += '<div class="ws-match-row"><div class="ws-match-left">' + p.left + '</div><div class="ws-match-conn">→</div><div class="ws-match-right">' + p.right + '</div></div>'; });
+    m += '</div>';
+  }
+  m += '<div class="ws-label">⚠️ 異常數據判斷</div><div style="padding:6px 12px;background:#FEF3C7;border-radius:6px;font-size:12px;font-weight:600;color:#78350F;">' + vv('m3_anomaly') + '</div>';
+  m += '<div class="ws-label">🔮 雨天預測</div><div class="ws-text">' + vv('m3_predict') + '</div>';
+  html += makeModule('模組 3 — 模式偵探', '模式識別', 'var(--step-cyan)', m);
+})();
 
 // ===== Module 4 =====
-html += modSection('模組 4 — 視覺化設計師', '抽象', 'var(--step-pink)');
-
-var checklist = v('m4_checklist');
-if (checklist && checklist.length) {
-  html += '<div class="ws-label">✅ UI 設計檢查清單</div><div class="ws-checklist">';
-  checklist.forEach(function(item) {
-    html += '<div class="ws-check-item' + (item.checked ? ' checked' : '') + '"><div class="ws-check-box"><i class="fas fa-check"></i></div><span>' + item.text + '</span></div>';
-  });
-  html += '</div>';
-}
-
-var design = v('m4_design');
-html += '<div class="ws-label">📱 手機原型設計</div>';
-if (design && design.length) {
-  html += '<div class="ws-phone"><div class="ws-phone-screen">';
-  design.forEach(function(s) { html += '<div class="ws-phone-item">' + s + '</div>'; });
-  html += '</div></div>';
-} else {
-  html += '<div class="ws-text empty">（未設計手機原型）</div>';
-}
-
-html += '<div class="ws-label">💬 抽象設計反思</div>';
-html += '<div class="ws-text' + (!v('m4_reflect') ? ' empty' : '') + '">' + vv('m4_reflect') + '</div>';
+(function() {
+  var m = '';
+  var checklist = v('m4_checklist');
+  if (checklist && checklist.length) {
+    m += '<div class="ws-label">✅ UI 設計檢查清單</div><div class="ws-checklist">';
+    checklist.forEach(function(item) { m += '<div class="ws-check-item' + (item.checked ? ' checked' : '') + '"><div class="ws-check-box"><i class="fas fa-check"></i></div><span>' + item.text + '</span></div>'; });
+    m += '</div>';
+  }
+  var design = v('m4_design');
+  m += '<div class="ws-label">📱 手機原型設計</div>';
+  if (design && design.length) {
+    m += '<div class="ws-phone"><div class="ws-phone-screen">';
+    design.forEach(function(s) { m += '<div class="ws-phone-item">' + s + '</div>'; });
+    m += '</div></div>';
+  } else { m += '<div class="ws-text empty">（未設計手機原型）</div>'; }
+  m += '<div class="ws-label">💬 抽象設計反思</div><div class="ws-text' + (!v('m4_reflect') ? ' empty' : '') + '">' + vv('m4_reflect') + '</div>';
+  html += makeModule('模組 4 — 視覺化設計師', '抽象', 'var(--step-pink)', m);
+})();
 
 // ===== Module 5 =====
-html += modSection('模組 5 — 算法工程師', '算法設計', 'var(--step-purple)');
-
-var debRes = v('m5_debounce_result');
-html += '<div class="ws-label">⏱ 去抖測試結果</div>';
-html += '<div style="font-size:12px;margin-bottom:4px;">你設定的去抖窗口：<strong>' + vv('m5_debounce') + '</strong></div>';
-if (debRes && debRes.total) {
-  var accColor = debRes.acc >= 90 ? 'var(--success-green)' : debRes.acc >= 75 ? 'var(--warning-orange)' : 'var(--danger-red)';
-  html += '<div class="ws-debounce">';
-  html += '<div class="ws-deb-metric"><div class="ws-deb-num">' + debRes.total + '</div><div class="ws-deb-label">總通過人數</div></div>';
-  html += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:var(--warning-orange)">' + debRes.fp + '</div><div class="ws-deb-label">誤報</div></div>';
-  html += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:var(--success-green)">' + debRes.missed + '</div><div class="ws-deb-label">漏計</div></div>';
-  html += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:' + accColor + '">' + debRes.acc + '%</div><div class="ws-deb-label">準確率</div></div>';
-  html += '</div>';
-  var fb = debRes.acc >= 95 ? '🏆 完美平衡！' : debRes.acc >= 90 ? '✅ 表現不錯' : '⚠️ 還需調整';
-  html += '<div class="ws-deb-feedback" style="background:' + (debRes.acc >= 90 ? '#D1FAE5' : '#FEF3C7') + ';color:' + (debRes.acc >= 90 ? '#065F46' : '#78350F') + ';">' + fb + '</div>';
-}
-
-// Flowchart
-html += '<div class="ws-label">🔀 計數算法流程圖填空</div>';
-var fcScore = v('m5_flowchart');
-html += '<div class="ws-flowchart">';
-html += fcNode('IR 感測器觸發', 'start') + fcDown;
-html += fcNode('方向判定', 'decision') + fcDown;
-html += '<div style="display:flex;justify-content:center;gap:8px;">';
-html += '<div style="text-align:center;">' + fcRow([fcNode('enter_count += 1', 'filled')]) + '</div>';
-html += '<div style="text-align:center;">' + fcRow([fcNode('exit_count += 1', 'filled')]) + '</div></div>' + fcDown;
-html += fcNode('更新 current_count = enter - exit', 'filled') + fcDown;
-html += fcNode('邊界保護：人數不能為負', 'filled') + fcDown;
-html += fcNode('等待去抖時間窗口，過濾假信號', 'filled') + fcDown;
-html += '</div>';
-html += '<div style="text-align:center;font-size:12px;font-weight:700;color:' + (fcScore === '正確 5/5' ? 'var(--success-green)' : 'var(--warning-orange)') + ';margin-top:4px;">' + vv('m5_flowchart') + '</div>';
+(function() {
+  var m = '';
+  var debRes = v('m5_debounce_result');
+  m += '<div class="ws-label">⏱ 去抖測試結果</div><div style="font-size:12px;margin-bottom:4px;">你設定的去抖窗口：<strong>' + vv('m5_debounce') + '</strong></div>';
+  if (debRes && debRes.total) {
+    var accColor = debRes.acc >= 90 ? 'var(--success-green)' : debRes.acc >= 75 ? 'var(--warning-orange)' : 'var(--danger-red)';
+    m += '<div class="ws-debounce">';
+    m += '<div class="ws-deb-metric"><div class="ws-deb-num">' + debRes.total + '</div><div class="ws-deb-label">總通過人數</div></div>';
+    m += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:var(--warning-orange)">' + debRes.fp + '</div><div class="ws-deb-label">誤報</div></div>';
+    m += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:var(--success-green)">' + debRes.missed + '</div><div class="ws-deb-label">漏計</div></div>';
+    m += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:' + accColor + '">' + debRes.acc + '%</div><div class="ws-deb-label">準確率</div></div>';
+    m += '</div>';
+    var fb = debRes.acc >= 95 ? '🏆 完美平衡！' : debRes.acc >= 90 ? '✅ 表現不錯' : '⚠️ 還需調整';
+    m += '<div class="ws-deb-feedback" style="background:' + (debRes.acc >= 90 ? '#D1FAE5' : '#FEF3C7') + ';color:' + (debRes.acc >= 90 ? '#065F46' : '#78350F') + ';">' + fb + '</div>';
+  }
+  m += '<div class="ws-label">🔀 計數算法流程圖填空</div><div class="ws-flowchart">';
+  m += fcNode('IR 感測器觸發', 'start') + fcDown;
+  m += fcNode('方向判定', 'decision') + fcDown;
+  m += '<div style="display:flex;justify-content:center;gap:8px;"><div style="text-align:center;">' + fcRow([fcNode('enter_count += 1', 'filled')]) + '</div><div style="text-align:center;">' + fcRow([fcNode('exit_count += 1', 'filled')]) + '</div></div>' + fcDown;
+  m += fcNode('更新 current_count = enter - exit', 'filled') + fcDown;
+  m += fcNode('邊界保護：人數不能為負', 'filled') + fcDown;
+  m += fcNode('等待去抖時間窗口，過濾假信號', 'filled') + fcDown;
+  m += '</div>';
+  var fcScore = v('m5_flowchart');
+  m += '<div style="text-align:center;font-size:12px;font-weight:700;color:' + (fcScore === '正確 5/5' ? 'var(--success-green)' : 'var(--warning-orange)') + ';margin-top:4px;">' + vv('m5_flowchart') + '</div>';
+  html += makeModule('模組 5 — 算法工程師', '算法設計', 'var(--step-purple)', m);
+})();
 
 // ===== Module 6 =====
-html += modSection('模組 6 — 系統整合與反思', '整合', 'var(--success-green)');
+(function() {
+  var m = '';
+  m += '<div class="ws-label">🧠 概念測驗</div>';
+  var quizQs = ['1. 拆成三個模組屬於？','2. 先遮A再遮B=進入屬於？','3. 紅綠燈代替人數屬於？','4. 每天10-12點是高峰屬於？'];
+  var quizAllOpts = [['A. 模式識別','B. 分解','C. 抽象','D. 算法設計'],['A. 分解','B. 模式識別','C. 抽象','D. 算法設計'],['A. 算法設計','B. 分解','C. 抽象','D. 模式識別'],['A. 抽象','B. 算法設計','C. 分解','D. 模式識別']];
+  var quizDetail = v('m6_quiz_detail');
+  m += '<div class="ws-quiz">';
+  for (var qi = 0; qi < 4; qi++) {
+    m += '<div class="ws-quiz-q">' + quizQs[qi] + '</div><div class="ws-quiz-opts">';
+    quizAllOpts[qi].forEach(function(opt, oi) {
+      var cls = '';
+      if (quizDetail && quizDetail[qi]) {
+        var d = quizDetail[qi];
+        if (d.chosen === String.fromCharCode(65 + oi)) cls = d.right ? ' chosen right' : ' chosen';
+        else if (d.correct === String.fromCharCode(65 + oi)) cls = ' answer';
+      }
+      m += '<span class="ws-quiz-opt' + cls + '">' + opt + '</span>';
+    });
+    m += '</div>';
+  }
+  m += '</div>';
+  m += '<div style="text-align:center;font-size:16px;font-weight:900;color:var(--step-amber);margin:4px 0;">得分：' + vv('m6_quiz') + '</div>';
 
-// Quiz
-html += '<div class="ws-label">🧠 概念測驗</div>';
-var quizQs = [
-  '1. 「把圖書館人流監控系統拆成三個模組」屬於？',
-  '2. IR 感測器「先遮 A 再遮 B = 進入」屬於？',
-  '3. 「用紅綠燈代替具體人數」屬於？',
-  '4. 「每天上午 10-12 點是高峰期」屬於？'
-];
-var quizAllOpts = [
-  ['A. 模式識別', 'B. 分解', 'C. 抽象', 'D. 算法設計'],
-  ['A. 分解', 'B. 模式識別', 'C. 抽象', 'D. 算法設計'],
-  ['A. 算法設計', 'B. 分解', 'C. 抽象', 'D. 模式識別'],
-  ['A. 抽象', 'B. 算法設計', 'C. 分解', 'D. 模式識別']
-];
-var quizDetail = v('m6_quiz_detail');
-html += '<div class="ws-quiz">';
-for (var qi = 0; qi < 4; qi++) {
-  html += '<div class="ws-quiz-q">' + quizQs[qi] + '</div><div class="ws-quiz-opts">';
-  quizAllOpts[qi].forEach(function(opt, oi) {
-    var cls = '';
-    if (quizDetail && quizDetail[qi]) {
-      var d = quizDetail[qi];
-      if (d.chosen === String.fromCharCode(65 + oi)) cls = d.right ? ' chosen right' : ' chosen';
-      else if (d.correct === String.fromCharCode(65 + oi)) cls = ' answer';
-    }
-    html += '<span class="ws-quiz-opt' + cls + '">' + opt + '</span>';
-  });
-  html += '</div>';
-}
-html += '</div>';
-html += '<div style="text-align:center;font-size:16px;font-weight:900;color:var(--step-amber);margin:4px 0;">得分：' + vv('m6_quiz') + '</div>';
+  m += '<div class="ws-label">📊 能力自評雷達圖</div>';
+  var radar = v('m6_radar');
+  var radarColors = ['var(--step-amber)','var(--step-cyan)','var(--step-pink)','var(--step-purple)'];
+  var radarLabels = ['分解','模式識別','抽象','算法設計'];
+  if (radar && radar[radarLabels[0]]) {
+    m += '<div class="ws-radar">';
+    radarLabels.forEach(function(label, i) {
+      var score = radar[label] || 5;
+      m += '<div class="ws-radar-item"><div class="ws-radar-bar-outer"><div class="ws-radar-bar-inner" style="height:' + (score*10) + '%;background:' + radarColors[i] + '"></div></div><div class="ws-radar-label">' + label + '</div><div class="ws-radar-score" style="color:' + radarColors[i] + '">' + score + '</div></div>';
+    });
+    m += '</div>';
+  } else { m += '<div class="ws-text empty">（未完成自評）</div>'; }
 
-// Radar
-html += '<div class="ws-label">📊 能力自評雷達圖</div>';
-var radar = v('m6_radar');
-var radarColors = ['var(--step-amber)', 'var(--step-cyan)', 'var(--step-pink)', 'var(--step-purple)'];
-var radarLabels = ['分解', '模式識別', '抽象', '算法設計'];
-if (radar && radar[radarLabels[0]]) {
-  html += '<div class="ws-radar">';
-  radarLabels.forEach(function(label, i) {
-    var score = radar[label] || 5;
-    html += '<div class="ws-radar-item"><div class="ws-radar-bar-outer"><div class="ws-radar-bar-inner" style="height:' + (score * 10) + '%;background:' + radarColors[i] + '"></div></div><div class="ws-radar-label">' + label + '</div><div class="ws-radar-score" style="color:' + radarColors[i] + '">' + score + '</div></div>';
-  });
-  html += '</div>';
-} else {
-  html += '<div class="ws-text empty">（未完成自評）</div>';
-}
+  m += '<div class="ws-label">💬 反思便簽</div>';
+  m += '<div class="ws-text' + (!v('m6_reflect1')?' empty':'') + '">' + vv('m6_reflect1') + '</div>';
+  m += '<div class="ws-text' + (!v('m6_reflect2')?' empty':'') + '">' + vv('m6_reflect2') + '</div>';
+  m += '<div class="ws-text' + (!v('m6_reflect3')?' empty':'') + '">' + vv('m6_reflect3') + '</div>';
+  html += makeModule('模組 6 — 系統整合與反思', '整合', 'var(--success-green)', m);
+})();
 
-// Reflections
-html += '<div class="ws-label">💬 反思便簽</div>';
-html += '<div class="ws-text' + (!v('m6_reflect1') ? ' empty' : '') + '">' + vv('m6_reflect1') + '</div>';
-html += '<div class="ws-text' + (!v('m6_reflect2') ? ' empty' : '') + '">' + vv('m6_reflect2') + '</div>';
-html += '<div class="ws-text' + (!v('m6_reflect3') ? ' empty' : '') + '">' + vv('m6_reflect3') + '</div>';
-
+// Inject into DOM
 body.innerHTML = html;
-
-// Helpers
-function modSection(title, ct, color) {
-  return '<div class="ws-module"><div class="ws-mod-head" style="background:' + color + '"><span class="num">' + title + '</span><span class="ct">' + ct + '</span></div><div class="ws-mod-body">';
-}
-function fcNode(text, type) { return '<div class="ws-fc-node ' + type + '">' + text + '</div>'; }
-var fcDown = '<div class="ws-fc-down">⬇</div>';
-function fcRow(nodes) { return '<div class="ws-fc-row">' + nodes.join('<span class="ws-fc-arrow">→</span>') + '</div>'; }
-
-// Close divs
-var mods = document.querySelectorAll('.ws-module');
-mods.forEach(function(mod) {
-  mod.innerHTML += '</div></div>';
-});
 </script>
 
 </body>
