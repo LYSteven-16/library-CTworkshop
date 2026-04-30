@@ -1094,3 +1094,23 @@ function applyI18n(container) {
     });
   });
 }
+
+// Auto-translate dynamically added content via MutationObserver
+(function() {
+  if (typeof MutationObserver === 'undefined') return;
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) applyI18n(node);
+        else if (node.nodeType === 3 && /[\\u4e00-\\u9fff]/.test(node.nodeValue || '')) {
+          var translated = t(node.nodeValue.trim());
+          if (translated !== node.nodeValue.trim()) node.nodeValue = translated;
+        }
+      });
+    });
+  });
+  var ready = setInterval(function() {
+    var app = document.getElementById('app');
+    if (app) { observer.observe(app, { childList: true, subtree: true }); clearInterval(ready); }
+  }, 100);
+})();
