@@ -7,7 +7,7 @@ const ROUTES = {
     title: '解碼圖書館熱力圖——計算思維自學工坊',
     navTitle: '🔍 解碼圖書館熱力圖',
     navLinks: [],
-    banner: '完成每個互動後，請截圖保存到你的工作單！最後需提交工作單。'
+    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
   },
   module1: {
     fragment: 'modules/module1.html',
@@ -17,7 +17,7 @@ const ROUTES = {
       { hash: 'home', icon: 'fa-house', text: '返回首頁' },
       { hash: 'module2', text: '下一模組 →' }
     ],
-    banner: '完成每個互動後，請截圖保存到你的工作單！最後需提交工作單。'
+    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
   },
   module2: {
     fragment: 'modules/module2.html',
@@ -28,7 +28,7 @@ const ROUTES = {
       { hash: 'module1', text: '← 上一模組' },
       { hash: 'module3', text: '下一模組 →' }
     ],
-    banner: '完成每個互動後，請截圖保存到你的工作單！最後需提交工作單。'
+    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
   },
   module3: {
     fragment: 'modules/module3.html',
@@ -39,7 +39,7 @@ const ROUTES = {
       { hash: 'module2', text: '← 上一模組' },
       { hash: 'module4', text: '下一模組 →' }
     ],
-    banner: '完成每個互動後，請截圖保存到你的工作單！最後需提交工作單。'
+    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
   },
   module4: {
     fragment: 'modules/module4.html',
@@ -50,7 +50,7 @@ const ROUTES = {
       { hash: 'module3', text: '← 上一模組' },
       { hash: 'module5', text: '下一模組 →' }
     ],
-    banner: '完成每個互動後，請截圖保存到你的工作單！最後需提交工作單。'
+    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
   },
   module5: {
     fragment: 'modules/module5.html',
@@ -61,7 +61,7 @@ const ROUTES = {
       { hash: 'module4', text: '← 上一模組' },
       { hash: 'module6', text: '下一模組 →' }
     ],
-    banner: '⭐ 核心模組！完成每個互動後，請截圖保存到你的工作單！'
+    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
   },
   module6: {
     fragment: 'modules/module6.html',
@@ -71,7 +71,7 @@ const ROUTES = {
       { hash: 'home', icon: 'fa-house', text: '返回首頁' },
       { hash: 'module5', text: '← 上一模組' }
     ],
-    banner: '最後一步！完成所有反思後，請截圖保存到你的工作單！'
+    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
   }
 };
 
