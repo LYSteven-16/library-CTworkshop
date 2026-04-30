@@ -1068,19 +1068,30 @@ function setLang(lang) {
 }
 
 function applyI18n(container) {
+  var lang = currentLang();
+  if (lang === 'zh') return; // No conversion needed
+  var dict = I18N.en;
+  var keys = Object.keys(dict).filter(function(k) { return dict[k] !== k; });
+  // Build regex for substring replacement (longest keys first)
+  var escaped = keys.map(function(k) { return k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); });
+  var regex = escaped.length > 0 ? new RegExp('(' + escaped.join('|') + ')', 'g') : null;
+
+  function translateText(str) {
+    if (!regex) return str;
+    return str.replace(regex, function(match) { return dict[match] || match; });
+  }
+
   var walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
   var node;
   while (node = walker.nextNode()) {
-    var text = node.nodeValue.trim();
-    if (text.length > 0 && /[\u4e00-\u9fff]/.test(text)) {
-      var translated = t(text);
-      if (translated !== text) {
-        var ws = node.nodeValue.match(/^(\s*)([\s\S]*?)(\s*)$/);
-        if (ws) {
-          node.nodeValue = ws[1] + translated + ws[3];
-        } else {
-          node.nodeValue = translated;
-        }
+    var text = node.nodeValue;
+    if (text.trim().length > 0 && /[\u4e00-\u9fff]/.test(text)) {
+      // Preserve surrounding whitespace
+      var ws = text.match(/^(\s*)([\s\S]*?)(\s*)$/);
+      var core = ws ? ws[2] : text;
+      var translated = translateText(core);
+      if (translated !== core) {
+        node.nodeValue = (ws ? ws[1] : '') + translated + (ws ? ws[3] : '');
       }
     }
   }
