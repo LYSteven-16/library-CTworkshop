@@ -952,8 +952,13 @@ function checkDesign() {
   if (missing.length === 0) {
     showToast('✅ 設計檢查通過！必要組件已齊全。', 'success');
     document.getElementById('completionBadge').classList.add('show');
-    // Save design components
-    saveWorksheetData('m4_design', phoneSlots.filter(function(s){return s}).map(function(s){return s.name}));
+    // Save design components with rendered HTML
+    var designData = phoneSlots.map(function(s, i) {
+      if (!s) return null;
+      var el = document.getElementById('slot-' + i);
+      return { id: s.id, name: s.name, html: el ? el.innerHTML : '' };
+    });
+    saveWorksheetData('m4_design', designData.filter(function(x){return x}));
     // Save checklist state
     saveChecklistState();
   } else {
