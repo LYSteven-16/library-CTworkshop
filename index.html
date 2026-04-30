@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>解碼圖書館熱力圖——計算思維自學工坊</title>
+<title>Decoding the Library Heatmap — CT Workshop</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- Screenshot Reminder Banner -->
+<!-- Banner -->
 <div class="screenshot-banner" id="screenshotBanner">
   <i class="fas fa-camera"></i>
-  <span id="screenshotBannerText">💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習</span>
+  <span id="screenshotBannerText">💡 Return to your Figma 🗺️ Learning Roadmap to continue</span>
   <i class="fas fa-camera"></i>
 </div>
 
@@ -30,7 +30,7 @@
 <main id="app">
   <div style="text-align:center;padding:60px 20px;">
     <i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--mid-blue, #3B82F6);"></i>
-    <p style="margin-top:12px;color:#6B7280;">載入中…</p>
+    <p style="margin-top:12px;color:#6B7280;">Loading…</p>
   </div>
 </main>
 
@@ -39,7 +39,7 @@
   <div class="overlay-card">
     <h4><i class="fas fa-lightbulb" style="color:var(--warning-orange)"></i> <span id="knowledgeTitle"></span></h4>
     <p id="knowledgeContent" style="white-space:pre-line;"></p>
-    <button class="btn btn-primary" onclick="closeKnowledge()">知道了！</button>
+    <button class="btn btn-primary" onclick="closeKnowledge()">Got it!</button>
   </div>
 </div>
 

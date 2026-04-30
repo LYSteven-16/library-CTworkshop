@@ -1,77 +1,76 @@
 /* ========== SPA Router ========== */
 
-// Route definitions (Chinese source, t() handles translation at runtime)
 var ROUTES = {
   home: {
     fragment: 'modules/home.html',
-    title: '解碼圖書館熱力圖——計算思維自學工坊',
-    navTitle: '🔍 解碼圖書館熱力圖',
+    title: 'Decoding the Library Heatmap — CT Workshop',
+    navTitle: '🔍 CT Workshop',
     navLinks: [],
-    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
+    banner: '💡 Return to your Figma 🗺️ Learning Roadmap to continue'
   },
   module1: {
     fragment: 'modules/module1.html',
-    title: '模組 1：痛點挖掘 — 問題引入',
-    navTitle: '模組 1 / 6 — 痛點挖掘',
+    title: 'M1: Pain Point Discovery — Problem Introduction',
+    navTitle: 'Module 1 / 6 — Pain Point Discovery',
     navLinks: [
-      { hash: 'home', icon: 'fa-house', text: '返回首頁' },
-      { hash: 'module2', text: '下一模組 →' }
+      { hash: 'home', icon: 'fa-house', text: 'Back to Home' },
+      { hash: 'module2', text: 'Next →' }
     ],
-    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
+    banner: '💡 Return to your Figma 🗺️ Learning Roadmap to continue'
   },
   module2: {
     fragment: 'modules/module2.html',
-    title: '模組 2：解構問題 — 分解思維',
-    navTitle: '模組 2 / 6 — 解構問題',
+    title: 'M2: Deconstructing — Decomposition',
+    navTitle: 'Module 2 / 6 — Deconstructing',
     navLinks: [
-      { hash: 'home', icon: 'fa-house', text: '返回首頁' },
-      { hash: 'module1', text: '← 上一模組' },
-      { hash: 'module3', text: '下一模組 →' }
+      { hash: 'home', icon: 'fa-house', text: 'Back to Home' },
+      { hash: 'module1', text: '← Previous' },
+      { hash: 'module3', text: 'Next →' }
     ],
-    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
+    banner: '💡 Return to your Figma 🗺️ Learning Roadmap to continue'
   },
   module3: {
     fragment: 'modules/module3.html',
-    title: '模組 3：模式偵探 — 模式識別',
-    navTitle: '模組 3 / 6 — 模式偵探',
+    title: 'M3: Pattern Detective — Pattern Recognition',
+    navTitle: 'Module 3 / 6 — Pattern Detective',
     navLinks: [
-      { hash: 'home', icon: 'fa-house', text: '返回首頁' },
-      { hash: 'module2', text: '← 上一模組' },
-      { hash: 'module4', text: '下一模組 →' }
+      { hash: 'home', icon: 'fa-house', text: 'Back to Home' },
+      { hash: 'module2', text: '← Previous' },
+      { hash: 'module4', text: 'Next →' }
     ],
-    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
+    banner: '💡 Return to your Figma 🗺️ Learning Roadmap to continue'
   },
   module4: {
     fragment: 'modules/module4.html',
-    title: '模組 4：視覺化設計師 — 抽象',
-    navTitle: '模組 4 / 6 — 視覺化設計師',
+    title: 'M4: Visual Designer — Abstraction',
+    navTitle: 'Module 4 / 6 — Visual Designer',
     navLinks: [
-      { hash: 'home', icon: 'fa-house', text: '返回首頁' },
-      { hash: 'module3', text: '← 上一模組' },
-      { hash: 'module5', text: '下一模組 →' }
+      { hash: 'home', icon: 'fa-house', text: 'Back to Home' },
+      { hash: 'module3', text: '← Previous' },
+      { hash: 'module5', text: 'Next →' }
     ],
-    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
+    banner: '💡 Return to your Figma 🗺️ Learning Roadmap to continue'
   },
   module5: {
     fragment: 'modules/module5.html',
-    title: '模組 5：算法工程師 — 算法設計',
-    navTitle: '模組 5 / 6 — 算法工程師',
+    title: 'M5: Algorithm Engineer — Algorithm Design',
+    navTitle: 'Module 5 / 6 — Algorithm Engineer',
     navLinks: [
-      { hash: 'home', icon: 'fa-house', text: '返回首頁' },
-      { hash: 'module4', text: '← 上一模組' },
-      { hash: 'module6', text: '下一模組 →' }
+      { hash: 'home', icon: 'fa-house', text: 'Back to Home' },
+      { hash: 'module4', text: '← Previous' },
+      { hash: 'module6', text: 'Next →' }
     ],
-    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
+    banner: '💡 Return to your Figma 🗺️ Learning Roadmap to continue'
   },
   module6: {
     fragment: 'modules/module6.html',
-    title: '模組 6：系統整合與反思',
-    navTitle: '模組 6 / 6 — 系統整合與反思',
+    title: 'M6: Integration & Reflection',
+    navTitle: 'Module 6 / 6 — Integration & Reflection',
     navLinks: [
-      { hash: 'home', icon: 'fa-house', text: '返回首頁' },
-      { hash: 'module5', text: '← 上一模組' }
+      { hash: 'home', icon: 'fa-house', text: 'Back to Home' },
+      { hash: 'module5', text: '← Previous' }
     ],
-    banner: '💡 記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習'
+    banner: '💡 Return to your Figma 🗺️ Learning Roadmap to continue'
   }
 };
 
@@ -92,97 +91,66 @@ function updateNavbar(config) {
   var navTitle = document.getElementById('navTitle');
   var navLinks = document.getElementById('navLinks');
   var navbar = document.getElementById('navbar');
-
   navbar.style.display = '';
   navTitle.textContent = t(config.navTitle);
   navLinks.innerHTML = config.navLinks.map(function(link) {
-      var icon = link.icon ? '<i class="fas ' + link.icon + '"></i> ' : '';
-      return '<a href="#' + link.hash + '">' + icon + t(link.text) + '</a>';
-    }).join('');
-    // Add language toggle
-    if (!document.getElementById('langToggle')) {
-      var langBtn = document.createElement('a');
-      langBtn.id = 'langToggle';
-      langBtn.href = '#';
-      langBtn.style.cssText = 'margin-left:12px;font-size:13px;font-weight:700;padding:4px 10px;border:2px solid rgba(255,255,255,0.4);border-radius:6px;cursor:pointer;color:white;text-decoration:none';
-      langBtn.textContent = currentLang() === 'en' ? '中' : 'EN';
-      langBtn.onclick = function(e) {
-        e.preventDefault();
-        var newLang = currentLang() === 'en' ? 'zh' : 'en';
-        setLang(newLang);
-        currentRoute = null; // force re-render
-        handleRoute();
-      };
-      navLinks.appendChild(langBtn);
-    } else {
-      var ltb = document.getElementById('langToggle');
-      ltb.textContent = currentLang() === 'en' ? '中' : 'EN';
-    }
+    return '<a href="#' + link.hash + '">' + (link.icon ? '<i class="fas ' + link.icon + '"></i> ' : '') + t(link.text) + '</a>';
+  }).join('');
+  if (!document.getElementById('langToggle')) {
+    var btn = document.createElement('a');
+    btn.id = 'langToggle'; btn.href = '#';
+    btn.style.cssText = 'margin-left:12px;font-size:13px;font-weight:700;padding:4px 10px;border:2px solid rgba(255,255,255,0.4);border-radius:6px;cursor:pointer;color:white;text-decoration:none';
+    btn.textContent = '中';
+    btn.onclick = function(e) { e.preventDefault(); setLang(currentLang() === 'en' ? 'zh' : 'en'); currentRoute = null; handleRoute(); };
+    navLinks.appendChild(btn);
+  } else {
+    document.getElementById('langToggle').textContent = currentLang() === 'en' ? '中' : 'EN';
+  }
 }
 
 function updateBanner(config) {
-  var bannerText = document.getElementById('screenshotBannerText');
-  if (bannerText) bannerText.textContent = t(config.banner);
+  var el = document.getElementById('screenshotBannerText');
+  if (el) el.textContent = t(config.banner);
 }
 
 function executeScripts(container) {
-  var scripts = container.querySelectorAll('script');
-  scripts.forEach(function(oldScript) {
-    var newScript = document.createElement('script');
-    Array.from(oldScript.attributes).forEach(function(attr) {
-      newScript.setAttribute(attr.name, attr.value);
-    });
-    newScript.textContent = oldScript.textContent.replace(/\b(const|let)\s+(?=\w)/g, 'var ');
-    oldScript.parentNode.replaceChild(newScript, oldScript);
+  container.querySelectorAll('script').forEach(function(oldScript) {
+    var s = document.createElement('script');
+    Array.from(oldScript.attributes).forEach(function(a) { s.setAttribute(a.name, a.value); });
+    s.textContent = oldScript.textContent.replace(/\b(const|let)\s+(?=\w)/g, 'var ');
+    oldScript.parentNode.replaceChild(s, oldScript);
   });
 }
 
 async function handleRoute() {
   var key = getRouteKey();
   if (key === currentRoute) return;
-
   var config = ROUTES[key];
   var app = document.getElementById('app');
-
   if (currentController) currentController.abort();
   currentController = new AbortController();
-
   document.title = t(config.title);
   updateNavbar(config);
   updateBanner(config);
-
-  app.innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--mid-blue);"></i><p style="margin-top:12px;color:var(--text-light);">' + t('載入中…') + '</p></div>';
-
+  app.innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--mid-blue);"></i><p style="margin-top:12px;color:var(--text-light);">' + t('Loading…') + '</p></div>';
   try {
-    var response = await fetch(config.fragment, { signal: currentController.signal });
-    if (!response.ok) throw new Error('Failed to load ' + config.fragment);
-    var html = await response.text();
-
-    app.innerHTML = html;
+    var res = await fetch(config.fragment, { signal: currentController.signal });
+    if (!res.ok) throw new Error('Failed: ' + config.fragment);
+    app.innerHTML = await res.text();
     executeScripts(app);
-    // Translate text nodes
     applyI18n(app);
     window.scrollTo(0, 0);
     currentRoute = key;
     closeKnowledge();
   } catch (err) {
     if (err.name === 'AbortError') return;
-    app.innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-exclamation-triangle" style="font-size:32px;color:var(--danger-red);"></i><p style="margin-top:12px;color:var(--text-light);">' + t('載入中…') + '</p></div>';
-    console.error('Route load error:', err);
+    app.innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-exclamation-triangle" style="font-size:32px;color:var(--danger-red);"></i><p style="margin-top:12px;color:var(--text-light);">' + t('Loading…') + '</p></div>';
   }
 }
 
 window.addEventListener('hashchange', handleRoute);
-
 document.addEventListener('click', function(e) {
   var link = e.target.closest('a[href^="#"]');
-  if (link) {
-    var hash = link.getAttribute('href').slice(1);
-    if (ROUTES[hash]) {
-      e.preventDefault();
-      navigate(hash);
-    }
-  }
+  if (link && ROUTES[link.getAttribute('href').slice(1)]) { e.preventDefault(); navigate(link.getAttribute('href').slice(1)); }
 });
-
 window.addEventListener('DOMContentLoaded', handleRoute);
