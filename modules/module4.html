@@ -954,6 +954,8 @@ function checkDesign() {
     document.getElementById('completionBadge').classList.add('show');
     // Save design components
     saveWorksheetData('m4_design', phoneSlots.filter(function(s){return s}).map(function(s){return s.name}));
+    // Save checklist state
+    saveChecklistState();
   } else {
     var names = missing.map(function(id) {
       return uiComponents.find(function(c) { return c.id === id; }).name;
@@ -1011,4 +1013,24 @@ function drawTrendChart() {
 }
 
 initAutoSave();
+
+// Save checklist state
+function saveChecklistState() {
+  var items = document.querySelectorAll('.checklist-item');
+  var checked = [];
+  items.forEach(function(item, i) {
+    var textEl = item.querySelector('.check-text');
+    if (textEl) {
+      checked.push({ text: textEl.textContent, checked: item.classList.contains('checked') });
+    }
+  });
+  saveWorksheetData('m4_checklist', checked);
+}
+
+// Auto-save checklist on each toggle
+var origToggleCheck = toggleCheck;
+toggleCheck = function(el) {
+  origToggleCheck(el);
+  setTimeout(saveChecklistState, 100);
+};
 </script>

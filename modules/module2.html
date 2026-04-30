@@ -406,6 +406,9 @@ function showOnion(idx) {
   }
   layer.classList.add('open');
   activeOnion = idx;
+  // Track which layers were opened
+  var opened = JSON.parse(localStorage.getItem('ct_worksheet_data') || '{}').m2_onion || [];
+  if (opened.indexOf(idx) === -1) { opened.push(idx); saveWorksheetData('m2_onion', opened); }
 }
 
 // ===== Card Classification =====
@@ -504,6 +507,9 @@ function checkClassification() {
   } else {
     showToast('正確 ' + correct + '/' + total + '，紅色標記的卡片試試換個分類！', correct >= total * 0.6 ? 'info' : 'error');
   }
+  // Save classification results
+  saveWorksheetData('m2_classify', correct + '/' + total);
+  saveWorksheetData('m2_classify_detail', JSON.stringify(cardClassifications));
 }
 
 // ===== Data Flow Builder =====

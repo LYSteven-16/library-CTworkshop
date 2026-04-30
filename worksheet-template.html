@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>學習工作單</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --deep-blue: #1E3A8A; --mid-blue: #3B82F6; --light-blue: #EFF6FF;
+    --danger-red: #EF4444; --success-green: #10B981; --warning-orange: #F59E0B;
+    --step-red: #EF4444; --step-amber: #F59E0B; --step-cyan: #0EA5E9;
+    --step-pink: #EC4899; --step-purple: #8B5CF6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: #F3F4F6;
+    display: flex; justify-content: center; padding: 20px;
+  }
+  .worksheet {
+    width: 210mm; background: white;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  }
+
+  .ws-header {
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+    padding: 18px 20px; color: white;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .ws-header h1 { font-size: 20px; font-weight: 900; }
+  .ws-header .sub { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+  .ws-meta {
+    font-size: 11px; text-align: right; opacity: 0.9;
+    line-height: 1.8; background: rgba(255,255,255,0.1);
+    padding: 6px 12px; border-radius: 6px;
+  }
+
+  .ws-ctpath {
+    display: flex; align-items: center; justify-content: center; gap: 0;
+    padding: 14px 0 10px; background: #F9FAFB; border-bottom: 1px solid #E5E7EB;
+  }
+  .ws-ctpath .dot {
+    width: 26px; height: 26px; border-radius: 50%; color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 800; flex-shrink: 0;
+  }
+  .ws-ctpath .line { width: 24px; height: 2px; background: #D1D5DB; flex-shrink: 0; }
+
+  .ws-body { padding: 16px 20px; }
+
+  .ws-module {
+    margin-bottom: 14px; page-break-inside: avoid;
+    border: 1px solid #E5E7EB; border-radius: 8px; overflow: hidden;
+  }
+  .ws-mod-head {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 14px; color: white; font-weight: 700; font-size: 13px;
+  }
+  .ws-mod-head .num { font-size: 10px; background: rgba(255,255,255,0.25); padding: 2px 8px; border-radius: 10px; }
+  .ws-mod-head .ct { margin-left: auto; font-size: 10px; background: rgba(0,0,0,0.15); padding: 2px 8px; border-radius: 10px; }
+  .ws-mod-body { padding: 12px 14px; }
+
+  .ws-vote { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+  .ws-vote-btn {
+    padding: 6px 14px; border-radius: 20px; border: 2px solid #E5E7EB;
+    font-size: 11px; font-family: inherit; background: white; color: #6B7280;
+  }
+  .ws-vote-btn.selected { border-color: var(--step-red); background: #FEF2F2; color: #B91C1C; font-weight: 700; }
+
+  .ws-sort { border: 1px solid #E5E7EB; border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
+  .ws-sort-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 12px; border-bottom: 1px solid #F3F4F6; font-size: 12px;
+  }
+  .ws-sort-item:last-child { border-bottom: none; }
+  .ws-sort-num {
+    width: 22px; height: 22px; border-radius: 50%; background: var(--deep-blue);
+    color: white; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; flex-shrink: 0;
+  }
+
+  .ws-flow { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-bottom: 6px; }
+  .ws-flow-slot {
+    padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: 600;
+    border: 2px solid; background: white; text-align: center;
+  }
+  .ws-flow-slot.filled { border-color: var(--success-green); background: #D1FAE5; color: #065F46; }
+  .ws-flow-arrow { color: #9CA3AF; font-size: 12px; flex-shrink: 0; }
+
+  .ws-match { margin-bottom: 6px; }
+  .ws-match-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 11px;
+  }
+  .ws-match-left, .ws-match-right {
+    padding: 5px 10px; border-radius: 6px; flex: 1;
+  }
+  .ws-match-left { background: #EFF6FF; border: 1px solid #BFDBFE; text-align: right; }
+  .ws-match-right { background: #FDF2F8; border: 1px solid #FBCFE8; }
+  .ws-match-conn { color: var(--step-cyan); font-weight: 700; flex-shrink: 0; }
+
+  .ws-checklist { margin-bottom: 6px; }
+  .ws-check-item {
+    display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 11px;
+  }
+  .ws-check-box {
+    width: 18px; height: 18px; border-radius: 4px; border: 2px solid #D1D5DB;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 10px; color: transparent;
+  }
+  .ws-check-item.checked .ws-check-box {
+    background: var(--success-green); border-color: var(--success-green); color: white;
+  }
+
+  .ws-phone {
+    width: 140px; margin: 6px auto;
+    background: #1F2937; border-radius: 14px; padding: 10px 8px 6px;
+  }
+  .ws-phone-screen { background: white; border-radius: 6px; padding: 8px; min-height: 80px; }
+  .ws-phone-item {
+    font-size: 9px; padding: 3px 6px; margin-bottom: 3px; background: #F3F4F6;
+    border-radius: 4px; border-left: 3px solid var(--mid-blue);
+  }
+  .ws-phone-item.empty { color: #D1D5DB; font-style: italic; border-left-color: #E5E7EB; }
+
+  .ws-debounce {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 6px;
+    text-align: center;
+  }
+  .ws-deb-metric {
+    background: #F9FAFB; border-radius: 6px; padding: 8px;
+  }
+  .ws-deb-num { font-size: 18px; font-weight: 900; color: var(--deep-blue); }
+  .ws-deb-label { font-size: 9px; color: #6B7280; margin-top: 2px; }
+  .ws-deb-feedback {
+    padding: 8px 12px; border-radius: 6px; font-size: 11px; font-weight: 600;
+  }
+
+  .ws-flowchart { margin-bottom: 6px; }
+  .ws-fc-row {
+    display: flex; align-items: center; gap: 4px; margin-bottom: 4px;
+    font-size: 10px; justify-content: center;
+  }
+  .ws-fc-node {
+    padding: 6px 10px; border-radius: 6px; border: 2px solid;
+    text-align: center; font-weight: 600;
+  }
+  .ws-fc-node.start { border-color: var(--success-green); background: #D1FAE5; }
+  .ws-fc-node.process { border-color: var(--mid-blue); background: #EFF6FF; }
+  .ws-fc-node.decision { border-color: var(--warning-orange); background: #FEF3C7; }
+  .ws-fc-node.filled { border-color: var(--step-purple); background: #EDE9FE; }
+  .ws-fc-node.error { border-color: var(--danger-red); background: #FEE2E2; }
+  .ws-fc-arrow { color: #9CA3AF; flex-shrink: 0; }
+  .ws-fc-down { text-align: center; color: #9CA3AF; margin: 2px 0; font-size: 10px; }
+  .ws-fc-yesno { font-size: 9px; color: #6B7280; }
+
+  .ws-quiz { margin-bottom: 6px; }
+  .ws-quiz-q { font-size: 11px; font-weight: 500; margin-bottom: 4px; color: #374151; }
+  .ws-quiz-opts { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+  .ws-quiz-opt {
+    padding: 3px 10px; border-radius: 12px; border: 1px solid #E5E7EB;
+    font-size: 10px; background: white; color: #6B7280;
+  }
+  .ws-quiz-opt.chosen { background: #FEF2F2; border-color: var(--danger-red); color: #B91C1C; font-weight: 600; }
+  .ws-quiz-opt.chosen.right { background: #D1FAE5; border-color: var(--success-green); color: #065F46; }
+  .ws-quiz-opt.answer { background: #D1FAE5; border-color: var(--success-green); color: #065F46; font-weight: 600; }
+
+  .ws-radar { display: flex; gap: 12px; justify-content: center; margin: 6px 0; }
+  .ws-radar-item { text-align: center; width: 60px; }
+  .ws-radar-bar-outer {
+    height: 80px; background: #F3F4F6; border-radius: 4px;
+    position: relative; overflow: hidden; margin: 0 auto 4px; width: 36px;
+  }
+  .ws-radar-bar-inner { position: absolute; bottom: 0; left: 0; right: 0; border-radius: 4px; }
+  .ws-radar-label { font-size: 9px; color: #4B5563; font-weight: 600; }
+  .ws-radar-score { font-size: 11px; font-weight: 700; }
+
+  .ws-label { font-size: 11px; color: var(--deep-blue); font-weight: 600; margin: 8px 0 4px; }
+  .ws-text {
+    font-size: 12px; color: #374151; line-height: 1.6;
+    padding: 8px 10px; background: #F9FAFB; border-radius: 6px; margin-bottom: 6px;
+    white-space: pre-wrap;
+  }
+  .ws-text.empty { color: #D1D5DB; font-style: italic; }
+
+  .ws-footer {
+    margin-top: 12px; padding: 8px 20px;
+    border-top: 1px solid #E5E7EB; font-size: 9px; color: #9CA3AF;
+    display: flex; justify-content: space-between;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .worksheet { box-shadow: none; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="worksheet" id="ws">
+  <div class="ws-header">
+    <div><h1>🔍 解碼圖書館熱力圖</h1><div class="sub">計算思維自學工坊 — 學習工作單</div></div>
+    <div class="ws-meta" id="wsMeta"></div>
+  </div>
+  <div class="ws-ctpath">
+    <div class="dot" style="background:var(--step-red)">①</div><div class="line"></div>
+    <div class="dot" style="background:var(--step-amber)">②</div><div class="line"></div>
+    <div class="dot" style="background:var(--step-cyan)">③</div><div class="line"></div>
+    <div class="dot" style="background:var(--step-pink)">④</div><div class="line"></div>
+    <div class="dot" style="background:var(--step-purple)">⑤</div>
+  </div>
+  <div class="ws-body" id="wsBody"></div>
+  <div class="ws-footer">
+    <span>解碼圖書館熱力圖 — 計算思維自學工坊</span><span>系統自動生成</span>
+  </div>
+</div>
+
+<script>
+// Read all data from localStorage
+var D = JSON.parse(localStorage.getItem('ct_worksheet_data') || '{}');
+var name = localStorage.getItem('ct_workshop_name') || '同學';
+var now = new Date();
+var dateStr = now.getFullYear() + '/' + (now.getMonth() + 1) + '/' + now.getDate();
+var progress = JSON.parse(localStorage.getItem('ct_workshop_progress') || '{}');
+var completed = Object.keys(progress).length;
+
+// Meta
+document.getElementById('wsMeta').innerHTML = '<strong>' + name + '</strong>' + dateStr + '<br>完成 ' + completed + ' / 6 模組';
+
+function v(key) { return D[key] || ''; }
+function vv(key) { var x = v(key); return x ? x : '<span class="empty">（未填寫）</span>'; }
+
+// Build body HTML dynamically
+var body = document.getElementById('wsBody');
+var html = '';
+
+// ===== Module 1 =====
+html += modSection('模組 1 — 痛點挖掘', '問題定義', 'var(--step-red)');
+html += '<div class="ws-label">📊 投票：你去圖書館時遇到過幾次沒座位？</div>';
+var voteOpts = ['0 次', '1-3 次', '4-6 次', '7 次以上'];
+var voteVal = v('m1_vote');
+html += '<div class="ws-vote">';
+voteOpts.forEach(function(o) {
+  html += '<div class="ws-vote-btn' + (o === voteVal ? ' selected' : '') + '">' + o + '</div>';
+});
+html += '</div>';
+
+html += '<div class="ws-label">💭 思考泡泡：你的想法</div>';
+html += '<div class="ws-text' + (!v('m1_thought') ? ' empty' : '') + '">' + vv('m1_thought') + '</div>';
+
+var sortArr = v('m1_sort');
+html += '<div class="ws-label">📋 問題排序（按重要性）</div>';
+if (sortArr && sortArr.length) {
+  html += '<div class="ws-sort">';
+  sortArr.forEach(function(s, i) {
+    html += '<div class="ws-sort-item"><div class="ws-sort-num">' + (i+1) + '</div><span>' + s + '</span></div>';
+  });
+  html += '</div>';
+} else {
+  html += '<div class="ws-text empty">（未完成排序）</div>';
+}
+
+// ===== Module 2 =====
+html += modSection('模組 2 — 解構問題', '分解', 'var(--step-amber)');
+
+html += '<div class="ws-label">🔄 數據流排序（你的排列）</div>';
+var flowArr = v('m2_flow');
+if (flowArr && flowArr.length) {
+  html += '<div class="ws-flow">';
+  flowArr.filter(Boolean).forEach(function(s, i) {
+    if (i > 0) html += '<span class="ws-flow-arrow">→</span>';
+    html += '<div class="ws-flow-slot filled">' + s + '</div>';
+  });
+  html += '</div>';
+} else {
+  html += '<div class="ws-text empty">（未完成數據流排序）</div>';
+}
+
+html += '<div class="ws-label">📦 卡片分類結果</div>';
+html += '<div class="ws-text">' + vv('m2_classify') + '</div>';
+
+// ===== Module 3 =====
+html += modSection('模組 3 — 模式偵探', '模式識別', 'var(--step-cyan)');
+
+var matchArr = v('m3_match');
+if (matchArr && matchArr.length) {
+  html += '<div class="ws-label">🔗 模式配對（你的連線）</div><div class="ws-match">';
+  matchArr.forEach(function(p) {
+    html += '<div class="ws-match-row"><div class="ws-match-left">' + p.left + '</div><div class="ws-match-conn">→</div><div class="ws-match-right">' + p.right + '</div></div>';
+  });
+  html += '</div>';
+}
+
+html += '<div class="ws-label">⚠️ 異常數據判斷</div>';
+html += '<div style="padding:6px 12px;background:#FEF3C7;border-radius:6px;font-size:12px;font-weight:600;color:#78350F;">' + vv('m3_anomaly') + '</div>';
+
+html += '<div class="ws-label">🔮 雨天預測</div>';
+html += '<div class="ws-text">' + vv('m3_predict') + '</div>';
+
+// ===== Module 4 =====
+html += modSection('模組 4 — 視覺化設計師', '抽象', 'var(--step-pink)');
+
+var checklist = v('m4_checklist');
+if (checklist && checklist.length) {
+  html += '<div class="ws-label">✅ UI 設計檢查清單</div><div class="ws-checklist">';
+  checklist.forEach(function(item) {
+    html += '<div class="ws-check-item' + (item.checked ? ' checked' : '') + '"><div class="ws-check-box"><i class="fas fa-check"></i></div><span>' + item.text + '</span></div>';
+  });
+  html += '</div>';
+}
+
+var design = v('m4_design');
+html += '<div class="ws-label">📱 手機原型設計</div>';
+if (design && design.length) {
+  html += '<div class="ws-phone"><div class="ws-phone-screen">';
+  design.forEach(function(s) { html += '<div class="ws-phone-item">' + s + '</div>'; });
+  html += '</div></div>';
+} else {
+  html += '<div class="ws-text empty">（未設計手機原型）</div>';
+}
+
+html += '<div class="ws-label">💬 抽象設計反思</div>';
+html += '<div class="ws-text' + (!v('m4_reflect') ? ' empty' : '') + '">' + vv('m4_reflect') + '</div>';
+
+// ===== Module 5 =====
+html += modSection('模組 5 — 算法工程師', '算法設計', 'var(--step-purple)');
+
+var debRes = v('m5_debounce_result');
+html += '<div class="ws-label">⏱ 去抖測試結果</div>';
+html += '<div style="font-size:12px;margin-bottom:4px;">你設定的去抖窗口：<strong>' + vv('m5_debounce') + '</strong></div>';
+if (debRes && debRes.total) {
+  var accColor = debRes.acc >= 90 ? 'var(--success-green)' : debRes.acc >= 75 ? 'var(--warning-orange)' : 'var(--danger-red)';
+  html += '<div class="ws-debounce">';
+  html += '<div class="ws-deb-metric"><div class="ws-deb-num">' + debRes.total + '</div><div class="ws-deb-label">總通過人數</div></div>';
+  html += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:var(--warning-orange)">' + debRes.fp + '</div><div class="ws-deb-label">誤報</div></div>';
+  html += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:var(--success-green)">' + debRes.missed + '</div><div class="ws-deb-label">漏計</div></div>';
+  html += '<div class="ws-deb-metric"><div class="ws-deb-num" style="color:' + accColor + '">' + debRes.acc + '%</div><div class="ws-deb-label">準確率</div></div>';
+  html += '</div>';
+  var fb = debRes.acc >= 95 ? '🏆 完美平衡！' : debRes.acc >= 90 ? '✅ 表現不錯' : '⚠️ 還需調整';
+  html += '<div class="ws-deb-feedback" style="background:' + (debRes.acc >= 90 ? '#D1FAE5' : '#FEF3C7') + ';color:' + (debRes.acc >= 90 ? '#065F46' : '#78350F') + ';">' + fb + '</div>';
+}
+
+// Flowchart
+html += '<div class="ws-label">🔀 計數算法流程圖填空</div>';
+var fcScore = v('m5_flowchart');
+html += '<div class="ws-flowchart">';
+html += fcNode('IR 感測器觸發', 'start') + fcDown;
+html += fcNode('方向判定', 'decision') + fcDown;
+html += '<div style="display:flex;justify-content:center;gap:8px;">';
+html += '<div style="text-align:center;">' + fcRow([fcNode('enter_count += 1', 'filled')]) + '</div>';
+html += '<div style="text-align:center;">' + fcRow([fcNode('exit_count += 1', 'filled')]) + '</div></div>' + fcDown;
+html += fcNode('更新 current_count = enter - exit', 'filled') + fcDown;
+html += fcNode('邊界保護：人數不能為負', 'filled') + fcDown;
+html += fcNode('等待去抖時間窗口，過濾假信號', 'filled') + fcDown;
+html += '</div>';
+html += '<div style="text-align:center;font-size:12px;font-weight:700;color:' + (fcScore === '正確 5/5' ? 'var(--success-green)' : 'var(--warning-orange)') + ';margin-top:4px;">' + vv('m5_flowchart') + '</div>';
+
+// ===== Module 6 =====
+html += modSection('模組 6 — 系統整合與反思', '整合', 'var(--success-green)');
+
+// Quiz
+html += '<div class="ws-label">🧠 概念測驗</div>';
+var quizQs = [
+  '1. 「把圖書館人流監控系統拆成三個模組」屬於？',
+  '2. IR 感測器「先遮 A 再遮 B = 進入」屬於？',
+  '3. 「用紅綠燈代替具體人數」屬於？',
+  '4. 「每天上午 10-12 點是高峰期」屬於？'
+];
+var quizAllOpts = [
+  ['A. 模式識別', 'B. 分解', 'C. 抽象', 'D. 算法設計'],
+  ['A. 分解', 'B. 模式識別', 'C. 抽象', 'D. 算法設計'],
+  ['A. 算法設計', 'B. 分解', 'C. 抽象', 'D. 模式識別'],
+  ['A. 抽象', 'B. 算法設計', 'C. 分解', 'D. 模式識別']
+];
+var quizDetail = v('m6_quiz_detail');
+html += '<div class="ws-quiz">';
+for (var qi = 0; qi < 4; qi++) {
+  html += '<div class="ws-quiz-q">' + quizQs[qi] + '</div><div class="ws-quiz-opts">';
+  quizAllOpts[qi].forEach(function(opt, oi) {
+    var cls = '';
+    if (quizDetail && quizDetail[qi]) {
+      var d = quizDetail[qi];
+      if (d.chosen === String.fromCharCode(65 + oi)) cls = d.right ? ' chosen right' : ' chosen';
+      else if (d.correct === String.fromCharCode(65 + oi)) cls = ' answer';
+    }
+    html += '<span class="ws-quiz-opt' + cls + '">' + opt + '</span>';
+  });
+  html += '</div>';
+}
+html += '</div>';
+html += '<div style="text-align:center;font-size:16px;font-weight:900;color:var(--step-amber);margin:4px 0;">得分：' + vv('m6_quiz') + '</div>';
+
+// Radar
+html += '<div class="ws-label">📊 能力自評雷達圖</div>';
+var radar = v('m6_radar');
+var radarColors = ['var(--step-amber)', 'var(--step-cyan)', 'var(--step-pink)', 'var(--step-purple)'];
+var radarLabels = ['分解', '模式識別', '抽象', '算法設計'];
+if (radar && radar[radarLabels[0]]) {
+  html += '<div class="ws-radar">';
+  radarLabels.forEach(function(label, i) {
+    var score = radar[label] || 5;
+    html += '<div class="ws-radar-item"><div class="ws-radar-bar-outer"><div class="ws-radar-bar-inner" style="height:' + (score * 10) + '%;background:' + radarColors[i] + '"></div></div><div class="ws-radar-label">' + label + '</div><div class="ws-radar-score" style="color:' + radarColors[i] + '">' + score + '</div></div>';
+  });
+  html += '</div>';
+} else {
+  html += '<div class="ws-text empty">（未完成自評）</div>';
+}
+
+// Reflections
+html += '<div class="ws-label">💬 反思便簽</div>';
+html += '<div class="ws-text' + (!v('m6_reflect1') ? ' empty' : '') + '">' + vv('m6_reflect1') + '</div>';
+html += '<div class="ws-text' + (!v('m6_reflect2') ? ' empty' : '') + '">' + vv('m6_reflect2') + '</div>';
+html += '<div class="ws-text' + (!v('m6_reflect3') ? ' empty' : '') + '">' + vv('m6_reflect3') + '</div>';
+
+body.innerHTML = html;
+
+// Helpers
+function modSection(title, ct, color) {
+  return '<div class="ws-module"><div class="ws-mod-head" style="background:' + color + '"><span class="num">' + title + '</span><span class="ct">' + ct + '</span></div><div class="ws-mod-body">';
+}
+function fcNode(text, type) { return '<div class="ws-fc-node ' + type + '">' + text + '</div>'; }
+var fcDown = '<div class="ws-fc-down">⬇</div>';
+function fcRow(nodes) { return '<div class="ws-fc-row">' + nodes.join('<span class="ws-fc-arrow">→</span>') + '</div>'; }
+
+// Close divs
+var mods = document.querySelectorAll('.ws-module');
+mods.forEach(function(mod) {
+  mod.innerHTML += '</div></div>';
+});
+</script>
+
+</body>
+</html>

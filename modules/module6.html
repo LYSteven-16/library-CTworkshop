@@ -647,10 +647,10 @@
   <!-- Generate PDF Worksheet -->
   <div class="section-card" style="background:linear-gradient(135deg,#1E3A8A 0%,#3B82F6 100%);color:white;border:none;">
     <h2 style="color:white;"><i class="fas fa-file-pdf"></i> 生成學習工作單</h2>
-    <p style="margin-bottom:16px;opacity:0.9;">一鍵匯出你在所有模組中的互動記錄，生成 PDF 工作單並下載。</p>
+    <p style="margin-bottom:16px;opacity:0.9;">一鍵匯出你在所有模組中的互動記錄，透過瀏覽器「另存為 PDF」列印輸出。</p>
     <div style="text-align:center;">
-      <button class="btn" onclick="generateWorksheetPDF()" style="font-size:16px;padding:12px 28px;background:white;color:#1E3A8A;font-weight:700;border-radius:8px;cursor:pointer;">
-        <i class="fas fa-download"></i> 一鍵生成 PDF 工作單
+      <button class="btn" onclick="printWorksheet()" style="font-size:16px;padding:12px 28px;background:white;color:#1E3A8A;font-weight:700;border-radius:8px;cursor:pointer;">
+        <i class="fas fa-print"></i> 列印工作單（另存為 PDF）
       </button>
     </div>
   </div>
@@ -701,6 +701,8 @@ function submitQuiz() {
   }
   quizSubmitted = true;
   var score = 0;
+  var quizLabels = ['A', 'B', 'C', 'D'];
+  var quizDetail = [];
   for (var i = 0; i < 4; i++) {
     var q = document.getElementById('quiz-' + i);
     var options = q.querySelectorAll('.quiz-option');
@@ -708,10 +710,12 @@ function submitQuiz() {
       score++;
       q.classList.add('correct');
       options[quizSelections[i]].classList.add('correct-answer');
+      quizDetail.push({ q: i, chosen: quizLabels[quizSelections[i]], correct: quizLabels[quizAnswers[i]], right: true });
     } else {
       q.classList.add('wrong');
       options[quizSelections[i]].classList.add('wrong-answer');
       options[quizAnswers[i]].classList.add('correct-answer');
+      quizDetail.push({ q: i, chosen: quizLabels[quizSelections[i]], correct: quizLabels[quizAnswers[i]], right: false });
     }
     document.getElementById('quiz-exp-' + i).classList.add('show');
   }
@@ -720,6 +724,7 @@ function submitQuiz() {
   scoreEl.classList.add('show');
   document.getElementById('quizScoreNum').textContent = score + '/4';
   saveWorksheetData('m6_quiz', score + '/4');
+  saveWorksheetData('m6_quiz_detail', quizDetail);
   var msgEl = document.getElementById('quizScoreMsg');
   if (score === 4) {
     msgEl.innerHTML = '🎉 滿分！你已完全掌握計算思維四大核心能力！';

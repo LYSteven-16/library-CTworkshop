@@ -581,6 +581,10 @@ function tryMatch() {
       ? '<span style="color:var(--success-green);font-weight:600;">🎉 全部配對正確！你已識別出所有模式！</span>'
       : '<span style="color:var(--success-green);">✅ 配對正確！（' + n + '/' + matchData.length + '）</span>';
     if (n === matchData.length) showConfetti();
+    // Save matched pairs
+    var paired = matchData.filter(function(m, i) { return matchState.matched.has(i); })
+      .map(function(m) { return { left: m.left.text, right: m.right.text }; });
+    saveWorksheetData('m3_match', paired);
   } else {
     showToast('配對不正確，再試試看！', 'error');
     matchState.leftEl.classList.remove('selected');
