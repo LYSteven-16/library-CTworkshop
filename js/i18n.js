@@ -57,7 +57,7 @@ var I18N = { zh: {
 'When all done,': '全部完成後，',
 'submit your Figma worksheet': '提交 Figma 工作單',
 'Total time: about': '總學習時間約',
-'3 hours': '3 小時',
+'1.5 hours': '1.5 小時',
 '. We recommend 2-3 sessions. Use the navbar to return anytime.': '，建議分 2-3 次完成。隨時可透過導航列返回此首頁。',
 'Restart Learning': '重新開始學習',
 'Confirm Restart': '確認重新開始',
