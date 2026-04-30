@@ -163,7 +163,8 @@ function applyI18n(container) {
   container.querySelectorAll('[placeholder]').forEach(function(el) {
     var v = el.getAttribute('placeholder');
     if (v && /[\u4e00-\u9fff]/.test(v)) {
-      var t2 = t(v); if (t2 !== v) el.setAttribute('placeholder', t2);
+      var translated = I18N.en[v];
+      if (translated && translated !== v) el.setAttribute('placeholder', translated);
     }
   });
 }
