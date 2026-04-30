@@ -75,3 +75,47 @@ function markComplete(moduleNum) {
   progress['module' + moduleNum] = true;
   localStorage.setItem('ct_workshop_progress', JSON.stringify(progress));
 }
+
+// ========== Worksheet Data Collection ==========
+// Key: ct_worksheet_data — stores all student inputs for PDF generation
+
+function saveWorksheetData(key, value) {
+  var data = JSON.parse(localStorage.getItem('ct_worksheet_data') || '{}');
+  data[key] = value;
+  localStorage.setItem('ct_worksheet_data', JSON.stringify(data));
+}
+
+function getWorksheetData() {
+  return JSON.parse(localStorage.getItem('ct_worksheet_data') || '{}');
+}
+
+function getWorksheetField(key) {
+  var data = getWorksheetData();
+  return data[key] || '';
+}
+
+// Auto-save textarea content on blur
+function autoSaveTextarea(id, dataKey) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  // Restore saved value
+  var saved = getWorksheetField(dataKey);
+  if (saved && !el.value) el.value = saved;
+  // Save on input
+  el.addEventListener('input', function() {
+    saveWorksheetData(dataKey, el.value);
+  });
+}
+
+// Auto-save all textareas in current page by convention
+// Convention: textarea with data-save="m1_thought" will auto-save to key "m1_thought"
+function initAutoSave() {
+  document.querySelectorAll('textarea[data-save]').forEach(function(ta) {
+    var key = ta.getAttribute('data-save');
+    var saved = getWorksheetField(key);
+    if (saved && !ta.value) ta.value = saved;
+    ta.addEventListener('input', function() {
+      saveWorksheetData(key, ta.value);
+    });
+  });
+}

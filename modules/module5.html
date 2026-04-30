@@ -290,6 +290,7 @@ function resetSimulator() {
 // ===== Debounce =====
 function testDebounce() {
   const win = parseInt(document.getElementById('debounceSlider').value);
+  saveWorksheetData('m5_debounce', win + 'ms');
   const total = 24;
   let fp, missed;
   // 窗口太小 → 誤報多；窗口太大 → 漏計多；最佳在 300-400ms
@@ -384,6 +385,7 @@ function checkFlowchart() {
     if (ans === flowCorrect[i]) { correct++; blank.classList.add('filled'); blank.classList.remove('wrong'); }
     else if (ans) { blank.classList.add('wrong'); blank.classList.remove('filled'); }
   });
+  saveWorksheetData('m5_flowchart', '正確 ' + correct + '/5');
   if (correct === 5) { showToast('🎉 流程圖全部正確！你是算法工程師！', 'success'); showConfetti(); }
   else showToast('正確 ' + correct + '/5，紅色標記的步驟需要修正', correct >= 3 ? 'info' : 'error');
 }
@@ -401,4 +403,5 @@ function resetFlowchart() {
 
 // Init
 renderFlowOptions();
+initAutoSave();
 </script>

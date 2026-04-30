@@ -585,8 +585,11 @@ function checkFlow() {
   if (allCorrect) {
     showToast('🎉 數據流順序正確！這就是系統的完整工作流程！', 'success');
     showConfetti();
+    saveWorksheetData('m2_flow', flowSlots.map(function(s){return s?s.name:''}));
   } else {
     showToast('有些位置不對，紅色的請重新排列！提示：數據從哪裡產生？', 'error');
   }
 }
+
+initAutoSave();
 </script>

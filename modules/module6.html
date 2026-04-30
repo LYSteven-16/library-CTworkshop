@@ -568,17 +568,17 @@
       <div class="reflection-note">
         <div class="reflection-prompt">我以前以為解決這個問題只需要 ______，現在我知道還需要 ______。</div>
         <div class="reflection-hint">💡 提示：想想你一開始覺得只要裝個感測器就行，後來發現還需要什麼？</div>
-        <textarea placeholder="例如：我以為只需要裝感測器，現在我知道還需要算法處理數據、界面呈現給用戶…"></textarea>
+        <textarea data-save="m6_reflect1" placeholder="例如：我以為只需要裝感測器，現在我知道還需要算法處理數據、界面呈現給用戶…"></textarea>
       </div>
       <div class="reflection-note">
         <div class="reflection-prompt">在 ______ 環節中，我卡住了，但我通過 ______ 解決了。</div>
         <div class="reflection-hint">💡 提示：哪個模組讓你覺得最困難？你是怎麼想通的？</div>
-        <textarea placeholder="例如：在去抖邏輯中我卡住了，但通過理解「冷卻期」的概念，我知道了要在靈敏和準確之間取捨…"></textarea>
+        <textarea data-save="m6_reflect2" placeholder="例如：在去抖邏輯中我卡住了，但通過理解「冷卻期」的概念，我知道了要在靈敏和準確之間取捨…"></textarea>
       </div>
       <div class="reflection-note">
         <div class="reflection-prompt">我覺得計算思維中最厲害的一招是 ______，因為 ______。</div>
         <div class="reflection-hint">💡 提示：分解、模式識別、抽象、算法設計——哪個讓你最有「原來如此」的感覺？</div>
-        <textarea placeholder="例如：抽象，因為它讓我學會了「少即是多」——紅綠燈比顯示人數更有用…"></textarea>
+        <textarea data-save="m6_reflect3" placeholder="例如：抽象，因為它讓我學會了「少即是多」——紅綠燈比顯示人數更有用…"></textarea>
       </div>
     </div>
   </div>
@@ -641,6 +641,17 @@
       </div>
       <div class="cert-date" id="certDate"></div>
       <div class="cert-seal">🏅</div>
+    </div>
+  </div>
+
+  <!-- Generate PDF Worksheet -->
+  <div class="section-card" style="background:linear-gradient(135deg,#1E3A8A 0%,#3B82F6 100%);color:white;border:none;">
+    <h2 style="color:white;"><i class="fas fa-file-pdf"></i> 生成學習工作單</h2>
+    <p style="margin-bottom:16px;opacity:0.9;">一鍵匯出你在所有模組中的互動記錄，生成 PDF 工作單並下載。</p>
+    <div style="text-align:center;">
+      <button class="btn" onclick="generateWorksheetPDF()" style="font-size:16px;padding:12px 28px;background:white;color:#1E3A8A;font-weight:700;border-radius:8px;cursor:pointer;">
+        <i class="fas fa-download"></i> 一鍵生成 PDF 工作單
+      </button>
     </div>
   </div>
 
@@ -708,6 +719,7 @@ function submitQuiz() {
   var scoreEl = document.getElementById('quizScore');
   scoreEl.classList.add('show');
   document.getElementById('quizScoreNum').textContent = score + '/4';
+  saveWorksheetData('m6_quiz', score + '/4');
   var msgEl = document.getElementById('quizScoreMsg');
   if (score === 4) {
     msgEl.innerHTML = '🎉 滿分！你已完全掌握計算思維四大核心能力！';
@@ -726,6 +738,12 @@ function updateRadar() {
   document.getElementById('radar-pattern').textContent = sliders[1].value;
   document.getElementById('radar-abstract').textContent = sliders[2].value;
   document.getElementById('radar-algo').textContent = sliders[3].value;
+  saveWorksheetData('m6_radar', {
+    '分解': sliders[0].value,
+    '模式識別': sliders[1].value,
+    '抽象': sliders[2].value,
+    '算法設計': sliders[3].value
+  });
   drawRadar();
 }
 
@@ -812,4 +830,5 @@ function generateCertificate() {
 window.addEventListener('DOMContentLoaded', function() {
   drawRadar();
 });
+initAutoSave();
 </script>

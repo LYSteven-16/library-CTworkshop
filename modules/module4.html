@@ -752,7 +752,7 @@
     <div class="reflect-card">
       <h4><i class="fas fa-pen-to-square"></i> 反思：你做了哪些抽象？</h4>
       <p style="font-size:13px;color:#78350F;margin-bottom:8px;">回想你選擇組件的過程——你<strong>保留了</strong>什麼資訊？<strong>捨棄了</strong>什麼資訊？為什麼？</p>
-      <textarea placeholder="例如：我保留了擁擠度的顏色指示，捨棄了精確人數，因為同學只需要知道「擠不擠」…"></textarea>
+      <textarea data-save="m4_reflect" placeholder="例如：我保留了擁擠度的顏色指示，捨棄了精確人數，因為同學只需要知道「擠不擠」…"></textarea>
     </div>
   </div>
 
@@ -952,6 +952,8 @@ function checkDesign() {
   if (missing.length === 0) {
     showToast('✅ 設計檢查通過！必要組件已齊全。', 'success');
     document.getElementById('completionBadge').classList.add('show');
+    // Save design components
+    saveWorksheetData('m4_design', phoneSlots.filter(function(s){return s}).map(function(s){return s.name}));
   } else {
     var names = missing.map(function(id) {
       return uiComponents.find(function(c) { return c.id === id; }).name;
@@ -1007,4 +1009,6 @@ function drawTrendChart() {
     if (x <= w) ctx.fillText(t + '時', x, h - 1);
   });
 }
+
+initAutoSave();
 </script>

@@ -640,6 +640,7 @@ function checkPrediction() {
   var predicted = parseInt(document.getElementById('predictSlider').value);
   var actual = 120;
   var deviation = Math.abs(predicted - actual) / actual;
+  saveWorksheetData('m3_predict', predicted + '人（實際約' + actual + '人，偏差' + (deviation*100).toFixed(1) + '%）');
   var el = document.getElementById('predictResult');
   el.style.display = 'block';
   if (deviation <= 0.2) {
@@ -650,4 +651,14 @@ function checkPrediction() {
     el.innerHTML = '💡 再想想！你的預測：' + predicted + ' 人，實際約 ' + actual + ' 人。偏差 ' + (deviation*100).toFixed(1) + '%<br>提示：下雨天雖然讓人想回家，但大雨反而讓更多學生留在校園——圖書館成了避雨+溫習的好去處。';
   }
 }
+
+// Save match and anomaly results
+var origRevealAnomaly = revealAnomaly;
+revealAnomaly = function() {
+  origRevealAnomaly();
+  var anomalyLabels = ['數據錄入錯誤', '雨天效應導致的異常突增', '考試週的正常高峰', '節假日空館'];
+  saveWorksheetData('m3_anomaly', anomalyLabels[selectedAnomaly] || '');
+};
+
+initAutoSave();
 </script>
