@@ -1,23 +1,25 @@
 /* ========== Common JS Utilities ========== */
 
 // Toast notification
-function showToast(msg, type = 'info') {
-  const existing = document.querySelector('.toast');
+function showToast(msg, type) {
+  if (type === undefined) type = 'info';
+  var existing = document.querySelector('.toast');
   if (existing) existing.remove();
-  const toast = document.createElement('div');
+  var toast = document.createElement('div');
   toast.className = 'toast ' + type;
-  const iconMap = { success: 'check-circle', error: 'times-circle', info: 'info-circle' };
+  var iconMap = { success: 'check-circle', error: 'times-circle', info: 'info-circle' };
+  msg = t(msg); // auto-translate
   toast.innerHTML = '<i class="fas fa-' + (iconMap[type] || 'info-circle') + '"></i> ' + msg;
   document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 3000);
+  setTimeout(function() { toast.remove(); }, 3000);
 }
 
 // Confetti effect
 function showConfetti() {
-  const container = document.createElement('div');
+  var container = document.createElement('div');
   container.className = 'confetti-container';
-  const colors = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
-  for (let i = 0; i < 50; i++) {
+  var colors = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+  for (var i = 0; i < 50; i++) {
     const piece = document.createElement('div');
     piece.className = 'confetti-piece';
     piece.style.left = Math.random() * 100 + '%';

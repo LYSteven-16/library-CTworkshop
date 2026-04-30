@@ -1,7 +1,7 @@
 /* ========== SPA Router ========== */
 
-// Route definitions
-const ROUTES = {
+// Route definitions (Chinese source, t() handles translation at runtime)
+var ROUTES = {
   home: {
     fragment: 'modules/home.html',
     title: '解碼圖書館熱力圖——計算思維自學工坊',
@@ -75,117 +75,113 @@ const ROUTES = {
   }
 };
 
-// Current route state
-let currentRoute = null;
-let currentController = null; // for aborting stale fetches
+var currentRoute = null;
+var currentController = null;
 
-// Get route key from hash
 function getRouteKey() {
-  const hash = window.location.hash.slice(1) || 'home';
+  var hash = window.location.hash.slice(1) || 'home';
   return ROUTES[hash] ? hash : 'home';
 }
 
-// Navigate to a route
 function navigate(key) {
   if (!ROUTES[key]) key = 'home';
   window.location.hash = key;
 }
 
-// Update navbar based on route config
 function updateNavbar(config) {
-  const navTitle = document.getElementById('navTitle');
-  const navLinks = document.getElementById('navLinks');
-  const navbar = document.getElementById('navbar');
+  var navTitle = document.getElementById('navTitle');
+  var navLinks = document.getElementById('navLinks');
+  var navbar = document.getElementById('navbar');
 
   if (config.navLinks.length === 0) {
-    // Home page — hide navbar
     navbar.style.display = 'none';
   } else {
     navbar.style.display = '';
-    navTitle.textContent = config.navTitle;
-    navLinks.innerHTML = config.navLinks.map(link => {
-      const icon = link.icon ? '<i class="fas ' + link.icon + '"></i> ' : '';
-      return '<a href="#' + link.hash + '">' + icon + link.text + '</a>';
+    navTitle.textContent = t(config.navTitle);
+    navLinks.innerHTML = config.navLinks.map(function(link) {
+      var icon = link.icon ? '<i class="fas ' + link.icon + '"></i> ' : '';
+      return '<a href="#' + link.hash + '">' + icon + t(link.text) + '</a>';
     }).join('');
+    // Add language toggle
+    if (!document.getElementById('langToggle')) {
+      var langBtn = document.createElement('a');
+      langBtn.id = 'langToggle';
+      langBtn.href = '#';
+      langBtn.style.cssText = 'margin-left:12px;font-size:13px;font-weight:700;padding:4px 10px;border:2px solid rgba(255,255,255,0.4);border-radius:6px;cursor:pointer;color:white;text-decoration:none';
+      langBtn.textContent = currentLang() === 'en' ? '中' : 'EN';
+      langBtn.onclick = function(e) {
+        e.preventDefault();
+        var newLang = currentLang() === 'en' ? 'zh' : 'en';
+        setLang(newLang);
+        currentRoute = null; // force re-render
+        handleRoute();
+      };
+      navLinks.appendChild(langBtn);
+    } else {
+      var ltb = document.getElementById('langToggle');
+      ltb.textContent = currentLang() === 'en' ? '中' : 'EN';
+    }
   }
 }
 
-// Update screenshot banner
 function updateBanner(config) {
-  const bannerText = document.getElementById('screenshotBannerText');
-  if (bannerText) bannerText.textContent = config.banner;
+  var bannerText = document.getElementById('screenshotBannerText');
+  if (bannerText) bannerText.textContent = t(config.banner);
 }
 
-// Execute inline scripts in loaded content
 function executeScripts(container) {
-  const scripts = container.querySelectorAll('script');
+  var scripts = container.querySelectorAll('script');
   scripts.forEach(function(oldScript) {
-    const newScript = document.createElement('script');
-    // Copy all attributes
+    var newScript = document.createElement('script');
     Array.from(oldScript.attributes).forEach(function(attr) {
       newScript.setAttribute(attr.name, attr.value);
     });
-    // Replace const/let with var to prevent re-declaration errors on re-visit
     newScript.textContent = oldScript.textContent.replace(/\b(const|let)\s+(?=\w)/g, 'var ');
     oldScript.parentNode.replaceChild(newScript, oldScript);
   });
 }
 
-// Main route handler
 async function handleRoute() {
-  const key = getRouteKey();
-  if (key === currentRoute) return; // avoid redundant loads
+  var key = getRouteKey();
+  if (key === currentRoute) return;
 
-  const config = ROUTES[key];
-  const app = document.getElementById('app');
+  var config = ROUTES[key];
+  var app = document.getElementById('app');
 
-  // Abort previous fetch if still in progress
   if (currentController) currentController.abort();
   currentController = new AbortController();
 
-  // Update UI shell immediately
-  document.title = config.title;
+  document.title = t(config.title);
   updateNavbar(config);
   updateBanner(config);
 
-  // Show loading state
-  app.innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--mid-blue);"></i><p style="margin-top:12px;color:var(--text-light);">載入中…</p></div>';
+  app.innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--mid-blue);"></i><p style="margin-top:12px;color:var(--text-light);">' + t('載入中…') + '</p></div>';
 
   try {
-    const response = await fetch(config.fragment, { signal: currentController.signal });
+    var response = await fetch(config.fragment, { signal: currentController.signal });
     if (!response.ok) throw new Error('Failed to load ' + config.fragment);
-    const html = await response.text();
+    var html = await response.text();
 
-    // Inject content
     app.innerHTML = html;
-
-    // Execute any inline scripts
     executeScripts(app);
-
-    // Scroll to top
+    // Translate text nodes
+    applyI18n(app);
     window.scrollTo(0, 0);
-
-    // Update route state
     currentRoute = key;
-
-    // Close knowledge overlay if open
     closeKnowledge();
-
   } catch (err) {
-    if (err.name === 'AbortError') return; // fetch was aborted, ignore
-    app.innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-exclamation-triangle" style="font-size:32px;color:var(--danger-red);"></i><p style="margin-top:12px;color:var(--text-light);">載入失敗，請重新整理頁面。</p></div>';
+    if (err.name === 'AbortError') return;
+    app.innerHTML = '<div style="text-align:center;padding:60px 20px;"><i class="fas fa-exclamation-triangle" style="font-size:32px;color:var(--danger-red);"></i><p style="margin-top:12px;color:var(--text-light);">' + t('載入中…') + '</p></div>';
     console.error('Route load error:', err);
   }
 }
 
-// Listen for hash changes
 window.addEventListener('hashchange', handleRoute);
 
-// Also intercept link clicks for smoother navigation
 document.addEventListener('click', function(e) {
-  const link = e.target.closest('a[href^="#"]');
+  var link = e.target.closest('a[href^="#"]');
   if (link) {
-    const hash = link.getAttribute('href').slice(1);
+    var hash = link.getAttribute('href').slice(1);
     if (ROUTES[hash]) {
       e.preventDefault();
       navigate(hash);
@@ -193,5 +189,4 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Initial route on page load
 window.addEventListener('DOMContentLoaded', handleRoute);
