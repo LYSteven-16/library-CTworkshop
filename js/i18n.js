@@ -151,10 +151,10 @@ function applyI18n(container) {
   var w = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
   var n;
   while (n = w.nextNode()) {
-    var t = n.nodeValue;
-    if (t.trim().length && /[\u4e00-\u9fff]/.test(t)) {
-      var m = t.match(/^(\s*)([\s\S]*?)(\s*)$/);
-      var c = m ? m[2] : t;
+    var txt = n.nodeValue;
+    if (txt.trim().length && /[\u4e00-\u9fff]/.test(txt)) {
+      var m = txt.match(/^(\s*)([\s\S]*?)(\s*)$/);
+      var c = m ? m[2] : txt;
       var r = tr(c);
       if (r !== c) n.nodeValue = (m ? m[1] : '') + r + (m ? m[3] : '');
     }
