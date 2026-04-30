@@ -79,38 +79,41 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 /* === Radar SVG === */
 .rd-wrap{text-align:center;margin:8px auto;width:260px;height:260px}
 
-/* === Phone (module4 exact) === */
-.phone-frame{width:200px;background:#0F172A;border:3px solid #1F2937;border-radius:24px;padding:6px;margin:4px auto;flex-shrink:0;position:relative}
-.phone-notch{width:60px;height:16px;background:#1F2937;border-radius:0 0 10px 10px;margin:0 auto 4px}
-.phone-screen{min-height:200px;background:#F8FAFC;border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
-.phone-slot{min-height:42px;border:2px dashed #CBD5E1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#94A3B8;padding:6px;background:rgba(255,255,255,0.5)}
+/* === Phone (module4 exact CSS) === */
+.phone-frame{width:280px;min-height:500px;background:#0F172A;border:3px solid #1F2937;border-radius:32px;padding:8px;flex-shrink:0;position:relative;margin:4px auto}
+.phone-notch{width:90px;height:22px;background:#1F2937;border-radius:0 0 14px 14px;margin:0 auto 6px;position:relative}
+.phone-notch::after{content:'';width:8px;height:8px;background:#374151;border-radius:50%;position:absolute;right:20px;top:7px}
+.phone-statusbar{display:flex;justify-content:space-between;align-items:center;padding:2px 12px 4px;font-size:10px;color:rgba(255,255,255,0.5)}
+.phone-screen{min-height:430px;background:#F8FAFC;border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.phone-slot{min-height:48px;border:2px dashed #CBD5E1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#94A3B8;padding:6px;background:rgba(255,255,255,0.5)}
 .phone-slot:hover{border-color:var(--mid-blue);background:rgba(59,130,246,0.05)}
 .phone-slot.filled{border-style:solid;border-color:transparent;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:8px;display:block}
-/* Slot content styles */
-.slot-total{text-align:center;padding:4px}
-.slot-total .big-num{font-size:32px;font-weight:900;color:#1E3A8A;line-height:1.1}
-.slot-total .big-label{font-size:10px;color:#6B7280;font-weight:500}
-.slot-floor{display:flex;flex-direction:column;gap:3px}
-.floor-row{display:flex;align-items:center;gap:6px;font-size:10px}
+/* Slot content */
+.slot-total{text-align:center;padding:6px}
+.slot-total .big-num{font-size:36px;font-weight:900;color:#1E3A8A;line-height:1.1}
+.slot-total .big-label{font-size:11px;color:#6B7280;font-weight:500}
+.slot-floor{display:flex;flex-direction:column;gap:4px}
+.floor-row{display:flex;align-items:center;gap:6px;font-size:11px}
 .floor-name{flex:1;font-weight:500;color:#374151}
-.floor-bar-bg{width:40px;height:7px;background:#E5E7EB;border-radius:3px;overflow:hidden}
-.floor-bar-fill{height:100%;border-radius:3px}
-.floor-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.slot-suggest{text-align:center;padding:4px}
-.slot-suggest .suggest-icon{font-size:18px;margin-bottom:2px}
-.slot-suggest .suggest-text{font-size:11px;font-weight:600;color:#065F46}
-.slot-suggest .suggest-time{font-size:10px;color:#6B7280}
-.slot-heatmap-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:2px;width:100%}
-.heatmap-mini-cell{height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:600;color:white}
-.slot-trend{padding:4px;text-align:center;font-size:10px;color:#6B7280}
-.slot-trend .trend-line{width:100%;height:30px;background:linear-gradient(to right,#DBEAFE 0%,#3B82F6 30%,#3B82F6 50%,#F59E0B 70%,#DBEAFE 100%);border-radius:4px}
-.slot-notify{display:flex;align-items:center;gap:8px;padding:6px;font-size:11px}
-.slot-notify .bell-icon{font-size:16px}
+.floor-bar-bg{width:50px;height:8px;background:#E5E7EB;border-radius:4px;overflow:hidden}
+.floor-bar-fill{height:100%;border-radius:4px}
+.floor-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.slot-suggest{text-align:center;padding:6px}
+.slot-suggest .suggest-icon{font-size:20px;margin-bottom:2px}
+.slot-suggest .suggest-text{font-size:12px;font-weight:600;color:#065F46}
+.slot-suggest .suggest-time{font-size:11px;color:#6B7280}
+.slot-heatmap-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:4px;width:100%}
+.heatmap-mini-cell{height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:white}
+.slot-trend{padding:4px;text-align:center}
+.slot-trend svg{width:100%;height:40px}
+.slot-trend .trend-label{font-size:10px;color:#6B7280;margin-top:2px}
+.slot-notify{display:flex;align-items:center;gap:8px;padding:6px;font-size:12px}
+.slot-notify .bell-icon{font-size:18px}
 .slot-notify .notify-label{color:#374151;font-weight:500}
-.slot-notify .toggle-switch{width:30px;height:16px;background:#10B981;border-radius:8px;position:relative;margin-left:auto}
-.slot-notify .toggle-switch::after{content:'';width:12px;height:12px;background:white;border-radius:50%;position:absolute;top:2px;right:2px}
-.slot-history{padding:4px 6px;font-size:10px}
-.slot-history .hist-row{display:flex;justify-content:space-between;padding:1px 0;border-bottom:1px solid #F1F5F9;color:#374151}
+.slot-notify .toggle-switch{width:32px;height:18px;background:#10B981;border-radius:9px;position:relative;margin-left:auto}
+.slot-notify .toggle-switch::after{content:'';width:14px;height:14px;background:white;border-radius:50%;position:absolute;top:2px;right:2px}
+.slot-history{padding:6px;font-size:11px}
+.slot-history .hist-row{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #F1F5F9;color:#374151}
 .slot-history .hist-label{color:#9CA3AF}
 
 /* === Footer === */
@@ -161,7 +164,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   function mh(t,c,cl){return'<div class="wm"><div class="wh" style="background:'+cl+'"><span class="tag">'+t+'</span><span class="ct-tag">'+c+'</span></div><div class="wb">'}
 
   // uiComponents — same as module4
-  var uiComponents=[{id:'total',name:'📊 總人數卡片',render:function(){return'<div style="text-align:center;padding:4px"><div style="font-size:32px;font-weight:900;color:#1E3A8A;line-height:1.1">147</div><div style="font-size:10px;color:#6B7280;font-weight:500">目前在館人數</div></div>'}},{id:'floor',name:'🚦 樓層擁擠度',render:function(){return'<div style="display:flex;flex-direction:column;gap:3px"><div style="display:flex;align-items:center;gap:6px;font-size:10px"><div style="width:9px;height:9px;border-radius:50%;background:#EF4444;flex-shrink:0"></div><span style="flex:1;font-weight:500;color:#374151">3F 自修</span><div style="width:40px;height:7px;background:#E5E7EB;border-radius:3px;overflow:hidden"><div style="width:85%;height:100%;background:#EF4444;border-radius:3px"></div></div></div><div style="display:flex;align-items:center;gap:6px;font-size:10px"><div style="width:9px;height:9px;border-radius:50%;background:#F59E0B;flex-shrink:0"></div><span style="flex:1;font-weight:500;color:#374151">2F 閱覽</span><div style="width:40px;height:7px;background:#E5E7EB;border-radius:3px;overflow:hidden"><div style="width:55%;height:100%;background:#F59E0B;border-radius:3px"></div></div></div><div style="display:flex;align-items:center;gap:6px;font-size:10px"><div style="width:9px;height:9px;border-radius:50%;background:#10B981;flex-shrink:0"></div><span style="flex:1;font-weight:500;color:#374151">1F 兒童</span><div style="width:40px;height:7px;background:#E5E7EB;border-radius:3px;overflow:hidden"><div style="width:20%;height:100%;background:#10B981;border-radius:3px"></div></div></div></div>'}},{id:'suggest',name:'💡 建議時段',render:function(){return'<div style="text-align:center;padding:4px"><div style="font-size:18px;margin-bottom:2px">🕐</div><div style="font-size:11px;font-weight:600;color:#065F46">建議 14:00 後前往</div><div style="font-size:10px;color:#6B7280">預計 2F 空位較多</div></div>'}},{id:'heatmap',name:'🗺️ 熱力圖',render:function(){var cs=[{c:'#10B981',t:'閱覽'},{c:'#F59E0B',t:'自修'},{c:'#EF4444',t:'電腦'},{c:'#10B981',t:'期刊'},{c:'#10B981',t:'入口'},{c:'#10B981',t:'新書'},{c:'#F59E0B',t:'討論'},{c:'#10B981',t:'休息'},{c:'#10B981',t:'兒童'},{c:'#10B981',t:'視聽'},{c:'#10B981',t:'報刊'},{c:'#10B981',t:'服務'}];var h='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:2px">';cs.forEach(function(x){h+='<div style="height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:600;color:white;background:'+x.c+'">'+x.t+'</div>'});return h+'</div>'}},{id:'trend',name:'📈 趨勢折線圖',render:function(){return'<div style="padding:4px;text-align:center"><div style="width:100%;height:30px;background:linear-gradient(to right,#DBEAFE,#3B82F6,#3B82F6,#F59E0B,#DBEAFE);border-radius:4px"></div><div style="font-size:10px;color:#6B7280;margin-top:2px">今日人數變化 8→18時</div></div>'}},{id:'notify',name:'🔔 通知設定',render:function(){return'<div style="display:flex;align-items:center;gap:8px;padding:6px;font-size:11px"><span style="font-size:16px">🔔</span><span style="color:#374151;font-weight:500">擁擠提醒</span><div style="width:30px;height:16px;background:#10B981;border-radius:8px;margin-left:auto;position:relative"><div style="width:12px;height:12px;background:white;border-radius:50%;position:absolute;top:2px;right:2px"></div></div></div>'}},{id:'history',name:'📋 歷史記錄',render:function(){return'<div style="padding:4px 6px;font-size:10px"><div style="display:flex;justify-content:space-between;padding:1px 0;border-bottom:1px solid #F1F5F9;color:#374151"><span style="color:#9CA3AF">週一</span><span>132人</span></div><div style="display:flex;justify-content:space-between;padding:1px 0;border-bottom:1px solid #F1F5F9;color:#374151"><span style="color:#9CA3AF">週二</span><span>98人</span></div><div style="display:flex;justify-content:space-between;padding:1px 0;border-bottom:1px solid #F1F5F9;color:#374151"><span style="color:#9CA3AF">週三</span><span>145人</span></div></div>'}}];
+  var uiComponents=[{id:'total',name:'📊 總人數卡片',render:function(){return'<div class="slot-total"><div class="big-num">147</div><div class="big-label">目前在館人數</div></div>'}},{id:'floor',name:'🚦 樓層擁擠度',render:function(){return'<div class="slot-floor"><div class="floor-row"><div class="floor-dot" style="background:#EF4444"></div><span class="floor-name">3F 自修</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:85%;background:#EF4444"></div></div></div><div class="floor-row"><div class="floor-dot" style="background:#F59E0B"></div><span class="floor-name">2F 閱覽</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:55%;background:#F59E0B"></div></div></div><div class="floor-row"><div class="floor-dot" style="background:#10B981"></div><span class="floor-name">1F 兒童</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:20%;background:#10B981"></div></div></div></div>'}},{id:'suggest',name:'💡 建議時段',render:function(){return'<div class="slot-suggest"><div class="suggest-icon">🕐</div><div class="suggest-text">建議 14:00 後前往</div><div class="suggest-time">預計 2F 空位較多</div></div>'}},{id:'heatmap',name:'🗺️ 熱力圖',render:function(){var cs=[{c:'#10B981',t:'閱覽'},{c:'#F59E0B',t:'自修'},{c:'#EF4444',t:'電腦'},{c:'#10B981',t:'期刊'},{c:'#10B981',t:'入口'},{c:'#10B981',t:'新書'},{c:'#F59E0B',t:'討論'},{c:'#10B981',t:'休息'},{c:'#10B981',t:'兒童'},{c:'#10B981',t:'視聽'},{c:'#10B981',t:'報刊'},{c:'#10B981',t:'服務'}];var h='<div class="slot-heatmap-mini">';cs.forEach(function(x){h+='<div class="heatmap-mini-cell" style="background:'+x.c+'">'+x.t+'</div>'});return h+'</div>'}},{id:'trend',name:'📈 趨勢折線圖',render:function(){return'<div class="slot-trend"><svg viewBox="0 0 240 40" width="100%" height="40"><polyline points="0,30 30,20 60,10 90,5 120,15 150,25 180,20 210,15 240,8" fill="none" stroke="#3B82F6" stroke-width="2"/><rect x="0" y="0" width="240" height="40" fill="rgba(59,130,246,0.08)"/><polyline points="0,30 30,20 60,10 90,5 120,15 150,25 180,20 210,15 240,8 240,40 0,40" fill="rgba(59,130,246,0.15)"/></svg><div class="trend-label">今日人數變化 8→18時</div></div>'}},{id:'notify',name:'🔔 通知設定',render:function(){return'<div class="slot-notify"><span class="bell-icon">🔔</span><span class="notify-label">擁擠提醒</span><div class="toggle-switch"></div></div>'}},{id:'history',name:'📋 歷史記錄',render:function(){return'<div class="slot-history"><div class="hist-row"><span class="hist-label">週一</span><span>132人</span></div><div class="hist-row"><span class="hist-label">週二</span><span>98人</span></div><div class="hist-row"><span class="hist-label">週三</span><span>145人</span></div></div>'}}];
 
   var h='';
 
@@ -199,8 +202,8 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   else{h+='<div class="txt em">（未完成檢查清單）</div>'}
   var dsn=g('m4_design');h+='<div class="lbl">📱 手機原型設計</div>';
   if(dsn&&dsn.length){
-    h+='<div style="width:200px;background:#0F172A;border:3px solid #1F2937;border-radius:24px;padding:6px;margin:4px auto"><div style="width:60px;height:16px;background:#1F2937;border-radius:0 0 10px 10px;margin:0 auto 4px"></div><div style="min-height:200px;background:#F8FAFC;border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;overflow:hidden">';
-    dsn.forEach(function(id){var comp=uiComponents.find(function(c){return c.id===id});if(comp){h+='<div style="min-height:42px;border-radius:10px;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:8px;display:block;border:2px solid transparent">'+comp.render()+'</div>'}else{h+='<div style="min-height:42px;border-radius:10px;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:8px;display:block;border:2px solid transparent">'+id+'</div>'}});
+    h+='<div class="phone-frame"><div class="phone-notch"></div><div class="phone-statusbar"><span>9:41</span><span>📶 🔋</span></div><div class="phone-screen">';
+    dsn.forEach(function(id){var comp=uiComponents.find(function(c){return c.id===id});if(comp){h+='<div class="phone-slot filled">'+comp.render()+'</div>'}else{h+='<div class="phone-slot filled">'+id+'</div>'}});
     h+='</div></div>';
   }else{h+='<div class="txt em">（未設計）</div>'}
   h+='<div class="lbl">💬 抽象反思</div><div class="txt'+(g('m4_reflect')?'':' em')+'">'+gg('m4_reflect')+'</div>';
