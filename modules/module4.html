@@ -515,11 +515,11 @@
 <div class="page-container fade-in">
 
   <div class="module-header">
-    <span class="module-tag" style="background:#7C3AED">Module 4</span>
-    <h1>🎨 Visual Designer — Data to Interface</h1>
-    <div class="time-hint"><i class="fas fa-clock"></i> ~18 min</div>
+    <span class="module-tag" style="background:#7C3AED">模組 4</span>
+    <h1>🎨 視覺化設計師 — 從數據到界面</h1>
+    <div class="time-hint"><i class="fas fa-clock"></i> 約 35 分鐘</div>
     <div class="learning-obj">
-      <strong>Objective: </strong>理解抽象的本質——保留關鍵資訊、捨棄無關細節，將感測器採集的原始數據轉化為簡潔易懂的視覺界面，讓使用者一眼看懂圖書館的擁擠狀況。
+      <strong>學習目標：</strong>理解抽象的本質——保留關鍵資訊、捨棄無關細節，將感測器採集的原始數據轉化為簡潔易懂的視覺界面，讓使用者一眼看懂圖書館的擁擠狀況。
     </div>
   </div>
 
@@ -527,11 +527,11 @@
   <div class="bridge-card">
     <h3><i class="fas fa-link"></i> 從上一模組出發</h3>
     <p style="font-size:14px;color:#5B21B6;margin-bottom:12px;line-height:1.7;">
-      In Module 3 you discovered <strong>peaks, troughs, and abnormal spikes</strong> in weekly data.<br>
-      But if you hand raw data tables to students, can they understand at a glance?
+      上一模組，你從一週人流數據中發現了<strong>高峰低谷、異常突增</strong>等模式。<br>
+      但如果直接把這些數據表格丟給同學看，他們能一眼看懂嗎？
     </p>
     <p style="font-size:14px;color:#374151;margin-bottom:10px;font-weight:500;">
-      Which approach best helps students quickly decide "should I go now?"
+      你覺得以下哪種方式最能幫助同學快速判斷「現在該不該去圖書館」？
     </p>
     <div class="bridge-options" id="bridgeOptions">
       <button class="bridge-option" onclick="selectBridge(this, 'A')">📊 每分鐘人數表格</button>
@@ -546,14 +546,14 @@
 
   <!-- Gallery: Real Case Studies -->
   <div class="section-card">
-    <h2><i class="fas fa-images"></i> Real Library App Examples</h2>
-    <p style="margin-bottom:14px;color:var(--text-light);font-size:14px;">Observe three real dashboards. What <strong>abstraction strategy</strong> does each use?</p>
+    <h2><i class="fas fa-images"></i> 優秀案例參考：真實的圖書館 App</h2>
+    <p style="margin-bottom:14px;color:var(--text-light);font-size:14px;">觀察以下三種真實的圖書館即時資訊界面，思考它們各用了什麼<strong>抽象策略</strong>。</p>
     <div class="prototype-gallery">
 
       <!-- Case 1: Heatmap -->
       <div class="case-study">
         <div class="case-preview" style="background:#F1F5F9;">
-          <span class="case-label" style="background:#1E3A8A;color:white;">Case A</span>
+          <span class="case-label" style="background:#1E3A8A;color:white;">案例 A</span>
           <div class="heatmap-mock">
             <div class="heatmap-cell" style="background:#10B981;">閱覽</div>
             <div class="heatmap-cell" style="background:#F59E0B;">自修</div>
@@ -570,15 +570,15 @@
           </div>
         </div>
         <div class="case-body">
-          <h4>🗺️ Heatmap Concept</h4>
-          <p>用顏色深淺表示擁擠程度。<strong>抽象策略：</strong>Space → Color. Great for finding empty zones fast.</p>
+          <h4>🗺️ 熱力圖方案</h4>
+          <p>用顏色深淺表示擁擠程度。<strong>抽象策略：</strong>空間 → 顏色。適合想快速找到空位的同學。</p>
         </div>
       </div>
 
       <!-- Case 2: Traffic Light -->
       <div class="case-study">
         <div class="case-preview" style="background:#F8FAFC;">
-          <span class="case-label" style="background:#065F46;color:white;">Case B</span>
+          <span class="case-label" style="background:#065F46;color:white;">案例 B</span>
           <div class="traffic-mock">
             <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">📊 圖書館即時狀態</div>
             <div class="traffic-row">
@@ -604,15 +604,15 @@
           </div>
         </div>
         <div class="case-body">
-          <h4>🚦 Traffic Light Concept</h4>
-          <p>紅=擁擠，黃=適中，綠=空閒。<strong>抽象策略：</strong>Numbers → Colors. Most intuitive for quick decisions.</p>
+          <h4>🚦 紅綠燈方案</h4>
+          <p>紅=擁擠，黃=適中，綠=空閒。<strong>抽象策略：</strong>數字 → 色燈。最直覺，適合只想知道「能不能去」的場景。</p>
         </div>
       </div>
 
       <!-- Case 3: Dashboard -->
       <div class="case-study">
         <div class="case-preview" style="background:#0F172A;">
-          <span class="case-label" style="background:#3B82F6;color:white;">Case C</span>
+          <span class="case-label" style="background:#3B82F6;color:white;">案例 C</span>
           <div class="dashboard-mock">
             <div class="dash-big">
               <div>
@@ -633,8 +633,8 @@
           </div>
         </div>
         <div class="case-body">
-          <h4>📊 Real-time Dashboard</h4>
-          <p>大數字 + 趨勢 + 建議。<strong>抽象策略：</strong>Trend → arrows, Suggestions → times. High info density for admins.</p>
+          <h4>📊 即時儀表板方案</h4>
+          <p>大數字 + 趨勢 + 建議。<strong>抽象策略：</strong>趨勢 → 箭頭，建議 → 時段。資訊密度高，適合管理員。</p>
         </div>
       </div>
 
@@ -643,8 +643,8 @@
 
   <!-- Prototype Builder -->
   <div class="section-card">
-    <h2><i class="fas fa-wand-magic-sparkles"></i> Build It: Your Library Monitoring Interface</h2>
-    <p style="margin-bottom:6px;color:var(--text-light);font-size:14px;">Select components from the palette. Click to add to screen, click to remove.</p>
+    <h2><i class="fas fa-wand-magic-sparkles"></i> 動手搭建：你的圖書館監控界面</h2>
+    <p style="margin-bottom:6px;color:var(--text-light);font-size:14px;">從右側組件庫選擇組件，點擊即可添加到手機畫面中。點擊已放置的組件可移除。</p>
     <p style="margin-bottom:14px;font-size:14px;"><strong style="color:var(--danger-red);"><i class="fas fa-star"></i> 必須包含：總人數、樓層擁擠度（紅/黃/綠）、建議前往時段。</strong></p>
     <div class="prototype-builder">
       <div class="phone-frame">
@@ -655,22 +655,22 @@
         </div>
         <div class="phone-screen" id="phoneScreen">
           <div class="phone-slot" id="slot-0" onclick="clearSlot(0)">
-            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
+            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
           </div>
           <div class="phone-slot" id="slot-1" onclick="clearSlot(1)">
-            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
+            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
           </div>
           <div class="phone-slot" id="slot-2" onclick="clearSlot(2)">
-            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
+            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
           </div>
           <div class="phone-slot" id="slot-3" onclick="clearSlot(3)">
-            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
+            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
           </div>
           <div class="phone-slot" id="slot-4" onclick="clearSlot(4)">
-            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
+            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
           </div>
           <div class="phone-slot" id="slot-5" onclick="clearSlot(5)">
-            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
+            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
           </div>
         </div>
       </div>
@@ -678,12 +678,12 @@
         <h4>📦 組件庫</h4>
         <div class="palette-items" id="paletteItems"></div>
         <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="btn btn-warning" onclick="resetPrototype()"><i class="fas fa-rotate-left"></i> Reset Screen</button>
-          <button class="btn btn-success" onclick="checkDesign()"><i class="fas fa-check-circle"></i> Check Design</button>
+          <button class="btn btn-warning" onclick="resetPrototype()"><i class="fas fa-rotate-left"></i> 重置畫面</button>
+          <button class="btn btn-success" onclick="checkDesign()"><i class="fas fa-check-circle"></i> 檢查設計</button>
         </div>
         <div class="completion-badge" id="completionBadge">
           <i class="fas fa-circle-check"></i>
-          <p>✅ All required components placed!</p>
+          <p>✅ 必要組件齊全！</p>
         </div>
       </div>
     </div>
@@ -691,51 +691,51 @@
 
   <!-- Self-check -->
   <div class="section-card">
-    <h2><i class="fas fa-clipboard-check"></i> Design Self-Checklist</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);font-size:14px;">Check your design — not just "is it there?" but "is it good?"</p>
+    <h2><i class="fas fa-clipboard-check"></i> 設計自查清單</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);font-size:14px;">逐一檢查你的界面設計——不只是「有沒有」，更要思考「好不好」。</p>
 
     <div class="checklist-group">
-      <div class="checklist-group-title"><i class="fas fa-eye" style="color:var(--mid-blue)"></i> Readability</div>
+      <div class="checklist-group-title"><i class="fas fa-eye" style="color:var(--mid-blue)"></i> 可讀性</div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">Can users grasp key info in 3 seconds?</div>
+          <div class="check-text">使用者能否在 3 秒內看懂關鍵資訊？</div>
           <div class="check-hint">想想：最重要的數字是不是最大、最醒目？</div>
         </div>
       </div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">Uses color semantics (red=crowded, green=free)?</div>
+          <div class="check-text">是否用顏色語義傳達含義（紅=擁擠，綠=空閒）？</div>
           <div class="check-hint">避免只用數字——數字需要閱讀，顏色只需感知。</div>
         </div>
       </div>
     </div>
 
     <div class="checklist-group">
-      <div class="checklist-group-title"><i class="fas fa-mobile-screen" style="color:var(--mid-blue)"></i> Mobile-Friendly</div>
+      <div class="checklist-group-title"><i class="fas fa-mobile-screen" style="color:var(--mid-blue)"></i> 移動端適配</div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">Is info still clear on a small screen?</div>
-          <div class="check-hint">Students check on the metro one-handed. Can your design handle that?</div>
+          <div class="check-text">在手機小螢幕上，資訊是否仍然清晰？</div>
+          <div class="check-hint">同學會在地鐵上單手滑手機查看，你的設計能適應嗎？</div>
         </div>
       </div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">Avoids information overload?</div>
-          <div class="check-hint">Less is more — abstraction discards unnecessary details.</div>
+          <div class="check-text">是否避免了過多的資訊堆疊？</div>
+          <div class="check-hint">少即是多——抽象就是捨棄不必要的細節。</div>
         </div>
       </div>
     </div>
 
     <div class="checklist-group">
-      <div class="checklist-group-title"><i class="fas fa-bullseye" style="color:var(--mid-blue)"></i> Feature Complete</div>
+      <div class="checklist-group-title"><i class="fas fa-bullseye" style="color:var(--mid-blue)"></i> 功能完整</div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">Includes total count, floor occupancy, and recommended times?</div>
+          <div class="check-text">是否包含了總人數、樓層擁擠度和建議時段？</div>
           <div class="check-hint">這是使用者最想知道的三件事。</div>
         </div>
       </div>
@@ -750,16 +750,16 @@
 
     <!-- Reflection -->
     <div class="reflect-card">
-      <h4><i class="fas fa-pen-to-square"></i> Reflection: What Abstractions Did You Make?</h4>
-      <p style="font-size:13px;color:#78350F;margin-bottom:8px;">Think back — what info did you <strong>keep</strong>? What did you <strong>discard</strong>? Why?</p>
-      <textarea data-save="m4_reflect" placeholder="例如：我Kept擁擠度的顏色指示，Discarded精確人數，因為同學只需要知道「擠不擠」…"></textarea>
+      <h4><i class="fas fa-pen-to-square"></i> 反思：你做了哪些抽象？</h4>
+      <p style="font-size:13px;color:#78350F;margin-bottom:8px;">回想你選擇組件的過程——你<strong>保留了</strong>什麼資訊？<strong>捨棄了</strong>什麼資訊？為什麼？</p>
+      <textarea data-save="m4_reflect" placeholder="例如：我保留了擁擠度的顏色指示，捨棄了精確人數，因為同學只需要知道「擠不擠」…"></textarea>
     </div>
   </div>
 
   <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
-    <button class="knowledge-btn" onclick="showKnowledge('抽象與視覺化','抽象（Abstraction）是計算思維的第四步：保留關鍵資訊，捨棄無關細節。\n\n就像地圖——它不會畫出每棵樹，但會標出道路和地標。地圖是一種抽象。\n\n在你的界面設計中，抽象無處不在：\n• 把「3F 有 82 人」抽象為🔴紅燈——Discarded精確數字，Kept「擁擠」的語義\n• 把每分鐘的進出記錄抽象為一條趨勢線——Discarded細節波動，Kept整體走勢\n• 把各區域的數據抽象為熱力圖——Discarded數字，Kept空間分佈\n\n抽象不是「刪掉」，而是「選擇性呈現」。好的抽象讓使用者更快做決定。\n\n下一模組，我們將設計精確的計數算法——這是計算思維的第五步！')">
-      <i class="fas fa-lightbulb"></i> Knowledge Card: Abstraction & Visualization
+    <button class="knowledge-btn" onclick="showKnowledge('抽象與視覺化','抽象（Abstraction）是計算思維的第四步：保留關鍵資訊，捨棄無關細節。\n\n就像地圖——它不會畫出每棵樹，但會標出道路和地標。地圖是一種抽象。\n\n在你的界面設計中，抽象無處不在：\n• 把「3F 有 82 人」抽象為🔴紅燈——捨棄了精確數字，保留了「擁擠」的語義\n• 把每分鐘的進出記錄抽象為一條趨勢線——捨棄了細節波動，保留了整體走勢\n• 把各區域的數據抽象為熱力圖——捨棄了數字，保留了空間分佈\n\n抽象不是「刪掉」，而是「選擇性呈現」。好的抽象讓使用者更快做決定。\n\n下一模組，我們將設計精確的計數算法——這是計算思維的第五步！')">
+      <i class="fas fa-lightbulb"></i> 知識卡片：抽象與視覺化
     </button>
   </div>
 
@@ -847,7 +847,7 @@ const uiComponents = [
     }
   },
   {
-    id: 'notify', name: '🔔 Notifications', desc: '人數低於閾值時提醒',
+    id: 'notify', name: '🔔 通知設定', desc: '人數低於閾值時提醒',
     render: function() {
       return '<div class="slot-notify">' +
         '<span class="bell-icon">🔔</span>' +
@@ -876,7 +876,7 @@ let phoneSlots = [null, null, null, null, null, null];
     var btn = document.createElement('button');
     btn.className = 'palette-item';
     btn.dataset.id = comp.id;
-    btn.innerHTML = comp.name + (comp.required ? ' <span class="required-star">★Required</span>' : '');
+    btn.innerHTML = comp.name + (comp.required ? ' <span class="required-star">★必須</span>' : '');
     btn.onclick = function() { addComponent(comp); };
     container.appendChild(btn);
   });
@@ -885,12 +885,12 @@ let phoneSlots = [null, null, null, null, null, null];
 function addComponent(comp) {
   // Prevent adding the same component twice
   if (phoneSlots.some(function(s) { return s && s.id === comp.id; })) {
-    showToast('Already added! Click on the phone to remove.', 'info');
+    showToast('這個組件已經添加過了！點擊手機畫面中的組件可移除。', 'info');
     return;
   }
   var slotIdx = phoneSlots.indexOf(null);
   if (slotIdx === -1) {
-    showToast('Phone screen full! Click placed items to remove.', 'info');
+    showToast('手機畫面已滿！點擊已放置的組件可移除。', 'info');
     return;
   }
   phoneSlots[slotIdx] = comp;
@@ -916,7 +916,7 @@ function clearSlot(idx) {
   phoneSlots[idx] = null;
   var slot = document.getElementById('slot-' + idx);
   slot.classList.remove('filled');
-  slot.innerHTML = '<span style="color:#94A3B8;font-size:11px;">+ Click to add</span>';
+  slot.innerHTML = '<span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>';
   var paletteItem = document.querySelector('.palette-item[data-id="' + comp.id + '"]');
   if (paletteItem) paletteItem.classList.remove('placed');
 
@@ -928,7 +928,7 @@ function resetPrototype() {
   for (var i = 0; i < 6; i++) {
     var slot = document.getElementById('slot-' + i);
     slot.classList.remove('filled');
-    slot.innerHTML = '<span style="color:#94A3B8;font-size:11px;">+ Click to add</span>';
+    slot.innerHTML = '<span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>';
   }
   document.querySelectorAll('.palette-item').forEach(function(i) { i.classList.remove('placed'); });
   document.getElementById('completionBadge').classList.remove('show');
@@ -950,7 +950,7 @@ function checkDesign() {
     return !phoneSlots.some(function(s) { return s && s.id === r; });
   });
   if (missing.length === 0) {
-    showToast('✅ Design check passed! Required components complete.', 'success');
+    showToast('✅ 設計檢查通過！必要組件已齊全。', 'success');
     document.getElementById('completionBadge').classList.add('show');
     // Save design component IDs
     saveWorksheetData('m4_design', phoneSlots.filter(function(s){return s}).map(function(s){return s.id}));
@@ -960,7 +960,7 @@ function checkDesign() {
     var names = missing.map(function(id) {
       return uiComponents.find(function(c) { return c.id === id; }).name;
     });
-    showToast('⚠️ Missing required components: ' + names.join('、'), 'error');
+    showToast('⚠️ 還缺少必要組件：' + names.join('、'), 'error');
   }
 }
 

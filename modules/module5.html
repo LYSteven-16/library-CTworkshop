@@ -18,17 +18,17 @@
 <div class="page-container fade-in">
 
   <div class="module-header">
-    <span class="module-tag" style="background:var(--warning-orange)">Module 5 ⭐ 核心</span>
-    <h1>⚙️ Algorithm Engineer — Counting Logic & Debounce</h1>
-    <div class="time-hint"><i class="fas fa-clock"></i> ~20 min</div>
+    <span class="module-tag" style="background:var(--warning-orange)">模組 5 ⭐ 核心</span>
+    <h1>⚙️ 算法工程師 — 計數邏輯與防抖</h1>
+    <div class="time-hint"><i class="fas fa-clock"></i> 約 40 分鐘</div>
     <div class="learning-obj">
-      <strong>Objective: </strong>寫出完整的人流量計數算法流程，包含方向判斷、去抖過濾、人數更新三個核心步驟，理解去抖窗口的作用。
+      <strong>學習目標：</strong>寫出完整的人流量計數算法流程，包含方向判斷、去抖過濾、人數更新三個核心步驟，理解去抖窗口的作用。
     </div>
   </div>
 
   <!-- Bridge: Connection from Module 4 (Abstraction) -->
   <div class="bridge-card">
-    <h3><i class="fas fa-link"></i> Continuing from Module 4</h3>
+    <h3><i class="fas fa-link"></i> 從上一模組出發</h3>
     <p style="font-size:14px;color:#5B21B6;margin-bottom:12px;line-height:1.7;">
       上一模組，你學會了<strong>抽象</strong>——把複雜數據變成紅綠燈和熱力圖，讓人一眼看懂。<br>
       但你有没有想過：<strong>這些數據從哪來？</strong>感測器怎麼知道「有人進來了」？怎麼確保不會多算、少算？
@@ -40,8 +40,8 @@
 
   <!-- Direction Simulator -->
   <div class="section-card">
-    <h2><i class="fas fa-door-open"></i> Direction Detection Simulator</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);">Click buttons to simulate entry/exit. Observe how IR-A/B blocking determines direction.</p>
+    <h2><i class="fas fa-door-open"></i> 方向識別模擬器</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">點擊按鈕模擬人員進出，觀察紅外線 A/B 被遮擋的順序如何決定方向。</p>
     <div class="simulator-area">
       <div class="simulator-door" id="simDoor">
         <div class="ir-beam ir-beam-a" id="irA"><span class="ir-label ir-label-a">IR-A</span></div>
@@ -49,8 +49,8 @@
         <div class="sim-person" id="simPerson">🚶</div>
       </div>
       <div class="sim-controls">
-        <button class="btn btn-success" onclick="simulateEnter()"><i class="fas fa-arrow-right"></i> Simulate Entry</button>
-        <button class="btn btn-warning" onclick="simulateExit()"><i class="fas fa-arrow-left"></i> Simulate Exit</button>
+        <button class="btn btn-success" onclick="simulateEnter()"><i class="fas fa-arrow-right"></i> 模擬人走進</button>
+        <button class="btn btn-warning" onclick="simulateExit()"><i class="fas fa-arrow-left"></i> 模擬人走出</button>
         <button class="btn btn-outline" onclick="resetSimulator()" style="color:white;border-color:rgba(255,255,255,0.4);"><i class="fas fa-redo"></i> 重置</button>
       </div>
       <div class="sim-counter">
@@ -73,8 +73,8 @@
 
   <!-- Debounce Challenge -->
   <div class="section-card">
-    <h2><i class="fas fa-sliders"></i> Debounce Challenge</h2>
-    <p style="margin-bottom:8px;color:var(--text-light);">Adjust the debounce window and observe false positives vs. missed counts. <strong>Small window→More false positives, Large→More missed</strong> — find the sweet spot!</p>
+    <h2><i class="fas fa-sliders"></i> 消抖（去抖）挑戰</h2>
+    <p style="margin-bottom:8px;color:var(--text-light);">調整去抖時間窗口，觀察不同閾值下的誤報和漏計。<strong>窗口太小→誤報多，窗口太大→漏計多</strong>，找到最佳平衡！</p>
     <div class="debounce-area">
       <p><strong>場景：</strong>背包晃動、兩人並排經過可能造成<strong style="color:var(--danger-red);">誤計數</strong>（多算）；但窗口過大會導致快速通過的人被<strong style="color:var(--warning-orange);">漏計</strong>（少算）。去抖窗口需要平衡兩者。</p>
       <div class="debounce-controls">
@@ -83,24 +83,24 @@
         <span style="font-size:14px;">1000ms</span>
         <div class="debounce-value" id="debounceValue">200 ms</div>
       </div>
-      <button class="btn btn-primary" onclick="testDebounce()" style="margin:12px auto;display:block;"><i class="fas fa-flask"></i> Run Test</button>
+      <button class="btn btn-primary" onclick="testDebounce()" style="margin:12px auto;display:block;"><i class="fas fa-flask"></i> 執行測試</button>
       <div id="debounceResult" style="display:none;">
         <div class="debounce-stats">
           <div class="debounce-stat">
             <div class="stat-val" style="color:var(--mid-blue);" id="dbTotal">24</div>
-            <div class="stat-label">Total Pass-Throughs</div>
+            <div class="stat-label">總通過人次</div>
           </div>
           <div class="debounce-stat">
             <div class="stat-val" style="color:var(--danger-red);" id="dbFalse">6</div>
-            <div class="stat-label">False Positives</div>
+            <div class="stat-label">誤報次數（多算）</div>
           </div>
           <div class="debounce-stat">
             <div class="stat-val" style="color:var(--warning-orange);" id="dbMissed">0</div>
-            <div class="stat-label">Undercount</div>
+            <div class="stat-label">漏計次數（少算）</div>
           </div>
           <div class="debounce-stat">
             <div class="stat-val" style="color:var(--success-green);" id="dbAcc">75%</div>
-            <div class="stat-label">Net Accuracy</div>
+            <div class="stat-label">淨準確率</div>
           </div>
         </div>
         <p id="dbFeedback" style="text-align:center;margin-top:12px;font-size:14px;"></p>
@@ -110,8 +110,8 @@
 
   <!-- Flowchart -->
   <div class="section-card">
-    <h2><i class="fas fa-sitemap"></i> Algorithm Flowchart Fill-in</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);">① Click a blank slot → ② Click an option to fill it. Fill all 5 to pass!<br>💡 The debounce cooldown happens after processing, before accepting the next trigger.</p>
+    <h2><i class="fas fa-sitemap"></i> 算法流程圖填空</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">① 點擊流程圖中的空缺位置 → ② 點擊下方選項填入。5 個空缺全部正確即可過關！<br>💡 提示：注意「去抖冷卻」應該在什麼時候執行——是處理完事件後，還沒準備好接收下一次觸發之前。</p>
     <div class="flowchart" id="flowchart">
       <div class="flow-node start">開始：感測器觸發</div>
       <div class="flow-arrow-v"></div>
@@ -120,25 +120,25 @@
       <div class="flow-branch">
         <div>
           <div class="flow-branch-label">✅ 是（進入）</div>
-          <div class="flow-node blank" id="blank-0" onclick="selectBlank(0)">Click to select step…</div>
+          <div class="flow-node blank" id="blank-0" onclick="selectBlank(0)">點擊選擇步驟…</div>
         </div>
         <div>
           <div class="flow-branch-label">❌ 否（離開）</div>
-          <div class="flow-node blank" id="blank-1" onclick="selectBlank(1)">Click to select step…</div>
+          <div class="flow-node blank" id="blank-1" onclick="selectBlank(1)">點擊選擇步驟…</div>
         </div>
       </div>
       <div class="flow-arrow-v"></div>
-      <div class="flow-node blank" id="blank-2" onclick="selectBlank(2)">Click to select step…</div>
+      <div class="flow-node blank" id="blank-2" onclick="selectBlank(2)">點擊選擇步驟…</div>
       <div class="flow-arrow-v"></div>
-      <div class="flow-node blank" id="blank-3" onclick="selectBlank(3)">Click to select step…</div>
+      <div class="flow-node blank" id="blank-3" onclick="selectBlank(3)">點擊選擇步驟…</div>
       <div class="flow-arrow-v"></div>
-      <div class="flow-node blank" id="blank-4" onclick="selectBlank(4)">Click to select step…</div>
+      <div class="flow-node blank" id="blank-4" onclick="selectBlank(4)">點擊選擇步驟…</div>
       <div class="flow-arrow-v"></div>
       <div class="flow-node end">結束：等待下一次觸發</div>
     </div>
     <div class="flow-options" id="flowOptions"></div>
     <div style="text-align:center;margin-top:16px;">
-      <button class="btn btn-success" onclick="checkFlowchart()"><i class="fas fa-check-circle"></i> Check Flowchart</button>
+      <button class="btn btn-success" onclick="checkFlowchart()"><i class="fas fa-check-circle"></i> 檢查流程圖</button>
       <button class="btn btn-outline" onclick="resetFlowchart()" style="margin-left:8px;"><i class="fas fa-redo"></i> 重置</button>
     </div>
   </div>
@@ -146,7 +146,7 @@
   <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
     <button class="knowledge-btn" onclick="showKnowledge('算法思維','算法思維（Algorithmic Thinking）是計算思維的第五步：設計一步步精確的指令來解決問題。就像食譜——每一步都必須清楚、有序、無歧義。好的算法設計要處理所有可能情況，包括異常輸入和邊界條件。在本例中，去抖冷卻放在計數更新之後、等待下一次觸發之前——這樣既能過濾短時間內的重複觸發，又不會延遲對首次觸發的響應。\n\n恭喜！你已完成計算思維的所有核心步驟——下一模組，我們來整合回顧整個旅程！')">
-      <i class="fas fa-lightbulb"></i> Knowledge Card: Algorithmic Thinking
+      <i class="fas fa-lightbulb"></i> 知識卡片：算法思維
     </button>
   </div>
 
@@ -158,7 +158,7 @@
   <div style="display:flex;justify-content:space-between;margin-top:24px;">
     <a href="#module4" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 模組 4</a>
     <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> 返回首頁</a>
-    <a href="#module6" class="btn btn-primary">Go to Module 6 → <i class="fas fa-arrow-right"></i></a>
+    <a href="#module6" class="btn btn-primary">進入模組 6 → <i class="fas fa-arrow-right"></i></a>
   </div>
 
 </div>
@@ -397,7 +397,7 @@ function resetFlowchart() {
   flowAnswers = [null, null, null, null, null];
   for (let i = 0; i < 5; i++) {
     const blank = document.getElementById('blank-' + i);
-    blank.textContent = 'Click to select step…';
+    blank.textContent = '點擊選擇步驟…';
     blank.className = 'flow-node blank';
   }
   selectedBlank = null;
