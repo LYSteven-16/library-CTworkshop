@@ -623,12 +623,12 @@
       <div class="cert-corner tr"></div>
       <div class="cert-corner bl"></div>
       <div class="cert-corner br"></div>
-      <div class="cert-title">🎓 計算思維自學工坊</div>
-      <div class="cert-subtitle">—— 解碼圖書館熱力圖 ——</div>
-      <div class="cert-name" id="certName">同學</div>
+      <div class="cert-title">🎓 CT Self-Study Workshop</div>
+      <div class="cert-subtitle">— Decoding the Library Heatmap —</div>
+      <div class="cert-name" id="certName">Student</div>
       <div class="cert-text">
-        已成功完成全部六個模組的學習，<br>
-        展現了以下計算思維核心能力：
+        has successfully completed all six modules,<br>
+        demonstrating the following CT competencies:
       </div>
       <div class="cert-skills">
         <span class="cert-skill-badge" style="background:#EF4444;">Problem Def.</span>
@@ -644,23 +644,23 @@
 
   <!-- Generate PDF Worksheet -->
   <div class="section-card" style="background:linear-gradient(135deg,#1E3A8A 0%,#3B82F6 100%);color:white;border:none;">
-    <h2 style="color:white;"><i class="fas fa-file-pdf"></i> 生成學習工作單</h2>
-    <p style="margin-bottom:16px;opacity:0.9;">一鍵匯出你在所有模組中的互動記錄為 PDF 工作單。</p>
+    <h2 style="color:white;"><i class="fas fa-file-pdf"></i> Generate Worksheet</h2>
+    <p style="margin-bottom:16px;opacity:0.9;">Export all your interactions as a PDF worksheet.</p>
     <div style="text-align:center;">
       <button class="btn" onclick="printWorksheet()" style="font-size:16px;padding:12px 28px;background:white;color:#1E3A8A;font-weight:700;border-radius:8px;cursor:pointer;">
-        <i class="fas fa-download"></i> 下載工作單 PDF
+        <i class="fas fa-download"></i> Download Worksheet PDF
       </button>
     </div>
   </div>
 
   <div class="screenshot-cta">
-  <h3>💡 回到 Figma 繼續學習</h3>
-  <p>記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習！</p>
+  <h3>💡 Return to Figma to Continue</h3>
+  <p>Remember to return to your Figma 🗺️ Learning Roadmap!</p>
 </div>
 
   <div style="display:flex;justify-content:space-between;margin-top:24px;">
-    <a href="#module5" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 模組 5</a>
-    <a href="#home" class="btn btn-success"><i class="fas fa-house"></i> 返回首頁</a>
+    <a href="#module5" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Module 5</a>
+    <a href="#home" class="btn btn-success"><i class="fas fa-house"></i> Back to Home</a>
   </div>
 
 </div>
@@ -820,7 +820,7 @@ function drawRadar() {
 
 // ===== Certificate =====
 function generateCertificate() {
-  var name = getStudentName() || '同學';
+  var name = getStudentName() || 'Student';
   document.getElementById('certName').textContent = name;
   var now = new Date();
   document.getElementById('certDate').textContent = '完成日期：' + now.getFullYear() + ' 年 ' + (now.getMonth() + 1) + ' 月 ' + now.getDate() + ' 日';
