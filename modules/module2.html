@@ -315,38 +315,38 @@
     </div>
     <div class="classify-area">
       <div class="card-pool">
-        <h4>📦 待分類組件</h4>
+        <h4>📦 Components to Classify</h4>
         <div class="classify-cards" id="classifyCards"></div>
       </div>
       <div class="classify-bins" id="classifyBins">
         <div class="classify-bin" data-category="collect" onclick="classifyTo(this)">
-          <h5><i class="fas fa-satellite-dish"></i> 數據採集</h5>
+          <h5><i class="fas fa-satellite-dish"></i> Data Collection</h5>
           <div class="bin-cards" id="bin-collect"></div>
         </div>
         <div class="classify-bin" data-category="transmit" onclick="classifyTo(this)">
-          <h5><i class="fas fa-wifi"></i> 數據傳輸</h5>
+          <h5><i class="fas fa-wifi"></i> Data Transmission</h5>
           <div class="bin-cards" id="bin-transmit"></div>
         </div>
         <div class="classify-bin" data-category="process" onclick="classifyTo(this)">
-          <h5><i class="fas fa-microchip"></i> 數據處理</h5>
+          <h5><i class="fas fa-microchip"></i> Data Processing</h5>
           <div class="bin-cards" id="bin-process"></div>
         </div>
         <div class="classify-bin" data-category="display" onclick="classifyTo(this)">
-          <h5><i class="fas fa-mobile-screen"></i> 數據展示</h5>
+          <h5><i class="fas fa-mobile-screen"></i> Data Display</h5>
           <div class="bin-cards" id="bin-display"></div>
         </div>
       </div>
     </div>
     <div style="text-align:center;margin-top:16px;">
-      <button class="btn btn-warning" onclick="checkClassification()"><i class="fas fa-check-circle"></i> 檢查我的分類</button>
+      <button class="btn btn-warning" onclick="checkClassification()"><i class="fas fa-check-circle"></i> Check Classification</button>
     </div>
   </div>
 
   <!-- Data Flow Builder (replaces static diagram) -->
   <div class="section-card">
-    <h2><i class="fas fa-diagram-project"></i> 數據流排序</h2>
-    <p style="margin-bottom:8px;color:var(--text-light);font-size:14px;">這些組件在系統中以什麼順序工作？點擊下方組件放入對應位置，點擊已放置的組件可移除。</p>
-    <p style="margin-bottom:14px;color:var(--text-light);font-size:14px;">💡 <strong>提示：</strong>數據從感測器產生，經過傳輸和處理，最後到達使用者。</p>
+    <h2><i class="fas fa-diagram-project"></i> Data Flow Order</h2>
+    <p style="margin-bottom:8px;color:var(--text-light);font-size:14px;">What order do these components work in? Click to place, click to remove.</p>
+    <p style="margin-bottom:14px;color:var(--text-light);font-size:14px;">💡 <strong>Tip:</strong> Data flows from sensors, through transmission and processing, to the user.</p>
     <div class="flow-build-area">
       <div class="flow-slots" id="flowSlots">
         <div class="flow-slot" id="fslot-0" onclick="clearFlowSlot(0)">?</div>
@@ -361,31 +361,30 @@
       </div>
       <div class="flow-choices" id="flowChoices"></div>
       <div style="text-align:center;margin-top:14px;">
-        <button class="btn btn-success" onclick="checkFlow()"><i class="fas fa-check"></i> 檢查順序</button>
-        <button class="btn btn-warning" onclick="resetFlow()" style="margin-left:8px;"><i class="fas fa-rotate-left"></i> 重置</button>
+      <button class="btn btn-success" onclick="checkFlow()"><i class="fas fa-check"></i> Check Order</button>
+      <button class="btn btn-warning" onclick="resetFlow()" style="margin-left:8px;"><i class="fas fa-rotate-left"></i> Reset</button>
       </div>
     </div>
   </div>
 
   <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
-    <button class="knowledge-btn" onclick="showKnowledge('分解思維','分解（Decomposition）是計算思維的第二步：把大問題切成可管理的小塊。\n\n就像拆解一台電腦——顯示器、主機板、硬碟、電源，每個部件都有明確職責，可以獨立理解和維修。\n\n在圖書館系統中：\n• 「設計人流量監控系統」太大，無法一步完成\n• 分解後：採集 → 傳輸 → 處理 → 展示，每個子問題可以獨立解決\n• 感測器壞了？只需修採集模組，不影響其他部分\n\n分解的好處：\n1. 降低複雜度——每次只關注一個子問題\n2. 便於分工——不同人負責不同模組\n3. 易於維護——哪裡壞了修哪裡\n4. 可重用——採集模組可以用在其他場景')">
-      <i class="fas fa-lightbulb"></i> 知識卡片：分解思維
+    <button class="knowledge-btn" onclick="showKnowledge('Decomposition','Decomposition is CT step two: breaking big problems into manageable pieces.\n\nLike dismantling a computer — monitor, motherboard, hard drive, power supply. Each part has a clear role and can be understood independently.\n\nIn our library system:\n• "Design a traffic monitoring system" is too big to do all at once\n• After decomposition: Collection → Transmission → Processing → Display\n• Each sub-problem can be solved independently\n• Sensor broken? Just fix the collection module — nothing else affected\n\nBenefits:\n1. Lower complexity — focus on one sub-problem at a time\n2. Easy division — different people handle different modules\n3. Easy maintenance — fix only what is broken\n4. Reusable — the collection module works in other scenarios')">
+      <i class="fas fa-lightbulb"></i> Knowledge Card: Decomposition
     </button>
   </div>
 
   <!-- Knowledge Overlay -->
 
-  <!-- Screenshot CTA -->
   <div class="screenshot-cta">
-  <h3>💡 回到 Figma 繼續學習</h3>
-  <p>記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習！</p>
+  <h3>💡 Return to Figma to Continue</h3>
+  <p>Remember to return to your Figma 🗺️ Learning Roadmap!</p>
 </div>
 
   <div style="display:flex;justify-content:space-between;margin-top:24px;">
-    <a href="#module1" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 模組 1</a>
-    <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> 返回首頁</a>
-    <a href="#module3" class="btn btn-primary">進入模組 3 → <i class="fas fa-arrow-right"></i></a>
+    <a href="#module1" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Module 1</a>
+    <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> Back to Home</a>
+    <a href="#module3" class="btn btn-primary">Go to Module 3: Pattern Recognition → <i class="fas fa-arrow-right"></i></a>
   </div>
 
 </div>
@@ -413,16 +412,16 @@ function showOnion(idx) {
 
 // ===== Card Classification =====
 var classifyData = [
-  { id: 'ir', name: '📡 紅外線感測器', category: 'collect' },
-  { id: 'wifi', name: '📶 WiFi 模組', category: 'transmit' },
-  { id: 'cloud', name: '☁️ 雲端伺服器', category: 'process' },
-  { id: 'db', name: '🗄️ 資料庫', category: 'process' },
-  { id: 'app', name: '📱 手機 App', category: 'display' },
-  { id: 'algo', name: '🧮 計數算法', category: 'process' },
-  { id: 'map', name: '🗺️ 樓層地圖', category: 'display' },
-  { id: 'hist', name: '📊 歷史數據分析', category: 'display' },
-  { id: 'ble', name: '🔵 藍牙傳輸', category: 'transmit' },
-  { id: 'cam', name: '📷 攝像頭', category: 'collect' },
+  { id: 'ir', name: '📡 IR Sensor', category: 'collect' },
+  { id: 'wifi', name: '📶 WiFi Module', category: 'transmit' },
+  { id: 'cloud', name: '☁️ Cloud Server', category: 'process' },
+  { id: 'db', name: '🗄️ Database', category: 'process' },
+  { id: 'app', name: '📱 Mobile App', category: 'display' },
+  { id: 'algo', name: '🧮 Counting Algorithm', category: 'process' },
+  { id: 'map', name: '🗺️ Floor Map', category: 'display' },
+  { id: 'hist', name: '📊 Historical Data', category: 'display' },
+  { id: 'ble', name: '🔵 Bluetooth', category: 'transmit' },
+  { id: 'cam', name: '📷 Camera', category: 'collect' },
 ];
 var cardClassifications = {};
 var selectedCard = null;
@@ -451,7 +450,7 @@ function updateClassifyProgress() {
 }
 
 function classifyTo(binEl) {
-  if (!selectedCard) { showToast('請先點擊左側選擇一張卡片', 'info'); return; }
+  if (!selectedCard) { showToast('Click a card on the left first.', 'info'); return; }
   var category = binEl.dataset.category;
   var cardData = classifyData.find(function(c) { return c.id === selectedCard; });
   if (!cardData) return;
@@ -489,7 +488,7 @@ function checkClassification() {
   var total = classifyData.length;
   var classified = Object.keys(cardClassifications).length;
   if (classified < total) {
-    showToast('還有 ' + (total - classified) + ' 張卡片未分類，請先完成所有分類', 'info');
+    showToast((total - classified) + ' cards not classified. Complete all first.', 'info');
     return;
   }
   classifyData.forEach(function(card) {
@@ -502,10 +501,10 @@ function checkClassification() {
     }
   });
   if (correct === total) {
-    showToast('🎉 全部正確！太棒了！', 'success');
+    showToast('🎉 All correct! Amazing!', 'success');
     showConfetti();
   } else {
-    showToast('正確 ' + correct + '/' + total + '，紅色標記的卡片試試換個分類！', correct >= total * 0.6 ? 'info' : 'error');
+    showToast(correct + '/' + total + ' correct. Try a different category for red ones!', correct >= total * 0.6 ? 'info' : 'error');
   }
   // Save classification results
   saveWorksheetData('m2_classify', correct + '/' + total);
@@ -514,11 +513,11 @@ function checkClassification() {
 
 // ===== Data Flow Builder =====
 var flowItems = [
-  { id: 'sensor', name: '📡 感測器', order: 0 },
-  { id: 'transmit', name: '📶 網路傳輸', order: 1 },
-  { id: 'process', name: '🧮 計數處理', order: 2 },
-  { id: 'db', name: '🗄️ 儲存數據', order: 3 },
-  { id: 'app', name: '📱 App 展示', order: 4 },
+  { id: 'sensor', name: '📡 IR Sensor', order: 0 },
+  { id: 'transmit', name: '📶 WiFi Module', order: 1 },
+  { id: 'process', name: '🧮 Counting Algorithm', order: 2 },
+  { id: 'db', name: '🗄️ Database', order: 3 },
+  { id: 'app', name: '📱 Mobile App', order: 4 },
 ];
 var flowSlots = [null, null, null, null, null];
 
@@ -538,10 +537,10 @@ var flowSlots = [null, null, null, null, null];
 
 function addFlowItem(item, btn) {
   var slotIdx = flowSlots.indexOf(null);
-  if (slotIdx === -1) { showToast('所有位置已滿！點擊已放置的組件可移除。', 'info'); return; }
+  if (slotIdx === -1) { showToast('All slots full! Click placed items to remove.', 'info'); return; }
   // Check if already placed
   if (flowSlots.some(function(s) { return s && s.id === item.id; })) {
-    showToast('這個組件已經放置了！', 'info');
+    showToast('Already placed!', 'info');
     return;
   }
   flowSlots[slotIdx] = item;
@@ -574,7 +573,7 @@ function resetFlow() {
 
 function checkFlow() {
   var allFilled = flowSlots.every(function(s) { return s !== null; });
-  if (!allFilled) { showToast('請先填滿所有位置！', 'info'); return; }
+  if (!allFilled) { showToast('Please fill all positions first!', 'info'); return; }
 
   var allCorrect = true;
   flowSlots.forEach(function(item, idx) {
@@ -589,11 +588,11 @@ function checkFlow() {
   });
 
   if (allCorrect) {
-    showToast('🎉 數據流順序正確！這就是系統的完整工作流程！', 'success');
+    showToast('🎉 Data flow correct! Complete workflow!', 'success');
     showConfetti();
     saveWorksheetData('m2_flow', flowSlots.map(function(s){return s?s.name:''}));
   } else {
-    showToast('有些位置不對，紅色的請重新排列！提示：數據從哪裡產生？', 'error');
+    showToast('Some wrong. Red ones need re-ordering! Hint: where does data originate?', 'error');
   }
 }
 
