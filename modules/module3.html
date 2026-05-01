@@ -294,24 +294,22 @@
 <div class="page-container fade-in">
 
   <div class="module-header">
-    <span class="module-tag" style="background:#0EA5E9">模組 3</span>
-    <h1>🔎 模式偵探 — 模式識別</h1>
-    <div class="time-hint"><i class="fas fa-clock"></i> 約 40 分鐘</div>
+    <span class="module-tag" style="background:#0EA5E9">Module 3</span>
+    <h1>🔎 Pattern Detective — Pattern Recognition</h1>
+    <div class="time-hint"><i class="fas fa-clock"></i> ~20 min</div>
     <div class="learning-obj">
-      <strong>學習目標：</strong>從一週的模擬人流數據中，識別出至少兩種規律模式（如午間低谷、晚間高峰），並推斷異常數據背後的合理原因。
+      <strong>Objective:</strong> From a week of simulated traffic data, identify at least two patterns (e.g., midday dip, evening peak) and infer the causes of anomalies.
     </div>
   </div>
 
-  <!-- Bridge from Module 2 -->
   <div class="bridge-card">
-    <h3><i class="fas fa-arrow-right"></i> 從上一模組出發</h3>
-    <p>上一模組我們把圖書館人流系統<strong>分解</strong>成了採集、處理、展示三個模組。現在，想像 IR 感測器已經裝好，收集了一整週的數據——這些數據裡藏著<strong>規律</strong>和<strong>異常</strong>。你的任務是像偵探一樣，從數據中找出模式！</p>
+    <h3><i class="fas fa-arrow-right"></i> Continuing from Module 2</h3>
+    <p>In Module 2 we <strong>decomposed</strong> the library traffic system into Collection, Processing, and Display modules. Now imagine IR sensors installed and running for a full week — the data hides <strong>patterns</strong> and <strong>anomalies</strong>. Your mission: be a detective and find patterns in the data!</p>
   </div>
 
-  <!-- Chart -->
   <div class="section-card">
-    <h2><i class="fas fa-chart-line"></i> 一週人流量數據</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);">切換不同日期，觀察折線圖的變化規律。將滑鼠移到數據點上可查看具體數值。</p>
+    <h2><i class="fas fa-chart-line"></i> Weekly Traffic Data</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">Toggle dates to see trend changes. Hover on data points for exact values.</p>
     <div class="chart-container">
       <div class="chart-tabs" id="chartTabs"></div>
       <div class="chart-canvas">
@@ -320,23 +318,23 @@
       </div>
     </div>
     <div class="pattern-summary" id="patternSummary" style="display:none;">
-      <h4><i class="fas fa-search"></i> 你發現了哪些模式？</h4>
+      <h4><i class="fas fa-search"></i> What patterns did you find?</h4>
       <div class="pattern-grid">
-        <div class="pattern-item"><div class="pattern-dot" style="background:#EF4444;"></div> 上午 10-12 點：穩定高峰</div>
-        <div class="pattern-item"><div class="pattern-dot" style="background:#F59E0B;"></div> 12-13 點：午間低谷</div>
-        <div class="pattern-item"><div class="pattern-dot" style="background:#8B5CF6;"></div> 週三下午：異常突增</div>
-        <div class="pattern-item"><div class="pattern-dot" style="background:#10B981;"></div> 16 點後：晚間回落</div>
+        <div class="pattern-item"><div class="pattern-dot" style="background:#EF4444;"></div> 10AM-12PM: Steady Peak</div>
+        <div class="pattern-item"><div class="pattern-dot" style="background:#F59E0B;"></div> 12-1PM: Midday Dip</div>
+        <div class="pattern-item"><div class="pattern-dot" style="background:#8B5CF6;"></div> Wed Afternoon: Abnormal Spike</div>
+        <div class="pattern-item"><div class="pattern-dot" style="background:#10B981;"></div> After 4PM: Evening Decline</div>
       </div>
     </div>
     <button class="btn btn-outline" onclick="revealPatterns()" style="margin-top:12px;" id="patternBtn">
-      <i class="fas fa-eye"></i> 揭示常見模式
+      <i class="fas fa-eye"></i> Show Common Patterns
     </button>
   </div>
 
   <!-- Round 1: Matching -->
   <div class="section-card">
-    <h2><i class="fas fa-link"></i> 回合一：連線配對</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);">先點擊左側折線形狀，再點擊右側場景描述進行配對。正確配對會出現連線！</p>
+    <h2><i class="fas fa-link"></i> Round 1: Match Pairs</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">Click a line shape on the left, then a scenario on the right. Correct pairs connect!</p>
     <div class="match-area" id="matchArea">
       <svg class="match-svg" id="matchSvg"></svg>
       <div class="match-column" id="matchLeft"></div>
@@ -347,79 +345,79 @@
 
   <!-- Round 2: Anomaly -->
   <div class="section-card">
-    <h2><i class="fas fa-magnifying-glass-chart"></i> 回合二：異常偵測</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);">週三下午 14:00-16:00 出現了異常高峰，人數從平時的 80 人飆升到 280 人。你認為發生了什麼？選擇一個最可能的解釋：</p>
+    <h2><i class="fas fa-magnifying-glass-chart"></i> Round 2: Anomaly Detection</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">Wed 2-4PM: an abnormal spike from 80 to 280 people. What happened? Pick the most likely:</p>
     <div class="anomaly-options" id="anomalyOptions">
       <div class="anomaly-option" onclick="selectAnomaly(this, 0)">
         <div style="font-size:24px;margin-bottom:4px;">🎓</div>
-        <strong>期末考試</strong><br><span style="font-size:12px;color:#6B7280;">學生集中溫習</span>
+        <strong>Final Exams</strong><br><span style="font-size:12px;color:#6B7280;">Students cramming</span>
       </div>
       <div class="anomaly-option" onclick="selectAnomaly(this, 1)">
         <div style="font-size:24px;margin-bottom:4px;">🎤</div>
-        <strong>作家講座</strong><br><span style="font-size:12px;color:#6B7280;">大型校園活動</span>
+        <strong>Author Talk</strong><br><span style="font-size:12px;color:#6B7280;">Large campus event</span>
       </div>
       <div class="anomaly-option" onclick="selectAnomaly(this, 2)">
         <div style="font-size:24px;margin-bottom:4px;">🌧️</div>
-        <strong>下雨天</strong><br><span style="font-size:12px;color:#6B7280;">學生留在室內</span>
+        <strong>Rainy Day</strong><br><span style="font-size:12px;color:#6B7280;">Students indoors</span>
       </div>
       <div class="anomaly-option" onclick="selectAnomaly(this, 3)">
         <div style="font-size:24px;margin-bottom:4px;">📖</div>
-        <strong>新書到館</strong><br><span style="font-size:12px;color:#6B7280;">大量同學來借書</span>
+        <strong>New Arrivals</strong><br><span style="font-size:12px;color:#6B7280;">Mass borrowing</span>
       </div>
     </div>
     <button class="btn btn-warning" onclick="revealAnomaly()" id="anomalyBtn" style="display:none;">
-      <i class="fas fa-check"></i> 揭曉答案
+      <i class="fas fa-check"></i> Reveal Answer
     </button>
     <div class="anomaly-reveal" id="anomalyReveal">
-      <p>📢 <strong>答案揭曉：</strong>週三下午舉辦了一場知名作家講座，吸引了 200 名學生參加，導致人流量異常飆升！</p>
-      <p style="margin-top:8px;">其他選項分析：期末考試不會只出現在週三下午；下雨天會讓人留在室內，但不會突然增加 200 人；新書到館不會造成如此大規模的增長。<strong>模式識別不僅要發現規律，也要能辨識偏離規律的異常值，並推斷其背後原因。</strong></p>
+      <p>📢 <strong>Answer:</strong> A famous author gave a talk Wednesday afternoon, attracting 200 students — causing the unusual spike!</p>
+      <p style="margin-top:8px;">Analysis: Finals wouldn't happen only on one afternoon; rain keeps people indoors but won't add 200; new arrivals can't cause this scale. <strong>Pattern recognition means spotting both patterns AND anomalies, and inferring their causes.</strong></p>
     </div>
   </div>
 
   <!-- Round 3: Prediction -->
   <div class="section-card">
-    <h2><i class="fas fa-wand-magic-sparkles"></i> 回合三：預測挑戰</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);">週五下午下大雨，大多數課程結束。你預測 17:00 圖書館大約有多少人？先思考推理步驟：</p>
+    <h2><i class="fas fa-wand-magic-sparkles"></i> Round 3: Prediction Challenge</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);">Friday afternoon, heavy rain, most classes end. Predict library count at 5PM:</p>
     <div class="predict-steps">
       <div class="predict-step">
         <span class="predict-step-num">1</span>
-        <strong>基準值</strong>：平常週五 17:00 約 30 人
+        <strong>Baseline</strong>: Normal Friday 5PM ~30 people
       </div>
       <div class="predict-step">
         <span class="predict-step-num">2</span>
-        <strong>因素</strong>：下雨天 → 更多學生留在室內？
+        <strong>Factor</strong>: Rainy day — more students indoors?
       </div>
       <div class="predict-step">
         <span class="predict-step-num">3</span>
-        <strong>反因素</strong>：週五 + 大雨 → 更多學生直接回家？
+        <strong>Counter-factor</strong>: Friday + heavy rain — more go home?
       </div>
     </div>
     <div class="predict-slider-row">
       <span style="font-size:14px;color:var(--text-light)">0</span>
-      <input type="range" id="predictSlider" min="0" max="300" value="100" oninput="document.getElementById('predictValue').textContent=this.value+' 人'">
+      <input type="range" id="predictSlider" min="0" max="300" value="100" oninput="document.getElementById('predictValue').textContent=this.value+' people'">
       <span style="font-size:14px;color:var(--text-light)">300</span>
     </div>
-    <div class="predict-value" id="predictValue">100 人</div>
-    <button class="btn btn-success" onclick="checkPrediction()" style="margin-top:8px;"><i class="fas fa-check"></i> 驗證預測</button>
+    <div class="predict-value" id="predictValue">100 people</div>
+    <button class="btn btn-success" onclick="checkPrediction()" style="margin-top:8px;"><i class="fas fa-check"></i> Verify Prediction</button>
     <div class="predict-result" id="predictResult"></div>
   </div>
 
   <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
-    <button class="knowledge-btn" onclick="showKnowledge('模式識別','模式識別（Pattern Recognition）是計算思維的第三步：從數據或經驗中發現重複出現的規律。\n\n就像天氣預報——觀察歷史天氣模式，就能預測明天是否下雨。\n\n在圖書館數據中，我們發現了：\n✅ 週期性模式 — 每天上午高峰、午間低谷\n✅ 趨勢模式 — 週末人數比工作日少\n✅ 異常模式 — 週三下午的突增（活動影響）\n\n發現模式後，下一步是把數據變成同學看得懂的資訊——這就是模組 4 的抽象！')">
-      <i class="fas fa-lightbulb"></i> 知識卡片：模式識別
+    <button class="knowledge-btn" onclick="showKnowledge('Pattern Recognition','Pattern Recognition is CT step three: finding recurring patterns in data.\n\nLike weather forecasting — observe historical weather patterns to predict tomorrow.\n\nIn our library data, we found:\n✅ Periodic patterns — daily morning peaks, midday dips\n✅ Trend patterns — weekends have fewer people than weekdays\n✅ Anomalies — Wednesday afternoon spike (event caused)\n\nAfter finding patterns, the next step is turning data into info students can understand — that is Abstraction!')">
+      <i class="fas fa-lightbulb"></i> Knowledge Card: Pattern Recognition
     </button>
   </div>
 
   <div class="screenshot-cta">
-  <h3>💡 回到 Figma 繼續學習</h3>
-  <p>記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習！</p>
+  <h3>💡 Return to Figma to Continue</h3>
+  <p>Remember to return to your Figma 🗺️ Learning Roadmap!</p>
 </div>
 
   <div style="display:flex;justify-content:space-between;margin-top:24px;">
-    <a href="#module2" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 模組 2</a>
-    <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> 返回首頁</a>
-    <a href="#module4" class="btn btn-primary">進入模組 4 → <i class="fas fa-arrow-right"></i></a>
+    <a href="#module2" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Module 2</a>
+    <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> Back to Home</a>
+    <a href="#module4" class="btn btn-primary">Go to Module 4: Abstraction → <i class="fas fa-arrow-right"></i></a>
   </div>
 
 </div>
@@ -427,13 +425,13 @@
 <script>
 // ===== Chart =====
 const weeklyData = {
-  '週一': [20, 35, 80, 120, 90, 60, 45, 30, 15],
-  '週二': [15, 30, 70, 110, 95, 55, 40, 25, 10],
-  '週三': [25, 40, 90, 280, 260, 130, 50, 35, 20],
-  '週四': [18, 32, 75, 105, 85, 50, 38, 22, 12],
-  '週五': [12, 28, 65, 100, 80, 45, 30, 18, 8],
-  '週六': [5, 15, 40, 60, 50, 35, 25, 15, 5],
-  '週日': [3, 10, 30, 45, 40, 25, 18, 10, 3],
+  'Mon': [20, 35, 80, 120, 90, 60, 45, 30, 15],
+  'Tue': [15, 30, 70, 110, 95, 55, 40, 25, 10],
+  'Wed': [25, 40, 90, 280, 260, 130, 50, 35, 20],
+  'Thu': [18, 32, 75, 105, 85, 50, 38, 22, 12],
+  'Fri': [12, 28, 65, 100, 80, 45, 30, 18, 8],
+  'Sat': [5, 15, 40, 60, 50, 35, 25, 15, 5],
+  'Sun': [3, 10, 30, 45, 40, 25, 18, 10, 3],
 };
 const timeLabels = ['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00'];
 
@@ -450,7 +448,7 @@ const timeLabels = ['8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00
     };
     tabsEl.appendChild(tab);
   });
-  drawChart(weeklyData['週一']);
+  drawChart(weeklyData['Mon']);
 })();
 
 function drawChart(data) {
@@ -470,13 +468,13 @@ function drawChart(data) {
 
   // Detect pattern zones for current day
   var patternZones = '';
-  var isWednesday = (document.querySelector('.chart-tab.active') || {}).textContent === '週三';
+  var isWednesday = (document.querySelector('.chart-tab.active') || {}).textContent === 'Wed';
   if (isWednesday) {
     // Mark anomaly zone (14:00-16:00 = index 6-8)
     var x1 = pad + 6 * stepX - stepX * 0.4;
     var x2 = pad + 8 * stepX + stepX * 0.4;
     patternZones = '<rect x="'+x1+'" y="'+pad+'" width="'+(x2-x1)+'" height="'+(h-pad*2)+'" fill="#EF4444" fill-opacity="0.08" rx="4"/>' +
-      '<text x="'+(x1+x2)/2+'" y="'+(pad+14)+'" text-anchor="middle" font-size="10" font-weight="700" fill="#EF4444">⚠ 異常區域</text>';
+      '<text x="'+(x1+x2)/2+'" y="'+(pad+14)+'" text-anchor="middle" font-size="10" font-weight="700" fill="#EF4444">⚠ Anomaly Zone</text>';
   }
 
   svg.innerHTML =
@@ -504,7 +502,7 @@ function drawChart(data) {
       var cy = parseFloat(circle.getAttribute('cy'));
       var scaleX = rect.width / 700;
       var scaleY = rect.height / 280;
-      tooltip.textContent = circle.dataset.time + '：' + circle.dataset.val + ' 人';
+      tooltip.textContent = circle.dataset.time + ': ' + circle.dataset.val + ' people';
       tooltip.style.left = (cx * scaleX - 30) + 'px';
       tooltip.style.top = (cy * scaleY - 35) + 'px';
       tooltip.classList.add('show');
@@ -524,10 +522,10 @@ function revealPatterns() {
 
 // ===== Matching with Visual Lines =====
 var matchData = [
-  { left: {icon:'📈',text:'穩定高峰（上午10-12點）'}, right: {icon:'📚',text:'課間自習高峰'} },
-  { left: {icon:'📉',text:'午間低谷（12-13點）'}, right: {icon:'🍽️',text:'午飯時間'} },
-  { left: {icon:'🔺',text:'異常突增（週三下午）'}, right: {icon:'🎤',text:'作家講座活動'} },
-  { left: {icon:'📉',text:'晚間回落（16點後）'}, right: {icon:'🏠',text:'學生陸續離開'} },
+  { left: {icon:'📈',text:'Steady Peak (10AM-12PM)'}, right: {icon:'📚',text:'Between-class study rush'} },
+  { left: {icon:'📉',text:'Midday Dip (12-1PM)'}, right: {icon:'🍽️',text:'Lunch break'} },
+  { left: {icon:'🔺',text:'Abnormal Spike (Wed PM)'}, right: {icon:'🎤',text:'Author talk event'} },
+  { left: {icon:'📉',text:'Evening Decline (after 4PM)'}, right: {icon:'🏠',text:'Students leave campus'} },
 ];
 var shuffledRight = matchData.slice().sort(function() { return Math.random() - 0.5; });
 var matchState = { left: null, right: null, leftEl: null, rightEl: null, matched: new Set() };
@@ -578,15 +576,15 @@ function tryMatch() {
     drawMatchLine(matchState.leftEl, matchState.rightEl);
     var n = matchState.matched.size;
     document.getElementById('matchFeedback').innerHTML = n === matchData.length
-      ? '<span style="color:var(--success-green);font-weight:600;">🎉 全部配對正確！你已識別出所有模式！</span>'
-      : '<span style="color:var(--success-green);">✅ 配對正確！（' + n + '/' + matchData.length + '）</span>';
+      ? '<span style="color:var(--success-green);font-weight:600;">🎉 All matched! Every pattern identified!</span>'
+      : '<span style="color:var(--success-green);">✅ Matched! (' + n + '/' + matchData.length + ')</span>';
     if (n === matchData.length) showConfetti();
     // Save matched pairs
     var paired = matchData.filter(function(m, i) { return matchState.matched.has(i); })
       .map(function(m) { return { left: m.left.text, right: m.right.text }; });
     saveWorksheetData('m3_match', paired);
   } else {
-    showToast('配對不正確，再試試看！', 'error');
+    showToast('Incorrect match, try again!', 'error');
     matchState.leftEl.classList.remove('selected');
     matchState.rightEl.classList.remove('selected');
   }
@@ -626,7 +624,7 @@ function selectAnomaly(el, idx) {
 
 function revealAnomaly() {
   if (selectedAnomaly === -1) {
-    showToast('請先選擇一個答案！', 'error');
+    showToast('Select an answer first!', 'error');
     return;
   }
   // Highlight correct/wrong
@@ -644,15 +642,15 @@ function checkPrediction() {
   var predicted = parseInt(document.getElementById('predictSlider').value);
   var actual = 120;
   var deviation = Math.abs(predicted - actual) / actual;
-  saveWorksheetData('m3_predict', predicted + '人（實際約' + actual + '人，偏差' + (deviation*100).toFixed(1) + '%）');
+  saveWorksheetData('m3_predict', predicted + ' people (actual ~' + actual + ', deviation ' + (deviation*100).toFixed(1) + '%)');
   var el = document.getElementById('predictResult');
   el.style.display = 'block';
   if (deviation <= 0.2) {
     el.className = 'predict-result success';
-    el.innerHTML = '🎯 預測接近！你的預測：' + predicted + ' 人，實際約 ' + actual + ' 人。偏差 ' + (deviation*100).toFixed(1) + '%<br>下雨天讓更多學生留在校園，週五課程結束後他們選擇去圖書館溫習，而不是冒雨回家！';
+    el.innerHTML = '🎯 Close! Prediction: ' + predicted + ' people, actual ~' + actual + '. Deviation ' + (deviation*100).toFixed(1) + '%<br>Rain kept more students on campus — they chose the library over going home!';
   } else {
     el.className = 'predict-result fail';
-    el.innerHTML = '💡 再想想！你的預測：' + predicted + ' 人，實際約 ' + actual + ' 人。偏差 ' + (deviation*100).toFixed(1) + '%<br>提示：下雨天雖然讓人想回家，但大雨反而讓更多學生留在校園——圖書館成了避雨+溫習的好去處。';
+    el.innerHTML = '💡 Think again! Prediction: ' + predicted + ' people, actual ~' + actual + '. Deviation ' + (deviation*100).toFixed(1) + '%<br>Rain makes students stay on campus — the library becomes a shelter + study spot.';
   }
 }
 
@@ -660,7 +658,7 @@ function checkPrediction() {
 var origRevealAnomaly = revealAnomaly;
 revealAnomaly = function() {
   origRevealAnomaly();
-  var anomalyLabels = ['數據錄入錯誤', '雨天效應導致的異常突增', '考試週的正常高峰', '節假日空館'];
+  var anomalyLabels = ['Data Entry Error', 'Rainy Day Anomaly', 'Normal Exam Peak', 'Holiday Closure'];
   saveWorksheetData('m3_anomaly', anomalyLabels[selectedAnomaly] || '');
 };
 
