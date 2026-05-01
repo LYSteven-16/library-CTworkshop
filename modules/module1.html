@@ -180,80 +180,76 @@
 <div class="page-container fade-in">
 
   <div class="module-header">
-    <span class="module-tag" style="background:var(--danger-red)">模組 1</span>
-    <h1>🎯 痛點挖掘 — 問題引入</h1>
-    <div class="time-hint"><i class="fas fa-clock"></i> 約 20 分鐘</div>
+    <span class="module-tag" style="background:var(--danger-red)">Module 1</span>
+    <h1>🎯 Pain Point Discovery — Problem Introduction</h1>
+    <div class="time-hint"><i class="fas fa-clock"></i> ~10 min</div>
     <div class="learning-obj">
-      <strong>學習目標：</strong>從真實情境出發，感受圖書館人流量監控的實際需求，定義核心問題，初步體驗計算思維的第一步——<strong>問題定義</strong>。
+      <strong>Objective:</strong> Start from real-world scenarios, experience the need for library traffic monitoring, define the core problem, and take your first step in CT — <strong>Problem Definition</strong>.
     </div>
   </div>
 
-  <!-- Scenario Illustration (replaces video placeholder) -->
   <div class="section-card" style="padding:0;overflow:hidden;">
     <div class="scenario-card">
-      <h2><i class="fas fa-book-open"></i> 想像這個場景…</h2>
+      <h2><i class="fas fa-book-open"></i> Imagine This Scenario…</h2>
       <div class="scenario-grid">
         <div class="scenario-moment">
           <div class="moment-icon">😓</div>
-          <div class="moment-text">你抱著課本衝到圖書館，自修室門口貼著<strong>「已滿座」</strong>，只好站在走廊等。</div>
+          <div class="moment-text">You rush to the library, only to see "<strong>FULL</strong>" on the study room door — left standing in the hallway.</div>
         </div>
         <div class="scenario-moment">
           <div class="moment-icon">🤷</div>
-          <div class="moment-text">你不知道<strong>其他樓層有沒有空位</strong>，跑上跑下才發現三樓還有座位。</div>
+          <div class="moment-text">You don't know <strong>if other floors have seats</strong>, running up and down only to find empty seats on the 3rd floor.</div>
         </div>
         <div class="scenario-moment">
           <div class="moment-icon">😤</div>
-          <div class="moment-text">考試週每天搶不到位子，卻不知道<strong>什麼時段人最少</strong>。</div>
+          <div class="moment-text">Exam week, no seats — and you have no idea <strong>when it's quietest</strong>.</div>
         </div>
         <div class="scenario-moment">
           <div class="moment-icon">🤔</div>
-          <div class="moment-text">圖書館管理員也只能<strong>憑感覺</strong>判斷擁不擁擠，沒有即時數據。</div>
+          <div class="moment-text">Library staff can only <strong>guess</strong> how crowded it is — no real-time data.</div>
         </div>
       </div>
       <div class="scenario-question">
-        <p>❓ 如果能設計一個系統解決這個問題，你最想讓它做什麼？</p>
+        <p>❓ If you could design a system to solve this, what would you want it to do?</p>
       </div>
     </div>
   </div>
 
-  <!-- Vote -->
   <div class="section-card">
-    <h2><i class="fas fa-chart-bar"></i> 你去圖書館時遇到過幾次沒座位？</h2>
+    <h2><i class="fas fa-chart-bar"></i> How often do you find no seats at the library?</h2>
     <div class="vote-options" id="voteOptions">
-      <button class="vote-option" onclick="vote(0)">0 次</button>
-      <button class="vote-option" onclick="vote(1)">1-3 次</button>
-      <button class="vote-option" onclick="vote(2)">4-6 次</button>
-      <button class="vote-option" onclick="vote(3)">7 次以上</button>
+      <button class="vote-option" onclick="vote(0)">0 times</button>
+      <button class="vote-option" onclick="vote(1)">1-3 times</button>
+      <button class="vote-option" onclick="vote(2)">4-6 times</button>
+      <button class="vote-option" onclick="vote(3)">7+ times</button>
     </div>
     <div class="vote-insight" id="voteInsight">
-      <p>💡 <strong>想一想：</strong>你身邊有多少同學也遇過這種情況？當一個問題影響大多數人時，它就值得用技術來解決。接下來，我們要學會像工程師一樣<strong>定義問題</strong>。</p>
+      <p>💡 <strong>Think:</strong> How many classmates face this too? When a problem affects most people, it's worth solving with tech. Now let's learn to <strong>define the problem</strong> like an engineer.</p>
     </div>
   </div>
 
-  <!-- Thought Bubble -->
   <div class="section-card">
-    <h2><i class="fas fa-lightbulb"></i> 思考泡泡</h2>
+    <h2><i class="fas fa-lightbulb"></i> Thought Bubble</h2>
     <div class="thought-bubble">
-      <p>如果你有一個魔法螢幕，能顯示圖書館哪裡有空座，你需要它顯示什麼資訊？</p>
+      <p>If you had a magic screen showing library seat availability, what info would you need?</p>
       <div class="thought-guides">
-        <button class="thought-guide-chip" onclick="addThought('現在有多少人在館內？')">👥 現在有多少人？</button>
-        <button class="thought-guide-chip" onclick="addThought('哪個樓層還有空位？')">🏢 哪層有空位？</button>
-        <button class="thought-guide-chip" onclick="addThought('什麼時段人最少？')">🕐 何時人最少？</button>
-        <button class="thought-guide-chip" onclick="addThought('能不能提醒我人少的時候？')">🔔 人少時提醒我</button>
+        <button class="thought-guide-chip" onclick="addThought('How many people are inside now?')">👥 How many now?</button>
+        <button class="thought-guide-chip" onclick="addThought('Which floor has seats?')">🏢 Which floor?</button>
+        <button class="thought-guide-chip" onclick="addThought('When is it quietest?')">🕐 Quietest time?</button>
+        <button class="thought-guide-chip" onclick="addThought('Can I get alerts when it is quiet?')">🔔 Alert me</button>
       </div>
-      <textarea id="thoughtArea" data-save="m1_thought" placeholder="寫下你的想法…也可以點擊上面的提示詞"></textarea>
+      <textarea id="thoughtArea" data-save="m1_thought" placeholder="Write your thoughts… or click the prompts above"></textarea>
     </div>
   </div>
 
-  <!-- Problem Sorting -->
   <div class="section-card">
-    <h2><i class="fas fa-sort"></i> 問題排序：按重要性排列</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);font-size:14px;">將以下三個候選問題按你認為的重要性排序（最重要的排最前），排好後點擊確認。</p>
+    <h2><i class="fas fa-sort"></i> Problem Ranking: Order by Importance</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);font-size:14px;">Rank these 3 candidate problems by importance (most important first), then click confirm.</p>
     <div class="sort-container" id="sortContainer">
       <div class="sort-item" data-id="count">
         <span class="sort-handle"><i class="fas fa-grip-vertical"></i></span>
         <span class="sort-num">1</span>
-        <span class="sort-text">如何統計進館人數？</span>
+        <span class="sort-text">How to count entries?</span>
         <div class="sort-arrows">
           <button onclick="moveSort(this, -1)"><i class="fas fa-chevron-up"></i></button>
           <button onclick="moveSort(this, 1)"><i class="fas fa-chevron-down"></i></button>
@@ -262,7 +258,7 @@
       <div class="sort-item" data-id="display">
         <span class="sort-handle"><i class="fas fa-grip-vertical"></i></span>
         <span class="sort-num">2</span>
-        <span class="sort-text">如何展示空座資訊？</span>
+        <span class="sort-text">How to display seat availability?</span>
         <div class="sort-arrows">
           <button onclick="moveSort(this, -1)"><i class="fas fa-chevron-up"></i></button>
           <button onclick="moveSort(this, 1)"><i class="fas fa-chevron-down"></i></button>
@@ -271,99 +267,87 @@
       <div class="sort-item" data-id="predict">
         <span class="sort-handle"><i class="fas fa-grip-vertical"></i></span>
         <span class="sort-num">3</span>
-        <span class="sort-text">如何預測擁擠時段？</span>
+        <span class="sort-text">How to predict peak hours?</span>
         <div class="sort-arrows">
           <button onclick="moveSort(this, -1)"><i class="fas fa-chevron-up"></i></button>
           <button onclick="moveSort(this, 1)"><i class="fas fa-chevron-down"></i></button>
         </div>
       </div>
     </div>
-    <button class="btn btn-primary sort-confirm-btn" onclick="confirmSort()"><i class="fas fa-check"></i> 確認排序</button>
+    <button class="btn btn-primary sort-confirm-btn" onclick="confirmSort()"><i class="fas fa-check"></i> Confirm Order</button>
     <div class="sort-feedback" id="sortFeedback">
-      <h4><i class="fas fa-hat-wizard"></i> 工程師的視角</h4>
-      <p style="font-size:13px;color:var(--text-light);margin-bottom:12px;">其實這三個問題沒有唯一正確的順序，但工程師通常會這樣想：</p>
+      <h4><i class="fas fa-hat-wizard"></i> Engineer's Perspective</h4>
+      <p style="font-size:13px;color:var(--text-light);margin-bottom:12px;">There's no single right order, but engineers usually think like this:</p>
       <div class="sort-step">
         <div class="sort-step-num">1</div>
         <div>
-          <div class="sort-step-label">統計人數</div>
-          <div class="sort-step-note">先有數據，才能做事。感測器是所有功能的基礎。</div>
+          <div class="sort-step-label">Count People</div>
+          <div class="sort-step-note">Data comes first. Sensors are the foundation of everything.</div>
         </div>
       </div>
       <div class="sort-step">
         <div class="sort-step-num">2</div>
         <div>
-          <div class="sort-step-label">展示資訊</div>
-          <div class="sort-step-note">有了數據，要讓使用者看得懂，才有價值。</div>
+          <div class="sort-step-label">Display Info</div>
+          <div class="sort-step-note">Data is useless unless users can understand it. Visualization creates value.</div>
         </div>
       </div>
       <div class="sort-step">
         <div class="sort-step-num">3</div>
         <div>
-          <div class="sort-step-label">預測時段</div>
-          <div class="sort-step-note">累積歷史數據後，才能做預測。這是最高級的功能。</div>
+          <div class="sort-step-label">Predicted Times</div>
+          <div class="sort-step-note">Predictions need historical data. This is the most advanced feature.</div>
         </div>
       </div>
-      <p style="font-size:13px;color:var(--deep-blue);margin-top:8px;font-weight:500;">這正好對應了我們接下來的學習路線👇</p>
+      <p style="font-size:13px;color:var(--deep-blue);margin-top:8px;font-weight:500;">This maps perfectly to our learning path 👇</p>
       <div class="roadmap">
-        <span class="roadmap-step" style="background:#EF4444;color:white;">① 問題定義</span>
+        <span class="roadmap-step" style="background:#EF4444;color:white;">① Problem Def.</span>
         <span class="roadmap-arrow">→</span>
-        <span class="roadmap-step" style="background:#F59E0B;color:white;">② 分解</span>
+        <span class="roadmap-step" style="background:#F59E0B;color:white;">② Decomposition</span>
         <span class="roadmap-arrow">→</span>
-        <span class="roadmap-step" style="background:#10B981;color:white;">③ 模式識別</span>
+        <span class="roadmap-step" style="background:#10B981;color:white;">③ Pattern Recog.</span>
         <span class="roadmap-arrow">→</span>
-        <span class="roadmap-step" style="background:#EC4899;color:white;">④ 抽象</span>
+        <span class="roadmap-step" style="background:#EC4899;color:white;">④ Abstraction</span>
         <span class="roadmap-arrow">→</span>
-        <span class="roadmap-step" style="background:#8B5CF6;color:white;">⑤ 算法設計</span>
+        <span class="roadmap-step" style="background:#8B5CF6;color:white;">⑤ Algorithm Des.</span>
       </div>
     </div>
   </div>
 
-  <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
-    <button class="knowledge-btn" onclick="showKnowledge('計算思維第一站：問題定義','在動手解決問題之前，最重要的是明確定義問題。\n\n好的問題定義回答三個問題：\n• 問題是什麼？— 圖書館沒座位，同學浪費時間找空位\n• 誰受到影響？— 所有使用圖書館的同學和管理員\n• 需要什麼解決方案？— 一個能即時顯示擁擠程度的系統\n\n這就像醫生看診——先問對症狀，才能開對藥方。問題定義得越清楚，後面的解決方案就越精準。\n\n計算思維的五個步驟：問題定義 → 分解 → 模式識別 → 抽象 → 算法設計，我們現在站在起點上。')">
-      <i class="fas fa-lightbulb"></i> 知識卡片：問題定義
+    <button class="knowledge-btn" onclick="showKnowledge('CT First Stop: Problem Definition','Before solving a problem, you must first define it clearly.\n\nA good problem definition answers three questions:\n• What is the problem? — No seats in the library, wasting time searching\n• Who is affected? — All students and staff using the library\n• What solution is needed? — A system that shows real-time crowding\n\nLike a doctor — diagnose the right symptoms first, then prescribe the right medicine. The clearer the problem definition, the more precise the solution.\n\nThe five steps of CT: Problem Definition → Decomposition → Pattern Recognition → Abstraction → Algorithm Design. We stand at the starting line.')">
+      <i class="fas fa-lightbulb"></i> Knowledge Card: Problem Definition
     </button>
   </div>
 
-  <!-- Knowledge Overlay -->
-
-  <!-- Screenshot CTA -->
   <div class="screenshot-cta">
-  <h3>💡 回到 Figma 繼續學習</h3>
-  <p>記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習！</p>
+  <h3>💡 Return to Figma to Continue</h3>
+  <p>Remember to return to your Figma 🗺️ Learning Roadmap!</p>
 </div>
 
-  <!-- Navigation -->
   <div style="display:flex;justify-content:space-between;margin-top:24px;">
-    <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> 返回首頁</a>
-    <a href="#module2" class="btn btn-primary">進入模組 2：分解思維 → <i class="fas fa-arrow-right"></i></a>
+    <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> Back to Home</a>
+    <a href="#module2" class="btn btn-primary">Go to Module 2: Decomposition → <i class="fas fa-arrow-right"></i></a>
   </div>
 
 </div>
 
 <script>
-// ===== Vote =====
-var voteLabels = ['0 次', '1-3 次', '4-6 次', '7 次以上'];
+var voteLabels = ['0 times', '1-3 times', '4-6 times', '7+ times'];
 function vote(option) {
   document.querySelectorAll('.vote-option').forEach(function(b) { b.classList.remove('selected'); });
   document.querySelectorAll('.vote-option')[option].classList.add('selected');
   document.getElementById('voteInsight').classList.add('show');
   saveWorksheetData('m1_vote', voteLabels[option]);
-  showToast('已投票！想想身邊同學是不是也遇過 📸', 'success');
+  showToast('Vote recorded! How many classmates face this too?', 'success');
 }
-
-// ===== Thought Bubble Guide =====
 function addThought(text) {
   var area = document.getElementById('thoughtArea');
-  if (area.value && !area.value.endsWith('\n')) {
-    area.value += '\n';
-  }
+  if (area.value && !area.value.endsWith('\n')) area.value += '\n';
   area.value += text;
   saveWorksheetData('m1_thought', area.value);
   area.focus();
 }
-
-// ===== Sorting =====
 function moveSort(btn, dir) {
   var item = btn.closest('.sort-item');
   var container = document.getElementById('sortContainer');
@@ -371,33 +355,20 @@ function moveSort(btn, dir) {
   var idx = items.indexOf(item);
   var newIdx = idx + dir;
   if (newIdx < 0 || newIdx >= items.length) return;
-
-  if (dir > 0) {
-    container.insertBefore(item, items[newIdx].nextSibling);
-  } else {
-    container.insertBefore(item, items[newIdx]);
-  }
+  if (dir > 0) container.insertBefore(item, items[newIdx].nextSibling);
+  else container.insertBefore(item, items[newIdx]);
   renumberSort();
 }
-
 function renumberSort() {
   var container = document.getElementById('sortContainer');
-  Array.from(container.children).forEach(function(item, i) {
-    item.querySelector('.sort-num').textContent = i + 1;
-  });
+  Array.from(container.children).forEach(function(item, i) { item.querySelector('.sort-num').textContent = i + 1; });
 }
-
 function confirmSort() {
-  // Save sort order
   var container = document.getElementById('sortContainer');
-  var order = Array.from(container.children).map(function(item) {
-    return item.querySelector('.sort-text').textContent;
-  });
+  var order = Array.from(container.children).map(function(item) { return item.querySelector('.sort-text').textContent; });
   saveWorksheetData('m1_sort', order);
   document.getElementById('sortFeedback').classList.add('show');
-  showToast('排序已確認！看看工程師怎麼想 👇', 'success');
+  showToast('Order confirmed! See how engineers think 👇', 'success');
 }
-
-// Auto-save
 initAutoSave();
 </script>
