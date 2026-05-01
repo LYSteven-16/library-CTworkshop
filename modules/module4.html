@@ -697,79 +697,79 @@
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">使用者能否在 3 秒內看懂關鍵資訊？</div>
-          <div class="check-hint">想想：最重要的數字是不是最大、最醒目？</div>
+          <div class="check-text">Can users grasp key info in 3 seconds?</div>
+          <div class="check-hint">Think: is the most important number the biggest?</div>
         </div>
       </div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">是否用顏色語義傳達含義（紅=擁擠，綠=空閒）？</div>
-          <div class="check-hint">避免只用數字——數字需要閱讀，顏色只需感知。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="checklist-group">
-      <div class="checklist-group-title"><i class="fas fa-mobile-screen" style="color:var(--mid-blue)"></i> 移動端適配</div>
-      <div class="checklist-item" onclick="toggleCheck(this)">
-        <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
-        <div>
-          <div class="check-text">在手機小螢幕上，資訊是否仍然清晰？</div>
-          <div class="check-hint">同學會在地鐵上單手滑手機查看，你的設計能適應嗎？</div>
-        </div>
-      </div>
-      <div class="checklist-item" onclick="toggleCheck(this)">
-        <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
-        <div>
-          <div class="check-text">是否避免了過多的資訊堆疊？</div>
-          <div class="check-hint">少即是多——抽象就是捨棄不必要的細節。</div>
+          <div class="check-text">Uses color semantics (red=crowded, green=free)?</div>
+          <div class="check-hint">Avoid numbers alone — numbers require reading, color requires only perception.</div>
         </div>
       </div>
     </div>
 
     <div class="checklist-group">
-      <div class="checklist-group-title"><i class="fas fa-bullseye" style="color:var(--mid-blue)"></i> 功能完整</div>
+      <div class="checklist-group-title"><i class="fas fa-mobile-screen" style="color:var(--mid-blue)"></i> Mobile-Friendly</div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">是否包含了總人數、樓層擁擠度和建議時段？</div>
-          <div class="check-hint">這是使用者最想知道的三件事。</div>
+          <div class="check-text">Is info still clear on a small phone screen?</div>
+          <div class="check-hint">Students check on the metro one-handed. Can your design handle that?</div>
         </div>
       </div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
-          <div class="check-text">你的設計是否回應了使用者的核心需求？</div>
-          <div class="check-hint">核心需求 =「現在該不該去圖書館？」——你的界面能幫他做決定嗎？</div>
+          <div class="check-text">Does it avoid information overload?</div>
+          <div class="check-hint">Less is more — abstraction discards unnecessary details.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title"><i class="fas fa-bullseye" style="color:var(--mid-blue)"></i> Feature Complete</div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
+        <div>
+          <div class="check-text">Includes total count, floor occupancy, and recommended times?</div>
+          <div class="check-hint">Three things users most want to know.</div>
+        </div>
+      </div>
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
+        <div>
+          <div class="check-text">Does your design address the user's core need?</div>
+          <div class="check-hint">Core need = "Should I go to the library now?" — Can your interface help decide?</div>
         </div>
       </div>
     </div>
 
     <!-- Reflection -->
     <div class="reflect-card">
-      <h4><i class="fas fa-pen-to-square"></i> 反思：你做了哪些抽象？</h4>
-      <p style="font-size:13px;color:#78350F;margin-bottom:8px;">回想你選擇組件的過程——你<strong>保留了</strong>什麼資訊？<strong>捨棄了</strong>什麼資訊？為什麼？</p>
-      <textarea data-save="m4_reflect" placeholder="例如：我保留了擁擠度的顏色指示，捨棄了精確人數，因為同學只需要知道「擠不擠」…"></textarea>
+      <h4><i class="fas fa-pen-to-square"></i> Reflection: What Abstractions Did You Make?</h4>
+      <p style="font-size:13px;color:#78350F;margin-bottom:8px;">Think back — what info did you <strong>keep</strong>? What did you <strong>discard</strong>? Why?</p>
+      <textarea data-save="m4_reflect" placeholder="e.g.: I kept crowding color indicator, discarded exact count, because students only need to know if it's crowded..."></textarea>
     </div>
   </div>
 
   <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
-    <button class="knowledge-btn" onclick="showKnowledge('抽象與視覺化','抽象（Abstraction）是計算思維的第四步：保留關鍵資訊，捨棄無關細節。\n\n就像地圖——它不會畫出每棵樹，但會標出道路和地標。地圖是一種抽象。\n\n在你的界面設計中，抽象無處不在：\n• 把「3F 有 82 人」抽象為🔴紅燈——捨棄了精確數字，保留了「擁擠」的語義\n• 把每分鐘的進出記錄抽象為一條趨勢線——捨棄了細節波動，保留了整體走勢\n• 把各區域的數據抽象為熱力圖——捨棄了數字，保留了空間分佈\n\n抽象不是「刪掉」，而是「選擇性呈現」。好的抽象讓使用者更快做決定。\n\n下一模組，我們將設計精確的計數算法——這是計算思維的第五步！')">
-      <i class="fas fa-lightbulb"></i> 知識卡片：抽象與視覺化
+    <button class="knowledge-btn" onclick="showKnowledge('Abstraction & Visualization','Abstraction is CT step four: keep key info, discard irrelevant detail.\n\nLike a map — it does not show every tree, but marks roads and landmarks. A map is an abstraction.\n\nIn your interface design, abstraction is everywhere:\n• "3F has 82 people" becomes 🔴 red light — discard exact count, keep "crowded" meaning\n• Per-minute logs become a trend line — discard micro-fluctuations, keep overall direction\n• Zone data becomes a heatmap — discard numbers, keep spatial distribution\n\nAbstraction is not "deleting" — it is "selectively presenting". Good abstraction helps users decide faster.\n\nNext module: we design the precise counting algorithm — CT step five!')">
+      <i class="fas fa-lightbulb"></i> Knowledge Card: Abstraction & Visualization
     </button>
   </div>
 
   <div class="screenshot-cta">
-  <h3>💡 回到 Figma 繼續學習</h3>
-  <p>記得回到 Figma 中的 🗺️ Learning Roadmap 繼續學習！</p>
+  <h3>💡 Return to Figma to Continue</h3>
+  <p>Remember to return to your Figma 🗺️ Learning Roadmap!</p>
 </div>
 
   <div style="display:flex;justify-content:space-between;margin-top:24px;">
-    <a href="#module3" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 模組 3</a>
-    <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> 返回首頁</a>
-    <a href="#module5" class="btn btn-primary">進入模組 5 → <i class="fas fa-arrow-right"></i></a>
+    <a href="#module3" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Module 3</a>
+    <a href="#home" class="btn btn-outline"><i class="fas fa-house"></i> Back to Home</a>
+    <a href="#module5" class="btn btn-primary">Go to Module 5: Algorithm Design → <i class="fas fa-arrow-right"></i></a>
   </div>
 
 </div>
@@ -794,41 +794,41 @@ function selectBridge(btn, choice) {
 // ===== Prototype Builder =====
 const uiComponents = [
   {
-    id: 'total', name: '📊 總人數卡片', desc: '顯示當前在館總人數', required: true,
+    id: 'total', name: '📊 Total Count', desc: 'Real-time occupancy', required: true,
     render: function() {
       return '<div class="slot-total">' +
         '<div class="big-num">147</div>' +
-        '<div class="big-label">目前在館人數</div>' +
+        '<div class="big-label">Current Occupancy</div>' +
         '</div>';
     }
   },
   {
-    id: 'floor', name: '🚦 樓層擁擠度', desc: '紅/黃/綠三色指示', required: true,
+    id: 'floor', name: '🚦 Floor Occupancy', desc: 'Red / Yellow / Green indicator', required: true,
     render: function() {
       return '<div class="slot-floor">' +
-        '<div class="floor-row"><div class="floor-dot" style="background:#EF4444"></div><span class="floor-name">3F 自修</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:85%;background:#EF4444"></div></div></div>' +
-        '<div class="floor-row"><div class="floor-dot" style="background:#F59E0B"></div><span class="floor-name">2F 閱覽</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:55%;background:#F59E0B"></div></div></div>' +
-        '<div class="floor-row"><div class="floor-dot" style="background:#10B981"></div><span class="floor-name">1F 兒童</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:20%;background:#10B981"></div></div></div>' +
+        '<div class="floor-row"><div class="floor-dot" style="background:#EF4444"></div><span class="floor-name">3F Study</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:85%;background:#EF4444"></div></div></div>' +
+        '<div class="floor-row"><div class="floor-dot" style="background:#F59E0B"></div><span class="floor-name">2F Reading</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:55%;background:#F59E0B"></div></div></div>' +
+        '<div class="floor-row"><div class="floor-dot" style="background:#10B981"></div><span class="floor-name">1F Children</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:20%;background:#10B981"></div></div></div>' +
         '</div>';
     }
   },
   {
-    id: 'suggest', name: '💡 建議時段', desc: '推薦最佳前往時間', required: true,
+    id: 'suggest', name: '💡 Suggested Time', desc: 'Best time to visit', required: true,
     render: function() {
       return '<div class="slot-suggest">' +
         '<div class="suggest-icon">🕐</div>' +
-        '<div class="suggest-text">建議 14:00 後前往</div>' +
-        '<div class="suggest-time">預計 2F 空位較多</div>' +
+        '<div class="suggest-text">Suggested: after 14:00</div>' +
+        '<div class="suggest-time">2F likely has most seats</div>' +
         '</div>';
     }
   },
   {
-    id: 'heatmap', name: '🗺️ 熱力圖', desc: '區域擁擠程度可視化',
+    id: 'heatmap', name: '🗺️ Heatmap', desc: 'Zone crowding visualization',
     render: function() {
       var cells = [
-        {c:'#10B981',t:'閱覽'},{c:'#F59E0B',t:'自修'},{c:'#EF4444',t:'電腦'},{c:'#10B981',t:'期刊'},
-        {c:'#10B981',t:'入口'},{c:'#10B981',t:'新書'},{c:'#F59E0B',t:'討論'},{c:'#10B981',t:'休息'},
-        {c:'#10B981',t:'兒童'},{c:'#10B981',t:'視聽'},{c:'#10B981',t:'報刊'},{c:'#10B981',t:'服務'}
+        {c:'#10B981',t:'Reading'},{c:'#F59E0B',t:'Study'},{c:'#EF4444',t:'Computer'},{c:'#10B981',t:'Periodicals'},
+        {c:'#10B981',t:'Entrance'},{c:'#10B981',t:'New Books'},{c:'#F59E0B',t:'Discussion'},{c:'#10B981',t:'Lounge'},
+        {c:'#10B981',t:'Children'},{c:'#10B981',t:'A/V Room'},{c:'#10B981',t:'Newspapers'},{c:'#10B981',t:'Info Desk'}
       ];
       var html = '<div class="slot-heatmap-mini">';
       cells.forEach(function(item) {
@@ -839,28 +839,28 @@ const uiComponents = [
     }
   },
   {
-    id: 'trend', name: '📈 趨勢折線圖', desc: '顯示今日人數變化',
+    id: 'trend', name: '📈 Trend Chart', desc: 'Today count changes',
     render: function() {
       return '<div class="slot-trend"><canvas id="trendCanvas" width="240" height="50"></canvas></div>';
     }
   },
   {
-    id: 'notify', name: '🔔 通知設定', desc: '人數低於閾值時提醒',
+    id: 'notify', name: '🔔 Notifications', desc: 'Alert when below threshold',
     render: function() {
       return '<div class="slot-notify">' +
         '<span class="bell-icon">🔔</span>' +
-        '<span class="notify-label">擁擠提醒</span>' +
+        '<span class="notify-label">Crowding Alert</span>' +
         '<div class="toggle-switch"></div>' +
         '</div>';
     }
   },
   {
-    id: 'history', name: '📋 歷史記錄', desc: '過去7天數據對比',
+    id: 'history', name: '📋 History', desc: 'Past 7 days comparison',
     render: function() {
       return '<div class="slot-history">' +
-        '<div class="hist-row"><span class="hist-label">週一</span><span>132人</span></div>' +
-        '<div class="hist-row"><span class="hist-label">週二</span><span>98人</span></div>' +
-        '<div class="hist-row"><span class="hist-label">週三</span><span>145人</span></div>' +
+        '<div class="hist-row"><span class="hist-label">Mon</span><span>132 people</span></div>' +
+        '<div class="hist-row"><span class="hist-label">Tue</span><span>98 people</span></div>' +
+        '<div class="hist-row"><span class="hist-label">Wed</span><span>145 people</span></div>' +
         '</div>';
     }
   },
@@ -874,7 +874,7 @@ let phoneSlots = [null, null, null, null, null, null];
     var btn = document.createElement('button');
     btn.className = 'palette-item';
     btn.dataset.id = comp.id;
-    btn.innerHTML = comp.name + (comp.required ? ' <span class="required-star">★必須</span>' : '');
+    btn.innerHTML = comp.name + (comp.required ? ' <span class="required-star">★Required</span>' : '');
     btn.onclick = function() { addComponent(comp); };
     container.appendChild(btn);
   });
@@ -883,12 +883,12 @@ let phoneSlots = [null, null, null, null, null, null];
 function addComponent(comp) {
   // Prevent adding the same component twice
   if (phoneSlots.some(function(s) { return s && s.id === comp.id; })) {
-    showToast('這個組件已經添加過了！點擊手機畫面中的組件可移除。', 'info');
+    showToast('Already added! Click on the phone to remove.', 'info');
     return;
   }
   var slotIdx = phoneSlots.indexOf(null);
   if (slotIdx === -1) {
-    showToast('手機畫面已滿！點擊已放置的組件可移除。', 'info');
+    showToast('Phone screen full! Click placed items to remove.', 'info');
     return;
   }
   phoneSlots[slotIdx] = comp;
@@ -914,7 +914,7 @@ function clearSlot(idx) {
   phoneSlots[idx] = null;
   var slot = document.getElementById('slot-' + idx);
   slot.classList.remove('filled');
-  slot.innerHTML = '<span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>';
+  slot.innerHTML = '<span style="color:#94A3B8;font-size:11px;">+ Click to add</span>';
   var paletteItem = document.querySelector('.palette-item[data-id="' + comp.id + '"]');
   if (paletteItem) paletteItem.classList.remove('placed');
 
@@ -926,7 +926,7 @@ function resetPrototype() {
   for (var i = 0; i < 6; i++) {
     var slot = document.getElementById('slot-' + i);
     slot.classList.remove('filled');
-    slot.innerHTML = '<span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>';
+    slot.innerHTML = '<span style="color:#94A3B8;font-size:11px;">+ Click to add</span>';
   }
   document.querySelectorAll('.palette-item').forEach(function(i) { i.classList.remove('placed'); });
   document.getElementById('completionBadge').classList.remove('show');
@@ -948,7 +948,7 @@ function checkDesign() {
     return !phoneSlots.some(function(s) { return s && s.id === r; });
   });
   if (missing.length === 0) {
-    showToast('✅ 設計檢查通過！必要組件已齊全。', 'success');
+    showToast('✅ Design check passed! All required components in place.', 'success');
     document.getElementById('completionBadge').classList.add('show');
     // Save design component IDs
     saveWorksheetData('m4_design', phoneSlots.filter(function(s){return s}).map(function(s){return s.id}));
@@ -958,7 +958,7 @@ function checkDesign() {
     var names = missing.map(function(id) {
       return uiComponents.find(function(c) { return c.id === id; }).name;
     });
-    showToast('⚠️ 還缺少必要組件：' + names.join('、'), 'error');
+    showToast('⚠️ Missing required components: ' + names.join(', '), 'error');
   }
 }
 
@@ -1006,7 +1006,7 @@ function drawTrendChart() {
   ctx.textAlign = 'center';
   ['8', '10', '12', '14', '16'].forEach(function(t, i) {
     var x = (i * 2) * step;
-    if (x <= w) ctx.fillText(t + '時', x, h - 1);
+    if (x <= w) ctx.fillText(t + ':00', x, h - 1);
   });
 }
 
