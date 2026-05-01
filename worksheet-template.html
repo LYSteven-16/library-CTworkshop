@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>學習工作單</title>
+<title>Learning Worksheet</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -135,112 +135,112 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 <div class="ws" id="wsRoot">
   <div class="print-bar">
     <button onclick="doPrint()" style="padding:10px 24px;font-size:16px;background:var(--deep-blue);color:white;border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:700;">
-      🖨️ 列印工作單（另存為 PDF）
+      🖨️ Print Worksheet (Save as PDF)
     </button>
-    <span style="color:#6B7280;font-size:13px;">點擊列印，在對話框中選擇「另存為 PDF」即可下載</span>
+    <span style="color:#6B7280;font-size:13px;">Click print, choose "Save as PDF" to download</span>
   </div>
-  <div class="ws-hd"><div><h1>🔍 解碼圖書館熱力圖</h1><div class="sub">計算思維自學工坊 — 學習工作單</div></div><div class="meta" id="meta"></div></div>
+  <div class="ws-hd"><div><h1>🔍 Decoding the Library Heatmap</h1><div class="sub">CT Self-Study Workshop — Learning Worksheet</div></div><div class="meta" id="meta"></div></div>
   <div class="ws-body" id="body"></div>
-  <div class="ws-ft">解碼圖書館熱力圖 — 計算思維自學工坊<span>系統自動生成</span></div>
+  <div class="ws-ft">Decoding the Library Heatmap — CT Self-Study Workshop<span>Auto-generated</span></div>
 </div>
 
 <script>
 (function(){
   var D=JSON.parse(localStorage.getItem('ct_worksheet_data')||'{}');
-  var name=localStorage.getItem('ct_workshop_name')||'同學';
+  var name=localStorage.getItem('ct_workshop_name')||'Student';
   var prog=JSON.parse(localStorage.getItem('ct_workshop_progress')||'{}');
   var now=new Date(),ds=now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate();
-  document.getElementById('meta').innerHTML='<strong>'+name+'</strong>'+ds+'<br>完成 '+Object.keys(prog).length+' / 6 模組';
+  document.getElementById('meta').innerHTML='<strong>'+name+'</strong>'+ds+'<br>Completed '+Object.keys(prog).length+' / 6 modules';
 
   function g(k){return D[k]||''}
-  function gg(k){var x=g(k);return x||'<span class="em">（未填寫）</span>'}
+  function gg(k){var x=g(k);return x||'<span class="em">(Not filled)</span>'}
   function mh(t,c,cl){return'<div class="wm"><div class="wh" style="background:'+cl+'"><span class="tag">'+t+'</span><span class="ct-tag">'+c+'</span></div><div class="wb">'}
 
   // uiComponents — same as module4
-  var uiComponents=[{id:'total',name:'📊 總人數卡片',render:function(){return'<div class="slot-total"><div class="big-num">147</div><div class="big-label">目前在館人數</div></div>'}},{id:'floor',name:'🚦 樓層擁擠度',render:function(){return'<div class="slot-floor"><div class="floor-row"><div class="floor-dot" style="background:#EF4444"></div><span class="floor-name">3F 自修</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:85%;background:#EF4444"></div></div></div><div class="floor-row"><div class="floor-dot" style="background:#F59E0B"></div><span class="floor-name">2F 閱覽</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:55%;background:#F59E0B"></div></div></div><div class="floor-row"><div class="floor-dot" style="background:#10B981"></div><span class="floor-name">1F 兒童</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:20%;background:#10B981"></div></div></div></div>'}},{id:'suggest',name:'💡 建議時段',render:function(){return'<div class="slot-suggest"><div class="suggest-icon">🕐</div><div class="suggest-text">建議 14:00 後前往</div><div class="suggest-time">預計 2F 空位較多</div></div>'}},{id:'heatmap',name:'🗺️ 熱力圖',render:function(){var cs=[{c:'#10B981',t:'閱覽'},{c:'#F59E0B',t:'自修'},{c:'#EF4444',t:'電腦'},{c:'#10B981',t:'期刊'},{c:'#10B981',t:'入口'},{c:'#10B981',t:'新書'},{c:'#F59E0B',t:'討論'},{c:'#10B981',t:'休息'},{c:'#10B981',t:'兒童'},{c:'#10B981',t:'視聽'},{c:'#10B981',t:'報刊'},{c:'#10B981',t:'服務'}];var h='<div class="slot-heatmap-mini">';cs.forEach(function(x){h+='<div class="heatmap-mini-cell" style="background:'+x.c+'">'+x.t+'</div>'});return h+'</div>'}},{id:'trend',name:'📈 趨勢折線圖',render:function(){return'<div class="slot-trend"><svg viewBox="0 0 240 40" width="100%" height="40"><polyline points="0,30 30,20 60,10 90,5 120,15 150,25 180,20 210,15 240,8" fill="none" stroke="#3B82F6" stroke-width="2"/><rect x="0" y="0" width="240" height="40" fill="rgba(59,130,246,0.08)"/><polyline points="0,30 30,20 60,10 90,5 120,15 150,25 180,20 210,15 240,8 240,40 0,40" fill="rgba(59,130,246,0.15)"/></svg><div class="trend-label">今日人數變化 8→18時</div></div>'}},{id:'notify',name:'🔔 通知設定',render:function(){return'<div class="slot-notify"><span class="bell-icon">🔔</span><span class="notify-label">擁擠提醒</span><div class="toggle-switch"></div></div>'}},{id:'history',name:'📋 歷史記錄',render:function(){return'<div class="slot-history"><div class="hist-row"><span class="hist-label">週一</span><span>132人</span></div><div class="hist-row"><span class="hist-label">週二</span><span>98人</span></div><div class="hist-row"><span class="hist-label">週三</span><span>145人</span></div></div>'}}];
+  var uiComponents=[{id:'total',name:'📊 Total Count',render:function(){return'<div class="slot-total"><div class="big-num">147</div><div class="big-label">Current Occupancy</div></div>'}},{id:'floor',name:'🚦 Floor Occupancy',render:function(){return'<div class="slot-floor"><div class="floor-row"><div class="floor-dot" style="background:#EF4444"></div><span class="floor-name">3F Study</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:85%;background:#EF4444"></div></div></div><div class="floor-row"><div class="floor-dot" style="background:#F59E0B"></div><span class="floor-name">2F Reading</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:55%;background:#F59E0B"></div></div></div><div class="floor-row"><div class="floor-dot" style="background:#10B981"></div><span class="floor-name">1F Children</span><div class="floor-bar-bg"><div class="floor-bar-fill" style="width:20%;background:#10B981"></div></div></div></div>'}},{id:'suggest',name:'💡 Suggested Time',render:function(){return'<div class="slot-suggest"><div class="suggest-icon">🕐</div><div class="suggest-text">Suggested: after 14:00</div><div class="suggest-time">2F likely has most seats</div></div>'}},{id:'heatmap',name:'🗺️ Heatmap',render:function(){var cs=[{c:'#10B981',t:'Reading'},{c:'#F59E0B',t:'Study'},{c:'#EF4444',t:'Computer'},{c:'#10B981',t:'Periodicals'},{c:'#10B981',t:'Entrance'},{c:'#10B981',t:'New Books'},{c:'#F59E0B',t:'Discussion'},{c:'#10B981',t:'Lounge'},{c:'#10B981',t:'Children'},{c:'#10B981',t:'A/V Room'},{c:'#10B981',t:'Newspapers'},{c:'#10B981',t:'Info Desk'}];var h='<div class="slot-heatmap-mini">';cs.forEach(function(x){h+='<div class="heatmap-mini-cell" style="background:'+x.c+'">'+x.t+'</div>'});return h+'</div>'}},{id:'trend',name:'📈 Trend Chart',render:function(){return'<div class="slot-trend"><svg viewBox="0 0 240 40" width="100%" height="40"><polyline points="0,30 30,20 60,10 90,5 120,15 150,25 180,20 210,15 240,8" fill="none" stroke="#3B82F6" stroke-width="2"/><rect x="0" y="0" width="240" height="40" fill="rgba(59,130,246,0.08)"/><polyline points="0,30 30,20 60,10 90,5 120,15 150,25 180,20 210,15 240,8 240,40 0,40" fill="rgba(59,130,246,0.15)"/></svg><div class="trend-label">Today 8→18:00</div></div>'}},{id:'notify',name:'🔔 Notifications',render:function(){return'<div class="slot-notify"><span class="bell-icon">🔔</span><span class="notify-label">Crowding Alert</span><div class="toggle-switch"></div></div>'}},{id:'history',name:'📋 History',render:function(){return'<div class="slot-history"><div class="hist-row"><span class="hist-label">Mon</span><span>132 people</span></div><div class="hist-row"><span class="hist-label">Tue</span><span>98 people</span></div><div class="hist-row"><span class="hist-label">Wed</span><span>145 people</span></div></div>'}}];
 
   var h='';
 
   // Module 1
-  h+=mh('模組 1 — 痛點挖掘','問題定義','#EF4444');
-  h+='<div class="lbl">📊 投票：你去圖書館時遇到過幾次沒座位？</div><div class="vote-row">';
-  ['0 次','1-3 次','4-6 次','7 次以上'].forEach(function(o){h+='<span class="vt'+(o===g('m1_vote')?' sel':'')+'">'+o+'</span>'});
-  h+='</div><div class="lbl">💭 思考泡泡</div><div class="txt'+(g('m1_thought')?'':' em')+'">'+gg('m1_thought')+'</div>';
-  var sa=g('m1_sort');h+='<div class="lbl">📋 問題排序</div>';
+  h+=mh('Module 1 — Pain Point Discovery','Problem Def.','#EF4444');
+  h+='<div class="lbl">📊 Vote:How often do you find no seats?</div><div class="vote-row">';
+  ['0  times','1-3  times','4-6  times','7+ times'].forEach(function(o){h+='<span class="vt'+(o===g('m1_vote')?' sel':'')+'">'+o+'</span>'});
+  h+='</div><div class="lbl">💭 Thought Bubble</div><div class="txt'+(g('m1_thought')?'':' em')+'">'+gg('m1_thought')+'</div>';
+  var sa=g('m1_sort');h+='<div class="lbl">📋 Problem Ranking</div>';
   if(sa&&sa.length){h+='<div class="sort">';sa.forEach(function(s,i){h+='<div class="si"><div class="sn">'+(i+1)+'</div>'+s+'</div>'});h+='</div>'}
-  else{h+='<div class="txt em">（未完成排序）</div>'}
+  else{h+='<div class="txt em">(Not ranked)</div>'}
   h+='</div></div>';
 
   // Module 2
-  h+=mh('模組 2 — 解構問題','分解','#F59E0B');
-  var fa=g('m2_flow');h+='<div class="lbl">🔄 數據流排序</div>';
+  h+=mh('Module 2 — Deconstruction','Decomposition','#F59E0B');
+  var fa=g('m2_flow');h+='<div class="lbl">🔄 Data Flow Sort</div>';
   if(fa&&fa.length){h+='<div class="flow">';fa.filter(Boolean).forEach(function(s,i){if(i>0)h+='<span class="fw">→</span>';h+='<span class="fs">'+s+'</span>'});h+='</div>'}
-  else{h+='<div class="txt em">（未完成）</div>'}
-  h+='<div class="lbl">📦 卡片分類</div><div class="txt">'+gg('m2_classify')+'</div>';
+  else{h+='<div class="txt em">(Not completed)</div>'}
+  h+='<div class="lbl">📦 Card Sort</div><div class="txt">'+gg('m2_classify')+'</div>';
   h+='</div></div>';
 
   // Module 3
-  h+=mh('模組 3 — 模式偵探','模式識別','#0EA5E9');
-  var ma=g('m3_match');h+='<div class="lbl">🔗 模式配對</div>';
+  h+=mh('Module 3 — Pattern Detective','Pattern Recognition','#0EA5E9');
+  var ma=g('m3_match');h+='<div class="lbl">🔗 Pattern Match</div>';
   if(ma&&ma.length){ma.forEach(function(p){h+='<div class="mr"><div class="ml">'+p.left+'</div><span class="mv">→</span><div class="mrr">'+p.right+'</div></div>'})}
-  else{h+='<div class="txt em">（未完成配對）</div>'}
-  h+='<div class="lbl">⚠️ 異常數據判斷</div><div class="anomaly">'+gg('m3_anomaly')+'</div>';
-  h+='<div class="lbl">🔮 雨天預測</div><div class="txt">'+gg('m3_predict')+'</div>';
+  else{h+='<div class="txt em">(Not matched)</div>'}
+  h+='<div class="lbl">⚠️ Anomaly Detection</div><div class="anomaly">'+gg('m3_anomaly')+'</div>';
+  h+='<div class="lbl">🔮 Rain Prediction</div><div class="txt">'+gg('m3_predict')+'</div>';
   h+='</div></div>';
 
   // Module 4
-  h+=mh('模組 4 — 視覺化設計師','抽象','#EC4899');
-  h+='<div class="lbl">✅ 設計檢查清單</div>';
+  h+=mh('Module 4 — Visual Designer','Abstraction','#EC4899');
+  h+='<div class="lbl">✅ Design Checklist</div>';
   var cl=g('m4_checklist');if(cl&&cl.length){cl.forEach(function(x){h+='<div class="ci'+(x.checked?' ok':'')+'"><div class="cb">✓</div><span>'+x.text+'</span></div>'})}
-  else{h+='<div class="txt em">（未完成檢查清單）</div>'}
-  var dsn=g('m4_design');h+='<div class="lbl">📱 手機原型設計</div>';
+  else{h+='<div class="txt em">(Not checked)</div>'}
+  var dsn=g('m4_design');h+='<div class="lbl">📱 Phone Prototype</div>';
   if(dsn&&dsn.length){
     h+='<div class="phone-frame"><div class="phone-notch"></div><div class="phone-statusbar"><span>9:41</span><span>📶 🔋</span></div><div class="phone-screen">';
     dsn.forEach(function(id){var comp=uiComponents.find(function(c){return c.id===id});if(comp){h+='<div class="phone-slot filled">'+comp.render()+'</div>'}else{h+='<div class="phone-slot filled">'+id+'</div>'}});
     h+='</div></div>';
-  }else{h+='<div class="txt em">（未設計）</div>'}
-  h+='<div class="lbl">💬 抽象反思</div><div class="txt'+(g('m4_reflect')?'':' em')+'">'+gg('m4_reflect')+'</div>';
+  }else{h+='<div class="txt em">(Not designed)</div>'}
+  h+='<div class="lbl">💬 Abstraction Reflection</div><div class="txt'+(g('m4_reflect')?'':' em')+'">'+gg('m4_reflect')+'</div>';
   h+='</div></div>';
 
   // Module 5
-  h+=mh('模組 5 — 算法工程師','算法設計','#8B5CF6');
-  var dr=g('m5_debounce_result');h+='<div class="lbl">⏱ 去抖測試：<b>'+gg('m5_debounce')+'</b></div>';
-  if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';h+='<div class="deb"><div class="dm"><div class="dn">'+dr.total+'</div><div class="dl">總人數</div></div><div class="dm"><div class="dn" style="color:#F59E0B">'+dr.fp+'</div><div class="dl">誤報</div></div><div class="dm"><div class="dn" style="color:#10B981">'+dr.missed+'</div><div class="dl">漏計</div></div><div class="dm"><div class="dn" style="color:'+ac+'">'+dr.acc+'%</div><div class="dl">準確率</div></div></div>'}
-  else{h+='<div class="txt em">（未完成去抖測試）</div>'}
-  h+='<div class="lbl">🔀 流程圖填空</div><div class="fc">';
-  h+='<span class="fn s">IR 感測器觸發</span><span class="fd">⬇</span>';
-  h+='<span class="fn d">方向判定</span><span class="fd">⬇</span>';
+  h+=mh('Module 5 — Algorithm Engineer','Algorithm Design','#8B5CF6');
+  var dr=g('m5_debounce_result');h+='<div class="lbl">⏱ Debounce Test: <b>'+gg('m5_debounce')+'</b></div>';
+  if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';h+='<div class="deb"><div class="dm"><div class="dn">'+dr.total+'</div><div class="dl">Total</div></div><div class="dm"><div class="dn" style="color:#F59E0B">'+dr.fp+'</div><div class="dl">FP</div></div><div class="dm"><div class="dn" style="color:#10B981">'+dr.missed+'</div><div class="dl">Missed</div></div><div class="dm"><div class="dn" style="color:'+ac+'">'+dr.acc+'%</div><div class="dl">Accuracy</div></div></div>'}
+  else{h+='<div class="txt em">(Debounce test not done)</div>'}
+  h+='<div class="lbl">🔀 Flowchart Fill-in</div><div class="fc">';
+  h+='<span class="fn s">IR Sensor Trigger</span><span class="fd">⬇</span>';
+  h+='<span class="fn d">Direction Check</span><span class="fd">⬇</span>';
   h+='<div class="fc2"><span class="fn f">enter_count += 1</span><span class="fn f">exit_count += 1</span></div><span class="fd">⬇</span>';
-  h+='<span class="fn f">更新 current_count</span><span class="fd">⬇</span>';
-  h+='<span class="fn f">邊界保護</span><span class="fd">⬇</span>';
-  h+='<span class="fn f">去抖過濾</span></div>';
+  h+='<span class="fn f">Update current_count</span><span class="fd">⬇</span>';
+  h+='<span class="fn f">Boundary Guard</span><span class="fd">⬇</span>';
+  h+='<span class="fn f">Debounce Filter</span></div>';
   h+='<div style="text-align:center;font-weight:700;margin-top:4px">'+gg('m5_flowchart')+'</div>';
   h+='</div></div>';
 
   // Module 6
-  h+=mh('模組 6 — 系統整合與反思','整合','#10B981');
-  h+='<div class="lbl">🧠 概念測驗</div>';
-  var qq=['1. 拆成三個模組屬於？','2. 先遮A再遮B=進入屬於？','3. 紅綠燈代替人數屬於？','4. 每天10-12點是高峰屬於？'];
-  var qo=[['A.模式識別','B.分解','C.抽象','D.算法設計'],['A.分解','B.模式識別','C.抽象','D.算法設計'],['A.算法設計','B.分解','C.抽象','D.模式識別'],['A.抽象','B.算法設計','C.分解','D.模式識別']];
+  h+=mh('Module 6 — Integration & Reflection','Integration','#10B981');
+  h+='<div class="lbl">🧠 Concept Quiz</div>';
+  var qq=['1. Splitting into 3 modules is which CT?','2. A-then-B = Enter is which CT?','3. Traffic lights instead of count is which CT?','4. Daily 10-12 peak is which CT?'];
+  var qo=[['A.Pattern Recognition','B.Decomposition','C.Abstraction','D.Algorithm Design'],['A.Decomposition','B.Pattern Recognition','C.Abstraction','D.Algorithm Design'],['A.Algorithm Design','B.Decomposition','C.Abstraction','D.Pattern Recognition'],['A.Abstraction','B.Algorithm Design','C.Decomposition','D.Pattern Recognition']];
   var qd=g('m6_quiz_detail');
   for(var i=0;i<4;i++){var clr='';if(qd&&qd[i])clr=qd[i].right?' cor':' wrg';
     h+='<div class="qq'+clr+'"><div class="qq-t">'+qq[i]+'</div><div class="qos">';
     qo[i].forEach(function(o,j){var c='';if(qd&&qd[i]){if(qd[i].chosen===String.fromCharCode(65+j))c=qd[i].right?' ca':' wa';else if(qd[i].correct===String.fromCharCode(65+j))c=' ca'}h+='<span class="qo'+c+'">'+o+'</span>'});
     h+='</div></div>';}
-  h+='<div style="text-align:center;font-size:15px;font-weight:900;color:#F59E0B;margin:10px 0">得分：'+gg('m6_quiz')+'</div>';
-  h+='<div class="lbl">📊 能力自評</div>';
+  h+='<div style="text-align:center;font-size:15px;font-weight:900;color:#F59E0B;margin:10px 0">Score: '+gg('m6_quiz')+'</div>';
+  h+='<div class="lbl">📊 Self-Assessment</div>';
   var rd=g('m6_radar');
-  if(rd&&rd['分解']){h+='<div class="rd-wrap" id="radarWrap"></div>'}
-  else{h+='<div class="txt em">（未完成）</div>'}
-  h+='<div class="lbl">💬 反思</div><div class="txt'+(g('m6_reflect1')?'':' em')+'">'+gg('m6_reflect1')+'</div><div class="txt'+(g('m6_reflect2')?'':' em')+'">'+gg('m6_reflect2')+'</div><div class="txt'+(g('m6_reflect3')?'':' em')+'">'+gg('m6_reflect3')+'</div>';
+  if(rd&&rd['Decomposition']){h+='<div class="rd-wrap" id="radarWrap"></div>'}
+  else{h+='<div class="txt em">(Not completed)</div>'}
+  h+='<div class="lbl">💬 Reflection</div><div class="txt'+(g('m6_reflect1')?'':' em')+'">'+gg('m6_reflect1')+'</div><div class="txt'+(g('m6_reflect2')?'':' em')+'">'+gg('m6_reflect2')+'</div><div class="txt'+(g('m6_reflect3')?'':' em')+'">'+gg('m6_reflect3')+'</div>';
   h+='</div></div>';
 
   document.getElementById('body').innerHTML=h;
 
   // Draw radar SVG
   var rd=g('m6_radar');
-  if(rd&&rd['分解']){
-    var rl=['分解','模式識別','抽象','算法設計'];
+  if(rd&&rd['Decomposition']){
+    var rl=['Decomposition','Pattern Recognition','Abstraction','Algorithm Design'];
     var vals=[parseInt(rd[rl[0]])||5,parseInt(rd[rl[1]])||5,parseInt(rd[rl[2]])||5,parseInt(rd[rl[3]])||5];
     var W=260,H=260,cx=130,cy=130,R=85;
     var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">';
