@@ -536,10 +536,10 @@
       <button class="bridge-option" onclick="selectBridge(this, 'A')">📊 Per-Minute Table</button>
       <button class="bridge-option" onclick="selectBridge(this, 'B')">🟢🔴 Traffic Light Indicator</button>
       <button class="bridge-option" onclick="selectBridge(this, 'C')">📋 Full Entry/Exit Log</button>
-      <button class="bridge-option" onclick="selectBridge(this, 'D')">🗺️ 熱力圖分佈</button>
+      <button class="bridge-option" onclick="selectBridge(this, 'D')">🗺️ Heatmap View</button>
     </div>
     <div class="bridge-reveal" id="bridgeReveal">
-      <strong>💡 關鍵洞察：</strong>沒有唯一正確答案，但<strong>紅綠燈擁擠指示</strong>和<strong>熱力圖</strong>更符合「一眼看懂」的需求——它們把複雜數據<strong>抽象</strong>成了顏色語義：紅=擁擠、綠=空閒。這就是<strong>抽象</strong>的力量：保留關鍵資訊（擁不擁擠），捨棄無關細節（確切人數）。
+      <strong>💡 Key Insight:</strong> There is no single right answer, but <strong>traffic lights</strong> and <strong>heatmaps</strong> best fit "understand at a glance" — they <strong>abstract</strong> complex data into color semantics: red=crowded, green=free. This is the power of <strong>abstraction</strong>: keep key info (crowding level), discard irrelevant detail (exact count).
     </div>
   </div>
 
@@ -577,9 +577,9 @@
       <!-- Case 2: Traffic Light -->
       <div class="case-study">
         <div class="case-preview" style="background:#F8FAFC;">
-          <span class="case-label" style="background:#065F46;color:white;">案例 B</span>
+          <span class="case-label" style="background:#065F46;color:white;">Case B</span>
           <div class="traffic-mock">
-            <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">📊 圖書館即時狀態</div>
+            <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">📊 Library Status</div>
             <div class="traffic-row">
               <div class="traffic-dot" style="background:#EF4444;"></div>
               <span class="traffic-name">3F Study Room</span>
@@ -642,9 +642,9 @@
 
   <!-- Prototype Builder -->
   <div class="section-card">
-    <h2><i class="fas fa-wand-magic-sparkles"></i> 動手搭建：你的圖書館監控界面</h2>
-    <p style="margin-bottom:6px;color:var(--text-light);font-size:14px;">從右側組件庫選擇組件，點擊即可添加到手機畫面中。點擊已放置的組件可移除。</p>
-    <p style="margin-bottom:14px;font-size:14px;"><strong style="color:var(--danger-red);"><i class="fas fa-star"></i> 必須包含：總人數、樓層擁擠度（紅/黃/綠）、建議前往時段。</strong></p>
+    <h2><i class="fas fa-wand-magic-sparkles"></i> Build It: Your Library Monitoring Interface</h2>
+    <p style="margin-bottom:6px;color:var(--text-light);font-size:14px;">Select components from the palette. Click to add to screen, click to remove.</p>
+    <p style="margin-bottom:14px;font-size:14px;"><strong style="color:var(--danger-red);"><i class="fas fa-star"></i> Required: total count, floor occupancy (red/yellow/green), and recommended times.</strong></p>
     <div class="prototype-builder">
       <div class="phone-frame">
         <div class="phone-notch"></div>
@@ -654,47 +654,46 @@
         </div>
         <div class="phone-screen" id="phoneScreen">
           <div class="phone-slot" id="slot-0" onclick="clearSlot(0)">
-            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
+            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
           </div>
           <div class="phone-slot" id="slot-1" onclick="clearSlot(1)">
-            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
+            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
           </div>
           <div class="phone-slot" id="slot-2" onclick="clearSlot(2)">
-            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
+            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
           </div>
           <div class="phone-slot" id="slot-3" onclick="clearSlot(3)">
-            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
+            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
           </div>
           <div class="phone-slot" id="slot-4" onclick="clearSlot(4)">
-            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
+            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
           </div>
           <div class="phone-slot" id="slot-5" onclick="clearSlot(5)">
-            <span style="color:#94A3B8;font-size:11px;">+ 點擊右側組件添加</span>
+            <span style="color:#94A3B8;font-size:11px;">+ Click to add</span>
           </div>
         </div>
       </div>
       <div class="component-palette">
-        <h4>📦 組件庫</h4>
+        <h4>📦 Component Palette</h4>
         <div class="palette-items" id="paletteItems"></div>
         <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="btn btn-warning" onclick="resetPrototype()"><i class="fas fa-rotate-left"></i> 重置畫面</button>
-          <button class="btn btn-success" onclick="checkDesign()"><i class="fas fa-check-circle"></i> 檢查設計</button>
+          <button class="btn btn-warning" onclick="resetPrototype()"><i class="fas fa-rotate-left"></i> Reset Screen</button>
+          <button class="btn btn-success" onclick="checkDesign()"><i class="fas fa-check-circle"></i> Check Design</button>
         </div>
         <div class="completion-badge" id="completionBadge">
           <i class="fas fa-circle-check"></i>
-          <p>✅ 必要組件齊全！</p>
+          <p>✅ All required components placed!</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Self-check -->
   <div class="section-card">
-    <h2><i class="fas fa-clipboard-check"></i> 設計自查清單</h2>
-    <p style="margin-bottom:12px;color:var(--text-light);font-size:14px;">逐一檢查你的界面設計——不只是「有沒有」，更要思考「好不好」。</p>
+    <h2><i class="fas fa-clipboard-check"></i> Design Self-Checklist</h2>
+    <p style="margin-bottom:12px;color:var(--text-light);font-size:14px;">Check your design — not just "is it there?" but "is it good?"</p>
 
     <div class="checklist-group">
-      <div class="checklist-group-title"><i class="fas fa-eye" style="color:var(--mid-blue)"></i> 可讀性</div>
+      <div class="checklist-group-title"><i class="fas fa-eye" style="color:var(--mid-blue)"></i> Readability</div>
       <div class="checklist-item" onclick="toggleCheck(this)">
         <div class="check-box"><i class="fas fa-check" style="font-size:12px;display:none;"></i></div>
         <div>
