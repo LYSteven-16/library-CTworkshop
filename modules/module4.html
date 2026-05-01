@@ -515,28 +515,27 @@
 <div class="page-container fade-in">
 
   <div class="module-header">
-    <span class="module-tag" style="background:#7C3AED">模組 4</span>
-    <h1>🎨 視覺化設計師 — 從數據到界面</h1>
-    <div class="time-hint"><i class="fas fa-clock"></i> 約 35 分鐘</div>
+    <span class="module-tag" style="background:#7C3AED">Module 4</span>
+    <h1>🎨 Visual Designer — Data to Interface</h1>
+    <div class="time-hint"><i class="fas fa-clock"></i> ~18 min</div>
     <div class="learning-obj">
-      <strong>學習目標：</strong>理解抽象的本質——保留關鍵資訊、捨棄無關細節，將感測器採集的原始數據轉化為簡潔易懂的視覺界面，讓使用者一眼看懂圖書館的擁擠狀況。
+      <strong>Objective:</strong> Understand abstraction — keep key info, discard irrelevant details, turn raw sensor data into simple visual interfaces so users can grasp library crowding at a glance.
     </div>
   </div>
 
-  <!-- Bridge: Connection from Module 3 -->
   <div class="bridge-card">
-    <h3><i class="fas fa-link"></i> 從上一模組出發</h3>
+    <h3><i class="fas fa-link"></i> Continuing from Module 3</h3>
     <p style="font-size:14px;color:#5B21B6;margin-bottom:12px;line-height:1.7;">
-      上一模組，你從一週人流數據中發現了<strong>高峰低谷、異常突增</strong>等模式。<br>
-      但如果直接把這些數據表格丟給同學看，他們能一眼看懂嗎？
+      In Module 3 you discovered <strong>peaks, troughs, and abnormal spikes</strong> in weekly data.<br>
+      But if you handed raw data tables to students, could they understand at a glance?
     </p>
     <p style="font-size:14px;color:#374151;margin-bottom:10px;font-weight:500;">
-      你覺得以下哪種方式最能幫助同學快速判斷「現在該不該去圖書館」？
+      Which approach best helps students quickly decide "should I go to the library now"?
     </p>
     <div class="bridge-options" id="bridgeOptions">
-      <button class="bridge-option" onclick="selectBridge(this, 'A')">📊 每分鐘人數表格</button>
-      <button class="bridge-option" onclick="selectBridge(this, 'B')">🟢🔴 紅綠燈擁擠指示</button>
-      <button class="bridge-option" onclick="selectBridge(this, 'C')">📋 完整進出記錄</button>
+      <button class="bridge-option" onclick="selectBridge(this, 'A')">📊 Per-Minute Table</button>
+      <button class="bridge-option" onclick="selectBridge(this, 'B')">🟢🔴 Traffic Light Indicator</button>
+      <button class="bridge-option" onclick="selectBridge(this, 'C')">📋 Full Entry/Exit Log</button>
       <button class="bridge-option" onclick="selectBridge(this, 'D')">🗺️ 熱力圖分佈</button>
     </div>
     <div class="bridge-reveal" id="bridgeReveal">
@@ -546,32 +545,32 @@
 
   <!-- Gallery: Real Case Studies -->
   <div class="section-card">
-    <h2><i class="fas fa-images"></i> 優秀案例參考：真實的圖書館 App</h2>
-    <p style="margin-bottom:14px;color:var(--text-light);font-size:14px;">觀察以下三種真實的圖書館即時資訊界面，思考它們各用了什麼<strong>抽象策略</strong>。</p>
+    <h2><i class="fas fa-images"></i> Real Library App Examples</h2>
+    <p style="margin-bottom:14px;color:var(--text-light);font-size:14px;">Observe three real library dashboards. What <strong>abstraction strategy</strong> does each use?</p>
     <div class="prototype-gallery">
 
       <!-- Case 1: Heatmap -->
       <div class="case-study">
         <div class="case-preview" style="background:#F1F5F9;">
-          <span class="case-label" style="background:#1E3A8A;color:white;">案例 A</span>
+          <span class="case-label" style="background:#1E3A8A;color:white;">Case A</span>
           <div class="heatmap-mock">
-            <div class="heatmap-cell" style="background:#10B981;">閱覽</div>
-            <div class="heatmap-cell" style="background:#F59E0B;">自修</div>
-            <div class="heatmap-cell" style="background:#EF4444;">電腦</div>
-            <div class="heatmap-cell" style="background:#10B981;">期刊</div>
-            <div class="heatmap-cell" style="background:#10B981;">入口</div>
-            <div class="heatmap-cell" style="background:#10B981;">新書</div>
-            <div class="heatmap-cell" style="background:#F59E0B;">討論</div>
-            <div class="heatmap-cell" style="background:#10B981;">休息</div>
-            <div class="heatmap-cell" style="background:#10B981;">兒童</div>
-            <div class="heatmap-cell" style="background:#10B981;">視聽</div>
-            <div class="heatmap-cell" style="background:#10B981;">報刊</div>
-            <div class="heatmap-cell" style="background:#10B981;">服務台</div>
+            <div class="heatmap-cell" style="background:#10B981;">Reading</div>
+            <div class="heatmap-cell" style="background:#F59E0B;">Study</div>
+            <div class="heatmap-cell" style="background:#EF4444;">Computer</div>
+            <div class="heatmap-cell" style="background:#10B981;">Periodicals</div>
+            <div class="heatmap-cell" style="background:#10B981;">Entrance</div>
+            <div class="heatmap-cell" style="background:#10B981;">New Books</div>
+            <div class="heatmap-cell" style="background:#F59E0B;">Discussion</div>
+            <div class="heatmap-cell" style="background:#10B981;">Lounge</div>
+            <div class="heatmap-cell" style="background:#10B981;">Children</div>
+            <div class="heatmap-cell" style="background:#10B981;">A/V Room</div>
+            <div class="heatmap-cell" style="background:#10B981;">Newspapers</div>
+            <div class="heatmap-cell" style="background:#10B981;">Info Desk</div>
           </div>
         </div>
         <div class="case-body">
-          <h4>🗺️ 熱力圖方案</h4>
-          <p>用顏色深淺表示擁擠程度。<strong>抽象策略：</strong>空間 → 顏色。適合想快速找到空位的同學。</p>
+          <h4>🗺️ Heatmap Concept</h4>
+          <p>Color depth shows crowding. <strong>Abstraction strategy:</strong> Space → Color. Great for finding empty zones fast.</p>
         </div>
       </div>
 
@@ -583,58 +582,58 @@
             <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">📊 圖書館即時狀態</div>
             <div class="traffic-row">
               <div class="traffic-dot" style="background:#EF4444;"></div>
-              <span class="traffic-name">3F 自修室</span>
-              <span class="traffic-num">82人</span>
+              <span class="traffic-name">3F Study Room</span>
+              <span class="traffic-num">82 people</span>
             </div>
             <div class="traffic-row">
               <div class="traffic-dot" style="background:#F59E0B;"></div>
-              <span class="traffic-name">2F 閱覽區</span>
-              <span class="traffic-num">45人</span>
+              <span class="traffic-name">2F Reading</span>
+              <span class="traffic-num">45 people</span>
             </div>
             <div class="traffic-row">
               <div class="traffic-dot" style="background:#10B981;"></div>
-              <span class="traffic-name">1F 兒童區</span>
-              <span class="traffic-num">12人</span>
+              <span class="traffic-name">1F Children</span>
+              <span class="traffic-num">12 people</span>
             </div>
             <div class="traffic-row">
               <div class="traffic-dot" style="background:#10B981;"></div>
-              <span class="traffic-name">4F 視聽室</span>
-              <span class="traffic-num">8人</span>
+              <span class="traffic-name">4F A/V Room</span>
+              <span class="traffic-num">8 people</span>
             </div>
           </div>
         </div>
         <div class="case-body">
-          <h4>🚦 紅綠燈方案</h4>
-          <p>紅=擁擠，黃=適中，綠=空閒。<strong>抽象策略：</strong>數字 → 色燈。最直覺，適合只想知道「能不能去」的場景。</p>
+          <h4>🚦 Traffic Light Concept</h4>
+          <p>Red = crowded, Yellow = moderate, Green = free. <strong>Abstraction strategy:</strong> Numbers → Colors. Most intuitive for quick decisions.</p>
         </div>
       </div>
 
       <!-- Case 3: Dashboard -->
       <div class="case-study">
         <div class="case-preview" style="background:#0F172A;">
-          <span class="case-label" style="background:#3B82F6;color:white;">案例 C</span>
+          <span class="case-label" style="background:#3B82F6;color:white;">Case C</span>
           <div class="dashboard-mock">
             <div class="dash-big">
               <div>
                 <div class="dash-big-num">147</div>
-                <div class="dash-big-label">目前在館人數</div>
+                <div class="dash-big-label">Current Occupancy</div>
               </div>
             </div>
             <div class="dash-card">
               <div class="dash-card-icon">📈</div>
               <div class="dash-card-val">↑12%</div>
-              <div class="dash-card-lbl">較昨日</div>
+              <div class="dash-card-lbl">vs Yesterday</div>
             </div>
             <div class="dash-card">
               <div class="dash-card-icon">🕐</div>
               <div class="dash-card-val">14:00</div>
-              <div class="dash-card-lbl">最佳時段</div>
+              <div class="dash-card-lbl">Best Time</div>
             </div>
           </div>
         </div>
         <div class="case-body">
-          <h4>📊 即時儀表板方案</h4>
-          <p>大數字 + 趨勢 + 建議。<strong>抽象策略：</strong>趨勢 → 箭頭，建議 → 時段。資訊密度高，適合管理員。</p>
+          <h4>📊 Dashboard Concept</h4>
+          <p>Big numbers + trends + suggestions. <strong>Abstraction strategy:</strong> Trends → arrows, Suggestions → times. High info density for admins.</p>
         </div>
       </div>
 
