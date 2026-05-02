@@ -614,7 +614,7 @@ initAutoSave();
       var cd = JSON.parse(d.m2_classify_detail);
       Object.keys(cd).forEach(function(cardId) {
         selectedCard = cardId;
-        var bin = document.querySelector('.classify-bin[data-cat="' + cd[cardId] + '"]');
+        var bin = document.querySelector('.classify-bin[data-category="' + cd[cardId] + '"]');
         if (bin) classifyTo(bin);
       });
       selectedCard = null;
