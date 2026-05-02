@@ -694,7 +694,7 @@ function submitQuiz() {
   // Check if all answered
   var unanswered = quizSelections.indexOf(-1);
   if (unanswered !== -1) {
-    sh owToast('Please answer question ' + (unanswered + 1) + '!', 'error');
+    showToast('Please answer question ' + (unanswered + 1) + '!', 'error');
     return;
   }
   quizSubmitted = true;
