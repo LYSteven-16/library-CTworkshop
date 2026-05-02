@@ -240,10 +240,16 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   h+='<div class="lbl">🔀 Flowchart Fill-in</div><div class="fc">';
   h+='<span class="fn s">IR Sensor Trigger</span><span class="fd">⬇</span>';
   h+='<span class="fn d">Direction Check</span><span class="fd">⬇</span>';
-  h+='<div class="fc2"><span class="fn f">enter_count += 1</span><span class="fn f">exit_count += 1</span></div><span class="fd">⬇</span>';
-  h+='<span class="fn f">Update current_count</span><span class="fd">⬇</span>';
-  h+='<span class="fn f">Boundary Guard</span><span class="fd">⬇</span>';
-  h+='<span class="fn f">Debounce Filter</span></div>';
+  var fca = g('m5_flowchart_answers');
+  var a0 = (fca && fca[0]) ? fca[0] : '(empty)';
+  var a1 = (fca && fca[1]) ? fca[1] : '(empty)';
+  h+='<div class="fc2"><span class="fn f">'+a0+'</span><span class="fn f">'+a1+'</span></div><span class="fd">⬇</span>';
+  var a2 = (fca && fca[2]) ? fca[2] : '(empty)';
+  h+='<span class="fn f">'+a2+'</span><span class="fd">⬇</span>';
+  var a3 = (fca && fca[3]) ? fca[3] : '(empty)';
+  h+='<span class="fn f">'+a3+'</span><span class="fd">⬇</span>';
+  var a4 = (fca && fca[4]) ? fca[4] : '(empty)';
+  h+='<span class="fn f">'+a4+'</span></div>';
   h+='<div style="text-align:center;font-weight:700;margin-top:4px">'+gg('m5_flowchart')+'</div>';
   h+='</div></div>';
 
