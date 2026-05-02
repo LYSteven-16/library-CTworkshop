@@ -412,11 +412,10 @@ initAutoSave();
   var d = getWorksheetData();
   // Simulator
   if (d.m5_sim) {
-    try { var s = JSON.parse(d.m5_sim); enterCount = s.enter; exitCount = s.exit;
-      document.getElementById('enterCount').textContent = enterCount;
-      document.getElementById('exitCount').textContent = exitCount;
-      document.getElementById('currentCount').textContent = enterCount - exitCount;
-    } catch(e) {}
+    var s = d.m5_sim; enterCount = s.enter; exitCount = s.exit;
+    document.getElementById('enterCount').textContent = enterCount;
+    document.getElementById('exitCount').textContent = exitCount;
+    document.getElementById('currentCount').textContent = enterCount - exitCount;
   }
   // Debounce
   if (d.m5_debounce) {
@@ -424,12 +423,11 @@ initAutoSave();
     if (m) document.getElementById('debounceSlider').value = m[1];
   }
   if (d.m5_debounce_result) {
-    try { var dr = JSON.parse(d.m5_debounce_result);
-      var fb = document.getElementById('debounceFeedback');
-      var ac = dr.acc >= 90 ? '#10B981' : dr.acc >= 75 ? '#F59E0B' : '#EF4444';
-      fb.innerHTML = '<div class="deb"><div class="dm"><div class="dn">'+dr.total+'</div><div class="dl">Total</div></div><div class="dm"><div class="dn" style="color:#F59E0B">'+dr.fp+'</div><div class="dl">FP</div></div><div class="dm"><div class="dn" style="color:#10B981">'+dr.missed+'</div><div class="dl">Missed</div></div><div class="dm"><div class="dn" style="color:'+ac+'">'+dr.acc+'%</div><div class="dl">Accuracy</div></div></div>';
-      if (dr.acc >= 95) fb.style.color = 'var(--success-green)';
-    } catch(e) {}
+    var dr = d.m5_debounce_result;
+    var fb = document.getElementById('debounceFeedback');
+    var ac = dr.acc >= 90 ? '#10B981' : dr.acc >= 75 ? '#F59E0B' : '#EF4444';
+    fb.innerHTML = '<div class="deb"><div class="dm"><div class="dn">'+dr.total+'</div><div class="dl">Total</div></div><div class="dm"><div class="dn" style="color:#F59E0B">'+dr.fp+'</div><div class="dl">FP</div></div><div class="dm"><div class="dn" style="color:#10B981">'+dr.missed+'</div><div class="dl">Missed</div></div><div class="dm"><div class="dn" style="color:'+ac+'">'+dr.acc+'%</div><div class="dl">Accuracy</div></div></div>';
+    if (dr.acc >= 95) fb.style.color = 'var(--success-green)';
   }
   // Flowchart
   if (d.m5_flowchart_answers && d.m5_flowchart_answers.length) {

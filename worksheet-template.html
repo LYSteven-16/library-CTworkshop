@@ -164,7 +164,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   // Module 1
   h+=mh('Module 1 — Pain Point Discovery','Problem Def.','#EF4444');
   h+='<div class="lbl">📊 Vote:How often do you find no seats?</div><div class="vote-row">';
-  ['0  times','1-3  times','4-6  times','7+ times'].forEach(function(o){h+='<span class="vt'+(o===g('m1_vote')?' sel':'')+'">'+o+'</span>'});
+  ['0 times','1-3 times','4-6 times','7+ times'].forEach(function(o){h+='<span class="vt'+(o===g('m1_vote')?' sel':'')+'">'+o+'</span>'});
   h+='</div><div class="lbl">💭 Thought Bubble</div><div class="txt'+(g('m1_thought')?'':' em')+'">'+gg('m1_thought')+'</div>';
   var sa=g('m1_sort');h+='<div class="lbl">📋 Problem Ranking</div>';
   if(sa&&sa.length){h+='<div class="sort">';sa.forEach(function(s,i){h+='<div class="si"><div class="sn">'+(i+1)+'</div>'+s+'</div>'});h+='</div>'}
@@ -200,8 +200,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
       });
       h += '</div>'; }
     else { h += '<div class="txt">'+gg('m2_classify')+'</div>'; }
-  }
-  // Module 5 simulator
+  } else { h += '<div class="txt">'+gg('m2_classify')+'</div>'; }
   h+='</div></div>';
 
   // Module 3
@@ -232,8 +231,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   h+='<div class="lbl">🎮 Direction Simulator</div>';
   var sim = g('m5_sim');
   if (sim) {
-    try { sim = JSON.parse(sim); } catch(e) { sim = null; }
-    if (sim) h += '<div class="deb"><div class="dm"><div class="dn">'+sim.enter+'</div><div class="dl">Entries</div></div><div class="dm"><div class="dn">'+sim.exit+'</div><div class="dl">Exits</div></div><div class="dm"><div class="dn">'+(sim.enter-sim.exit)+'</div><div class="dl">Current</div></div></div>';
+    if (sim.enter !== undefined) h += '<div class="deb"><div class="dm"><div class="dn">'+sim.enter+'</div><div class="dl">Entries</div></div><div class="dm"><div class="dn">'+sim.exit+'</div><div class="dl">Exits</div></div><div class="dm"><div class="dn">'+(sim.enter-sim.exit)+'</div><div class="dl">Current</div></div></div>';
     else h += '<div class="txt em">(Not completed)</div>';
   } else h += '<div class="txt em">(Not completed)</div>';
   var dr=g('m5_debounce_result');h+='<div class="lbl">⏱ Debounce Test: <b>'+gg('m5_debounce')+'</b></div>';

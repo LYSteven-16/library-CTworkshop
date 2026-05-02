@@ -841,7 +841,7 @@ initAutoSave();
   // Quiz
   if (d.m6_quiz_detail) {
     try {
-      var qd = JSON.parse(d.m6_quiz_detail);
+      var qd = d.m6_quiz_detail;
       var labels = ['A', 'B', 'C', 'D'];
       qd.forEach(function(item, i) {
         quizSelections[i] = labels.indexOf(item.chosen);
@@ -863,7 +863,7 @@ initAutoSave();
   // Radar
   if (d.m6_radar) {
     try {
-      var rd = JSON.parse(d.m6_radar);
+      var rd = d.m6_radar;
       var keys = ['Decomposition', 'Pattern Recognition', 'Abstraction', 'Algorithm Design'];
       keys.forEach(function(k, i) {
         if (rd[k] !== undefined) {
