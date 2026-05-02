@@ -176,7 +176,32 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
   var fa=g('m2_flow');h+='<div class="lbl">🔄 Data Flow Sort</div>';
   if(fa&&fa.length){h+='<div class="flow">';fa.filter(Boolean).forEach(function(s,i){if(i>0)h+='<span class="fw">→</span>';h+='<span class="fs">'+s+'</span>'});h+='</div>'}
   else{h+='<div class="txt em">(Not completed)</div>'}
-  h+='<div class="lbl">📦 Card Sort</div><div class="txt">'+gg('m2_classify')+'</div>';
+  h+='<div class="lbl">📦 Card Sort</div>';
+  var cd = g('m2_classify_detail');
+  var classifyCards = [
+    { id: 'ir', name: '📡 IR Sensor', category: 'collect', catName: 'Collection' },
+    { id: 'cam', name: '📷 Camera', category: 'collect', catName: 'Collection' },
+    { id: 'wifi', name: '📶 WiFi Module', category: 'transmit', catName: 'Transmission' },
+    { id: 'ble', name: '🔵 Bluetooth', category: 'transmit', catName: 'Transmission' },
+    { id: 'algo', name: '🧮 Counting Algorithm', category: 'process', catName: 'Processing' },
+    { id: 'cloud', name: '☁️ Cloud Server', category: 'process', catName: 'Processing' },
+    { id: 'db', name: '🗄️ Database', category: 'process', catName: 'Processing' },
+    { id: 'app', name: '📱 Mobile App', category: 'display', catName: 'Display' },
+    { id: 'map', name: '🗺️ Floor Map', category: 'display', catName: 'Display' },
+    { id: 'hist', name: '📊 Historical Data', category: 'display', catName: 'Display' },
+  ];
+  if (cd) {
+    try { cd = JSON.parse(cd); } catch(e) { cd = null; }
+    if (cd) { h += '<div class="sort">';
+      classifyCards.forEach(function(card) {
+        var chosen = cd[card.id] || '(unclassified)';
+        var correct = (chosen === card.category);
+        h += '<div class="si"><div class="sn" style="background:'+(correct?'#10B981':'#EF4444')+'">'+(correct?'✓':'✗')+'</div>'+card.name+' → '+card.catName+'</div>';
+      });
+      h += '</div>'; }
+    else { h += '<div class="txt">'+gg('m2_classify')+'</div>'; }
+  }
+  // Module 5 simulator
   h+='</div></div>';
 
   // Module 3
@@ -204,6 +229,13 @@ body{font-family:'Noto Sans TC',sans-serif;background:#E5E7EB;display:flex;justi
 
   // Module 5
   h+=mh('Module 5 — Algorithm Engineer','Algorithm Design','#8B5CF6');
+  h+='<div class="lbl">🎮 Direction Simulator</div>';
+  var sim = g('m5_sim');
+  if (sim) {
+    try { sim = JSON.parse(sim); } catch(e) { sim = null; }
+    if (sim) h += '<div class="deb"><div class="dm"><div class="dn">'+sim.enter+'</div><div class="dl">Entries</div></div><div class="dm"><div class="dn">'+sim.exit+'</div><div class="dl">Exits</div></div><div class="dm"><div class="dn">'+(sim.enter-sim.exit)+'</div><div class="dl">Current</div></div></div>';
+    else h += '<div class="txt em">(Not completed)</div>';
+  } else h += '<div class="txt em">(Not completed)</div>';
   var dr=g('m5_debounce_result');h+='<div class="lbl">⏱ Debounce Test: <b>'+gg('m5_debounce')+'</b></div>';
   if(dr&&dr.total){var ac=dr.acc>=90?'#10B981':dr.acc>=75?'#F59E0B':'#EF4444';h+='<div class="deb"><div class="dm"><div class="dn">'+dr.total+'</div><div class="dl">Total</div></div><div class="dm"><div class="dn" style="color:#F59E0B">'+dr.fp+'</div><div class="dl">FP</div></div><div class="dm"><div class="dn" style="color:#10B981">'+dr.missed+'</div><div class="dl">Missed</div></div><div class="dm"><div class="dn" style="color:'+ac+'">'+dr.acc+'%</div><div class="dl">Accuracy</div></div></div>'}
   else{h+='<div class="txt em">(Debounce test not done)</div>'}
