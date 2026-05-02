@@ -1013,6 +1013,30 @@ function drawTrendChart() {
 
 initAutoSave();
 
+// Restore saved state
+(function restore() {
+  var d = getWorksheetData();
+  // Checklist
+  if (d.m4_checklist && d.m4_checklist.length) {
+    d.m4_checklist.forEach(function(item) {
+      document.querySelectorAll('.checklist-item').forEach(function(el) {
+        var txt = el.querySelector('.check-text');
+        if (txt && txt.textContent === item.text && item.checked) {
+          el.classList.add('checked');
+        }
+      });
+    });
+  }
+  // Phone prototype
+  if (d.m4_design && d.m4_design.length) {
+    var savedIds = d.m4_design;
+    savedIds.forEach(function(id) {
+      var comp = uiComponents.find(function(c) { return c.id === id; });
+      if (comp) addToPhone(comp);
+    });
+  }
+})();
+
 // Save checklist state
 function saveChecklistState() {
   var items = document.querySelectorAll('.checklist-item');

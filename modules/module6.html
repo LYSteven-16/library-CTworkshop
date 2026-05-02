@@ -835,4 +835,43 @@ window.addEventListener('DOMContentLoaded', function() {
   drawRadar();
 });
 initAutoSave();
+// Restore saved state
+(function restore() {
+  var d = getWorksheetData();
+  // Quiz
+  if (d.m6_quiz_detail) {
+    try {
+      var qd = JSON.parse(d.m6_quiz_detail);
+      var labels = ['A', 'B', 'C', 'D'];
+      qd.forEach(function(item, i) {
+        quizSelections[i] = labels.indexOf(item.chosen);
+        if (quizSelections[i] >= 0) {
+          var opts = document.querySelectorAll('#quiz-' + i + ' .quiz-option');
+          if (opts[quizSelections[i]]) opts[quizSelections[i]].classList.add('selected');
+        }
+      });
+      if (d.m6_quiz) {
+        // If quiz was submitted, restore submitted state
+        var score = (d.m6_quiz.match(/^(\d)/) || [,'0'])[1];
+        if (parseInt(score) >= 0 && !quizSubmitted) {
+          // Auto-submit to show results
+          submitQuiz();
+        }
+      }
+    } catch(e) {}
+  }
+  // Radar
+  if (d.m6_radar) {
+    try {
+      var rd = JSON.parse(d.m6_radar);
+      var keys = ['Decomposition', 'Pattern Recognition', 'Abstraction', 'Algorithm Design'];
+      keys.forEach(function(k, i) {
+        if (rd[k] !== undefined) {
+          var slider = document.getElementById('radar-' + i);
+          if (slider) { slider.value = rd[k]; slider.dispatchEvent(new Event('input')); }
+        }
+      });
+    } catch(e) {}
+  }
+})();
 </script>

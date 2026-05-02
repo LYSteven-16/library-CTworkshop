@@ -372,4 +372,27 @@ function confirmSort() {
   markComplete(1);
 }
 initAutoSave();
+// Restore saved state
+(function restore() {
+  var d = getWorksheetData();
+  // Vote
+  if (d.m1_vote) {
+    var vi = voteLabels.indexOf(d.m1_vote);
+    if (vi >= 0) {
+      document.querySelectorAll('.vote-option')[vi].classList.add('selected');
+      document.getElementById('voteInsight').classList.add('show');
+    }
+  }
+  // Sort
+  if (d.m1_sort && d.m1_sort.length) {
+    var container = document.getElementById('sortContainer');
+    var items = Array.from(container.children);
+    var order = d.m1_sort;
+    items.sort(function(a, b) {
+      return order.indexOf(a.querySelector('.sort-text').textContent) - order.indexOf(b.querySelector('.sort-text').textContent);
+    });
+    items.forEach(function(item) { container.appendChild(item); });
+    renumberSort();
+  }
+})();
 </script>

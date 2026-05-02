@@ -664,4 +664,35 @@ revealAnomaly = function() {
 };
 
 initAutoSave();
+// Restore saved state
+(function restore() {
+  var d = getWorksheetData();
+  // Match pairs
+  if (d.m3_match && d.m3_match.length) {
+    d.m3_match.forEach(function(pair) {
+      var si = matchData.findIndex(function(m) { return m.shape === pair.left && m.scenario === pair.right; });
+      if (si >= 0) matchState.matched.add(si);
+    });
+    updateMatchUI();
+  }
+  // Anomaly
+  if (d.m3_anomaly) {
+    var anomalyLabels = ['Data Entry Error', 'Rainy Day Anomaly', 'Normal Exam Peak', 'Holiday Closure'];
+    selectedAnomaly = anomalyLabels.indexOf(d.m3_anomaly);
+    if (selectedAnomaly >= 0) {
+      var radios = document.querySelectorAll('.anomaly-option');
+      radios.forEach(function(r, i) { r.classList.remove('selected', 'wrong', 'correct'); });
+      if (radios[selectedAnomaly]) radios[selectedAnomaly].classList.add('selected');
+    }
+  }
+  // Prediction slider
+  if (d.m3_predict) {
+    var m = d.m3_predict.match(/^(\d+)/);
+    if (m) {
+      var val = parseInt(m[1]);
+      document.getElementById('predictSlider').value = val;
+      document.getElementById('predictValue').textContent = val + ' people';
+    }
+  }
+})();
 </script>

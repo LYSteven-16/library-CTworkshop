@@ -598,4 +598,41 @@ function checkFlow() {
 }
 
 initAutoSave();
+// Restore saved state
+(function restore() {
+  var d = getWorksheetData();
+  // Onion layers
+  if (d.m2_onion && d.m2_onion.length) {
+    d.m2_onion.forEach(function(idx) {
+      var layer = document.getElementById('onion-' + idx);
+      if (layer) layer.classList.add('open');
+    });
+  }
+  // Card classification
+  if (d.m2_classify_detail) {
+    try {
+      var cd = JSON.parse(d.m2_classify_detail);
+      Object.keys(cd).forEach(function(cardId) {
+        selectedCard = cardId;
+        var bin = document.querySelector('.classify-bin[data-cat="' + cd[cardId] + '"]');
+        if (bin) classifyTo(bin);
+      });
+      selectedCard = null;
+    } catch(e) {}
+  }
+  // Flow order
+  if (d.m2_flow && d.m2_flow.length) {
+    var names = d.m2_flow;
+    names.forEach(function(name, idx) {
+      if (!name) return;
+      var item = flowItems.find(function(fi) { return fi.name === name; });
+      if (item) {
+        flowSlots[idx] = item;
+        var slot = document.getElementById('fslot-' + idx);
+        if (slot) { slot.textContent = item.name; slot.className = 'flow-slot filled'; }
+      }
+    });
+    renderPool(); // update pool to exclude placed items
+  }
+})();
 </script>
