@@ -2,7 +2,7 @@
 var I18N = { zh: {
 // === Home Page ===
 'Decoding the Library Heatmap': '解碼圖書館熱力圖',
-'CT Workshop — Master 4 Core CT Skills in 6 Modules': '計算思維自學工坊 — 用 6 個模組掌握 CT 四大核心能力',
+'CT Workshop — 4 Core CT Skills + Problem Definition, in 6 Modules': '計算思維自學工坊 — 4 大 CT 核心能力 + 問題定義，6 個模組',
 'Define Problem': '定義問題',
 'Decomposition': '分解',
 'Pattern Recog.': '模式識別',
@@ -139,10 +139,10 @@ var I18N = { zh: {
 'define the problem': '定義問題',
 'like an engineer.': '。',
 'Problem Def.': '問題定義',
-'Start from real-world scenarios, experience the need for library traffic monitoring, define the core problem, and take your first step in CT —': '從真實情境出發，感受圖書館人流量監控的實際需求，定義核心問題，初步體驗計算思維的第一步——',
+'Start from real-world scenarios, experience the need for library traffic monitoring, define the core problem, and take your first step — ': '從真實情境出發，感受圖書館人流量監控的實際需求，定義核心問題，邁出你的第一步——',
 '🎯 Pain Point Discovery — Problem Introduction': '🎯 痛點挖掘 — 問題引入',
 'Knowledge Card: Problem Definition': '知識卡片：問題定義',
-'Problem Definition is CT step one: identify the real need. The library traffic problem is really about': '問題定義是計算思維的第一步：找出真正的需求。圖書館擁擠問題的本質是',
+'Problem Definition — while not part of CT itself, it\'s the essential first step: identify the real need. The library traffic problem is really about': '問題定義——雖然不是計算思維本身的一步，但它是關鍵的準備工作：找出真正的需求。圖書館擁擠問題的本質是',
 'information asymmetry': '資訊不對稱',
 '— students don\'t know if seats are available. With real-time info, the problem is solved.': '——學生不知道哪裡有空位。如果能看到即時資訊，問題就解決了。',
 'A well-defined problem is half the solution. In the next module, we deconstruct this big problem into manageable modules!': '一個好的問題定義，就是解決方案的一半。下一模組，我們將把這個大問題分解為小模組！',
@@ -193,7 +193,7 @@ var I18N = { zh: {
 'Core: Information asymmetry — students don\'t know if there are seats': '核心：資訊不對稱——同學不知道哪裡有空位',
 'If you could instantly know seat availability, the pain goes away. But we need to figure out: what data creates that magic? How does data flow from sensors to your phone?': '如果能看到即時資訊，問題就解決了。但我們需要確認清楚：需要什麼數據才能做到？數據是如何從感測器流向手機的？',
 'Knowledge Card: Decomposition': '知識卡片：分解',
-'Decomposition is CT step two: breaking a complex problem into smaller, manageable sub-problems. Like an onion — peel Layer 1 (user pain), Layer 2 (data needs), Layer 3 (functional modules), and Layer 4 (tech implementation). Each layer addresses a specific question. This layered thinking means each module can be designed, tested, and improved independently of others.': '分解是計算思維的第二步：把複雜問題拆成更小、更容易管理的子問題。就像洋蔥——從使用者的痛點（第一層）到數據需求（第二層）、功能模組（第三層），再到技術實現（第四層），每一層都解決一個具體問題。這種分層的思考方式，讓每個模組都可以獨立開發、測試和優化。',
+'Decomposition is CT step one (of four): breaking a complex problem into smaller, manageable sub-problems. Like an onion — peel Layer 1 (user pain), Layer 2 (data needs), Layer 3 (functional modules), and Layer 4 (tech implementation). Each layer addresses a specific question. This layered thinking means each module can be designed, tested, and improved independently of others.': '分解是計算思維的第一步（共四步）：把複雜問題拆成更小、更容易管理的子問題。就像洋蔥——從使用者的痛點（第一層）到數據需求（第二層）、功能模組（第三層），再到技術實現（第四層），每一層都解決一個具體問題。這種分層的思考方式，讓每個模組都可以獨立開發、測試和優化。',
 'Go to Module 3: Pattern Detection →': '進入模組 3：模式偵探 →',
 
 // === Module 3 ===
@@ -222,7 +222,7 @@ var I18N = { zh: {
 '82 people': '82 人',
 '100 people': '100 人',
 'Knowledge Card: Pattern Recognition': '知識卡片：模式識別',
-'Pattern Recognition is CT step three: finding repeating patterns, trends, and anomalies from data. In a week of library data, you discovered peaks (10AM-12PM), dips (12-1PM), declines (after 4PM), and anomalies (Wednesday afternoon spike). Like a detective using clues — rain→go home, author talk→spike. Pattern recognition is the prerequisite to prediction. In the next module, we turn these patterns into a visual interface!': '模式識別是計算思維的第三步：從數據中發現重複出現的模式、趨勢和異常。在一週的圖書館數據中，你發現了固定高峰（10-12點）、午間低谷（12-1點）、傍晚下降（16點後）和異常事件（週三下午暴增）。就像偵探拿著線索推理——下雨天回家的多，講座活動吸引人潮。模式識別是預測的基礎。下一模組，我們將把這些模式變成可視化的界面！',
+'Pattern Recognition is CT step two: finding repeating patterns, trends, and anomalies from data. In a week of library data, you discovered peaks (10AM-12PM), dips (12-1PM), declines (after 4PM), and anomalies (Wednesday afternoon spike). Like a detective using clues — rain→go home, author talk→spike. Pattern recognition is the prerequisite to prediction. In the next module, we turn these patterns into a visual interface!': '模式識別是計算思維的第二步：從數據中發現重複出現的模式、趨勢和異常。在一週的圖書館數據中，你發現了固定高峰（10-12點）、午間低谷（12-1點）、傍晚下降（16點後）和異常事件（週三下午暴增）。就像偵探拿著線索推理——下雨天回家的多，講座活動吸引人潮。模式識別是預測的基礎。下一模組，我們將把這些模式變成可視化的界面！',
 'Go to Module 4: Abstraction →': '進入模組 4：抽象 →',
 
 // === Module 4 ===
@@ -284,7 +284,7 @@ var I18N = { zh: {
 '✅ Design check passed! All required components in place.': '✅ 設計檢查通過！必要組件已齊全。',
 '⚠️ Missing required components: ': '⚠️ 還缺少必要組件：',
 'Knowledge Card: Abstraction & Visualization': '知識卡片：抽象與視覺化',
-'Abstraction is CT step four: keep key info, discard irrelevant detail.\n\nLike a map — it does not show every tree, but marks roads and landmarks. A map is an abstraction.\n\nIn your interface design, abstraction is everywhere:\n• "3F has 82 people" becomes 🔴 red light — discard exact count, keep "crowded" meaning\n• Per-minute logs become a trend line — discard micro-fluctuations, keep overall direction\n• Zone data becomes a heatmap — discard numbers, keep spatial distribution\n\nAbstraction is not "deleting" — it is "selectively presenting". Good abstraction helps users decide faster.\n\nNext module: we design the precise counting algorithm — CT step five!': '抽象（Abstraction）是計算思維的第四步：保留關鍵資訊，捨棄無關細節。\n\n就像地圖——它不會畫出每棵樹，但會標出道路和地標。地圖是一種抽象。\n\n在你的界面設計中，抽象無處不在：\n• 把「3F 有 82 人」抽象為🔴紅燈——捨棄了精確數字，保留了「擁擠」的語義\n• 把每分鐘的進出記錄抽象為一條趨勢線——捨棄了細節波動，保留了整體走勢\n• 把各區域的數據抽象為熱力圖——捨棄了數字，保留了空間分佈\n\n抽象不是「刪掉」，而是「選擇性呈現」。好的抽象讓使用者更快做決定。\n\n下一模組，我們將設計精確的計數算法——這是計算思維的第五步！',
+'Abstraction is CT step three: keep key info, discard irrelevant detail.\n\nLike a map — it does not show every tree, but marks roads and landmarks. A map is an abstraction.\n\nIn your interface design, abstraction is everywhere:\n• "3F has 82 people" becomes 🔴 red light — discard exact count, keep "crowded" meaning\n• Per-minute logs become a trend line — discard micro-fluctuations, keep overall direction\n• Zone data becomes a heatmap — discard numbers, keep spatial distribution\n\nAbstraction is not "deleting" — it is "selectively presenting". Good abstraction helps users decide faster.\n\nNext module: we design the precise counting algorithm — CT step four!': '抽象（Abstraction）是計算思維的第三步：保留關鍵資訊，捨棄無關細節。\n\n就像地圖——它不會畫出每棵樹，但會標出道路和地標。地圖是一種抽象。\n\n在你的界面設計中，抽象無處不在：\n• 把「3F 有 82 人」抽象為🔴紅燈——捨棄了精確數字，保留了「擁擠」的語義\n• 把每分鐘的進出記錄抽象為一條趨勢線——捨棄了細節波動，保留了整體走勢\n• 把各區域的數據抽象為熱力圖——捨棄了數字，保留了空間分佈\n\n抽象不是「刪掉」，而是「選擇性呈現」。好的抽象讓使用者更快做決定。\n\n下一模組，我們將設計精確的計數算法——這是計算思維的第四步！',
 'Go to Module 5: Algorithm Design →': '進入模組 5：算法設計 →',
 
 // === Module 5 ===
@@ -350,7 +350,7 @@ var I18N = { zh: {
 '🎉 Flowchart complete! You are an algorithm engineer!': '🎉 流程圖全部正確！你是算法工程師！',
 'red marked steps need adjustment': '紅色標記的步驟需要修正',
 'Knowledge Card: Algorithmic Thinking': '知識卡片：算法思維',
-'Algorithmic Thinking is CT step five: designing precise step-by-step instructions. Like a recipe — each step must be clear, ordered, and unambiguous. Good algorithms handle all cases including edge conditions. In our system, debounce cooldown goes after count update and before the next trigger — filtering repeated triggers without delaying the first response.\n\nCongratulations! You have completed all core CT steps — next module, we integrate and reflect on the full journey!': '算法思維（Algorithmic Thinking）是計算思維的第五步：設計一步步精確的指令來解決問題。就像食譜——每一步都必須清楚、有序、無歧義。好的算法設計要處理所有可能情況，包括異常輸入和邊界條件。在本例中，去抖冷卻放在計數更新之後、等待下一次觸發之前——這樣既能過濾短時間內的重複觸發，又不會延遲對首次觸發的響應。\n\n恭喜！你已完成計算思維的所有核心步驟——下一模組，我們來整合回顧整個旅程！',
+'Algorithmic Thinking is CT step four: designing precise step-by-step instructions. Like a recipe — each step must be clear, ordered, and unambiguous. Good algorithms handle all cases including edge conditions. In our system, debounce cooldown goes after count update and before the next trigger — filtering repeated triggers without delaying the first response.\n\nCongratulations! You have completed all four CT steps — next module, we integrate and reflect on the full journey!': '算法思維（Algorithmic Thinking）是計算思維的第四步：設計一步步精確的指令來解決問題。就像食譜——每一步都必須清楚、有序、無歧義。好的算法設計要處理所有可能情況，包括異常輸入和邊界條件。在本例中，去抖冷卻放在計數更新之後、等待下一次觸發之前——這樣既能過濾短時間內的重複觸發，又不會延遲對首次觸發的響應。\n\n恭喜！你已完成計算思維的全部四步——下一模組，我們來整合回顧整個旅程！',
 'Go to Module 6: Algorithm Design →': '進入模組 6 →',
 '👍 Good! Solid understanding. Review mistakes to improve.': '👍 很好！你對計算思維有紮實的理解，回顧錯題加深印象。',
 '💡 Review earlier modules and the differences between CT skills.': '💡 建議回顧前面的模組，特別注意每種計算思維的區別。',
@@ -383,7 +383,7 @@ var I18N = { zh: {
 'IR-A → IR-B = Enter / IR-B → IR-A = Exit + Debounce Cooldown': 'IR-A → IR-B = 進入 / IR-B → IR-A = 走出 + 去抖冷卻',
 'Algorithm design is precise step sequences. Sensor blocking order determines direction, debounce prevents false counts — every detail affects accuracy.': '算法設計是精確的步驟序列。感測器遮擋順序判斷方向，去抖冷卻避免誤計——每個細節都影響結果的準確性。',
 'Review learning, quiz understanding, reflect, look ahead': '回顧所學、測驗理解、反思收穫、展望未來',
-'CT isn\'t four isolated skills — it\'s a cycle: Define→Decompose→Find Patterns→Abstract→Design Algorithm→Return to new problems.': '計算思維不是四個孤立的技能，而是一個循環——定義問題→分解→找模式→抽象呈現→設計算法→回到新問題。',
+'The 4 CT skills form a cycle: Decompose→Find Patterns→Abstract→Design Algorithm → then back to new problems. (Problem Definition is the essential preparation before CT begins.)': '計算思維四步形成一個循環：分解→找模式→抽象→設計算法→回到新問題。（問題定義是 CT 開始前的重要準備工作。）',
 'Concept Quiz': '概念測驗',
 'Test your CT understanding with these 4 questions.': '用這 4 題測試你對計算思維的理解，選擇最適合的答案。',
 'Submit Answer': '提交答案',
