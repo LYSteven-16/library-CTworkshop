@@ -390,6 +390,10 @@
 </div>
 
 <script>
+function checkAllUsed() {
+  var d = getWorksheetData();
+  if (d.m2_onion && d.m2_onion.length && d.m2_classify_detail && d.m2_flow && d.m2_flow.length) markComplete(2);
+}
 // ===== Onion Diagram =====
 let activeOnion = -1;
 function showOnion(idx) {
@@ -407,7 +411,7 @@ function showOnion(idx) {
   activeOnion = idx;
   // Track which layers were opened
   var opened = JSON.parse(localStorage.getItem('ct_worksheet_data') || '{}').m2_onion || [];
-  if (opened.indexOf(idx) === -1) { opened.push(idx); saveWorksheetData('m2_onion', opened); }
+  if (opened.indexOf(idx) === -1) { opened.push(idx); saveWorksheetData('m2_onion', opened); checkAllUsed(); }
 }
 
 // ===== Card Classification =====
@@ -509,6 +513,7 @@ function checkClassification() {
   // Save classification results
   saveWorksheetData('m2_classify', correct + '/' + total);
   saveWorksheetData('m2_classify_detail', JSON.stringify(cardClassifications));
+  checkAllUsed();
 }
 
 // ===== Data Flow Builder =====
@@ -591,7 +596,7 @@ function checkFlow() {
     showToast('🎉 Data flow correct! Complete workflow!', 'success');
     showConfetti();
     saveWorksheetData('m2_flow', flowSlots.map(function(s){return s?s.name:''}));
-    markComplete(2);
+    checkAllUsed();
   } else {
     showToast('Some wrong. Red ones need re-ordering! Hint: where does data originate?', 'error');
   }

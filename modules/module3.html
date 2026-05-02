@@ -423,6 +423,10 @@
 </div>
 
 <script>
+function checkAllUsed() {
+  var d = getWorksheetData();
+  if (d.m3_match && d.m3_match.length && d.m3_anomaly && d.m3_predict) markComplete(3);
+}
 // ===== Chart =====
 const weeklyData = {
   'Mon': [20, 35, 80, 120, 90, 60, 45, 30, 15],
@@ -583,6 +587,7 @@ function tryMatch() {
     var paired = matchData.filter(function(m, i) { return matchState.matched.has(i); })
       .map(function(m) { return { left: m.left.text, right: m.right.text }; });
     saveWorksheetData('m3_match', paired);
+    checkAllUsed();
   } else {
     showToast('Incorrect match, try again!', 'error');
     matchState.leftEl.classList.remove('selected');
@@ -643,7 +648,7 @@ function checkPrediction() {
   var actual = 120;
   var deviation = Math.abs(predicted - actual) / actual;
   saveWorksheetData('m3_predict', predicted + ' people (actual ~' + actual + ', deviation ' + (deviation*100).toFixed(1) + '%)');
-  markComplete(3);
+  checkAllUsed();
   var el = document.getElementById('predictResult');
   el.style.display = 'block';
   if (deviation <= 0.2) {
@@ -661,6 +666,7 @@ revealAnomaly = function() {
   origRevealAnomaly();
   var anomalyLabels = ['Data Entry Error', 'Rainy Day Anomaly', 'Normal Exam Peak', 'Holiday Closure'];
   saveWorksheetData('m3_anomaly', anomalyLabels[selectedAnomaly] || '');
+  checkAllUsed();
 };
 
 initAutoSave();

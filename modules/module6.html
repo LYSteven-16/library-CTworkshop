@@ -666,6 +666,10 @@
 </div>
 
 <script>
+function checkAllUsed() {
+  var d = getWorksheetData();
+  if (d.m6_quiz && d.m6_radar && (d.m6_reflect1 || d.m6_reflect2 || d.m6_reflect3)) markComplete(6);
+}
 // ===== Journey Toggle =====
 function toggleJourney(step) {
   var detail = step.querySelector('.journey-detail');
@@ -723,7 +727,7 @@ function submitQuiz() {
   document.getElementById('quizScoreNum').textContent = score + '/4';
   saveWorksheetData('m6_quiz', score + '/4');
   saveWorksheetData('m6_quiz_detail', quizDetail);
-  markComplete(6);
+  checkAllUsed();
   var msgEl = document.getElementById('quizScoreMsg');
   if (score === 4) {
     msgEl.innerHTML = '🎉 Perfect score! You have mastered all 4 CT skills!';
@@ -748,6 +752,7 @@ function updateRadar() {
     'Abstraction': sliders[2].value,
     'Algorithm Design': sliders[3].value
   });
+  checkAllUsed();
   drawRadar();
 }
 
@@ -874,4 +879,8 @@ initAutoSave();
     } catch(e) {}
   }
 })();
+// Trigger checkAllUsed when any reflection textarea is typed
+document.querySelectorAll('textarea[data-save]').forEach(function(ta) {
+  ta.addEventListener('input', checkAllUsed);
+});
 </script>

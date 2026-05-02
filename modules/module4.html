@@ -775,6 +775,10 @@
 </div>
 
 <script>
+function checkAllUsed() {
+  var d = getWorksheetData();
+  if (d.m4_checklist && d.m4_checklist.length && d.m4_design && d.m4_design.length && d.m4_reflect) markComplete(4);
+}
 // ===== Bridge Question =====
 let bridgeSelected = false;
 function selectBridge(btn, choice) {
@@ -954,7 +958,7 @@ function checkDesign() {
     saveWorksheetData('m4_design', phoneSlots.filter(function(s){return s}).map(function(s){return s.id}));
     // Save checklist state
     saveChecklistState();
-    markComplete(4);
+    checkAllUsed();
   } else {
     var names = missing.map(function(id) {
       return uiComponents.find(function(c) { return c.id === id; }).name;
@@ -1036,6 +1040,9 @@ initAutoSave();
     });
   }
 })();
+// Trigger checkAllUsed when reflection textarea is typed
+var reflTA = document.querySelector('textarea[data-save="m4_reflect"]');
+if (reflTA) reflTA.addEventListener('input', checkAllUsed);
 
 // Save checklist state
 function saveChecklistState() {

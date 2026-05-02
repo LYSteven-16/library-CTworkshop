@@ -163,6 +163,10 @@
 </div>
 
 <script>
+function checkAllUsed() {
+  var d = getWorksheetData();
+  if (d.m5_sim && d.m5_debounce && d.m5_flowchart) markComplete(5);
+}
 // ===== Simulator =====
 let simAnimating = false, enterCount = 0, exitCount = 0;
 const SIM_DURATION = 2000; // ms total walk time
@@ -220,6 +224,7 @@ function simulateEnter() {
     document.getElementById('enterCount').textContent = enterCount;
     document.getElementById('currentCount').textContent = enterCount - exitCount;
     saveWorksheetData('m5_sim', { enter: enterCount, exit: exitCount, current: enterCount - exitCount });
+    checkAllUsed();
     stopAllAnims(person);
     person.style.left = '10%';
     simAnimating = false;
@@ -264,6 +269,7 @@ function simulateExit() {
     document.getElementById('exitCount').textContent = exitCount;
     document.getElementById('currentCount').textContent = enterCount - exitCount;
     saveWorksheetData('m5_sim', { enter: enterCount, exit: exitCount, current: enterCount - exitCount });
+    checkAllUsed();
     stopAllAnims(person);
     person.style.left = '10%';
     simAnimating = false;
@@ -308,6 +314,7 @@ function testDebounce() {
   const netError = fp + missed;
   const acc = ((total - netError) / total * 100).toFixed(1);
   saveWorksheetData('m5_debounce_result', { total: total, fp: fp, missed: missed, acc: parseFloat(acc) });
+  checkAllUsed();
   document.getElementById('dbTotal').textContent = total;
   document.getElementById('dbFalse').textContent = fp;
   document.getElementById('dbMissed').textContent = missed;
@@ -389,8 +396,9 @@ function checkFlowchart() {
   });
   saveWorksheetData('m5_flowchart', 'Correct ' + correct + '/5');
   saveWorksheetData('m5_flowchart_answers', flowAnswers);
-  if (correct === 5) { showToast('🎉 Flowchart complete! You are an algorithm engineer!', 'success'); showConfetti(); markComplete(5); }
+  if (correct === 5) { showToast('🎉 Flowchart complete! You are an algorithm engineer!', 'success'); showConfetti(); }
   else showToast('Correct ' + correct + '/5, red marked steps need adjustment', correct >= 3 ? 'info' : 'error');
+  checkAllUsed();
 }
 
 function resetFlowchart() {
