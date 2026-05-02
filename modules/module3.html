@@ -643,6 +643,7 @@ function checkPrediction() {
   var actual = 120;
   var deviation = Math.abs(predicted - actual) / actual;
   saveWorksheetData('m3_predict', predicted + ' people (actual ~' + actual + ', deviation ' + (deviation*100).toFixed(1) + '%)');
+  markComplete(3);
   var el = document.getElementById('predictResult');
   el.style.display = 'block';
   if (deviation <= 0.2) {

@@ -388,7 +388,7 @@ function checkFlowchart() {
     else if (ans) { blank.classList.add('wrong'); blank.classList.remove('filled'); }
   });
   saveWorksheetData('m5_flowchart', 'Correct ' + correct + '/5');
-  if (correct === 5) { showToast('🎉 Flowchart complete! You are an algorithm engineer!', 'success'); showConfetti(); }
+  if (correct === 5) { showToast('🎉 Flowchart complete! You are an algorithm engineer!', 'success'); showConfetti(); markComplete(5); }
   else showToast('Correct ' + correct + '/5, red marked steps need adjustment', correct >= 3 ? 'info' : 'error');
 }
 

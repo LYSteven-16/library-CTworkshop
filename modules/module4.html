@@ -756,7 +756,7 @@
 
   <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
-    <button class="knowledge-btn" onclick="showKnowledge('Abstraction & Visualization','Abstraction is CT step three: keep key info, discard irrelevant detail.\n\nLike a map — it does not show every tree, but marks roads and landmarks. A map is an abstraction.\n\nIn your interface design, abstraction is everywhere:\n• "3F has 82 people" becomes 🔴 red light — discard exact count, keep "crowded" meaning\n• Per-minute logs become a trend line — discard micro-fluctuations, keep overall direction\n• Zone data becomes a heatmap — discard numbers, keep spatial distribution\n\nAbstraction is not "deleting" — it is "selectively presenting". Good abstraction helps users decide faster.\n\nNext module: we design the precise counting algorithm — CT step four!')">
+    <button class="knowledge-btn" onclick="showKnowledge('Abstraction & Visualization','Abstraction is CT step three: keep key info, discard irrelevant detail.\n\nLike a map — it does not show every tree, but marks roads and landmarks. A map is an abstraction.\n\nIn your interface design, abstraction is everywhere:\n• &quot;3F has 82 people&quot; becomes 🔴 red light — discard exact count, keep "crowded" meaning\n• Per-minute logs become a trend line — discard micro-fluctuations, keep overall direction\n• Zone data becomes a heatmap — discard numbers, keep spatial distribution\n\nAbstraction is not &quot;deleting&quot; — it is &quot;selectively presenting&quot;. Good abstraction helps users decide faster.\n\nNext module: we design the precise counting algorithm — CT step four!')">
       <i class="fas fa-lightbulb"></i> Knowledge Card: Abstraction & Visualization
     </button>
   </div>
@@ -954,6 +954,7 @@ function checkDesign() {
     saveWorksheetData('m4_design', phoneSlots.filter(function(s){return s}).map(function(s){return s.id}));
     // Save checklist state
     saveChecklistState();
+    markComplete(4);
   } else {
     var names = missing.map(function(id) {
       return uiComponents.find(function(c) { return c.id === id; }).name;

@@ -369,7 +369,7 @@
 
   <!-- Knowledge Card -->
   <div style="text-align:center;margin:16px 0;">
-    <button class="knowledge-btn" onclick="showKnowledge('Decomposition','Decomposition is CT step one (of four): breaking big problems into manageable pieces.\n\nLike dismantling a computer — monitor, motherboard, hard drive, power supply. Each part has a clear role and can be understood independently.\n\nIn our library system:\n• "Design a traffic monitoring system" is too big to do all at once\n• After decomposition: Collection → Transmission → Processing → Display\n• Each sub-problem can be solved independently\n• Sensor broken? Just fix the collection module — nothing else affected\n\nBenefits:\n1. Lower complexity — focus on one sub-problem at a time\n2. Easy division — different people handle different modules\n3. Easy maintenance — fix only what is broken\n4. Reusable — the collection module works in other scenarios')">
+    <button class="knowledge-btn" onclick="showKnowledge('Decomposition','Decomposition is CT step one (of four): breaking big problems into manageable pieces.\n\nLike dismantling a computer — monitor, motherboard, hard drive, power supply. Each part has a clear role and can be understood independently.\n\nIn our library system:\n• &quot;Design a traffic monitoring system&quot; is too big to do all at once\n• After decomposition: Collection → Transmission → Processing → Display\n• Each sub-problem can be solved independently\n• Sensor broken? Just fix the collection module — nothing else affected\n\nBenefits:\n1. Lower complexity — focus on one sub-problem at a time\n2. Easy division — different people handle different modules\n3. Easy maintenance — fix only what is broken\n4. Reusable — the collection module works in other scenarios')">
       <i class="fas fa-lightbulb"></i> Knowledge Card: Decomposition
     </button>
   </div>
@@ -591,6 +591,7 @@ function checkFlow() {
     showToast('🎉 Data flow correct! Complete workflow!', 'success');
     showConfetti();
     saveWorksheetData('m2_flow', flowSlots.map(function(s){return s?s.name:''}));
+    markComplete(2);
   } else {
     showToast('Some wrong. Red ones need re-ordering! Hint: where does data originate?', 'error');
   }

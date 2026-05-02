@@ -369,6 +369,7 @@ function confirmSort() {
   saveWorksheetData('m1_sort', order);
   document.getElementById('sortFeedback').classList.add('show');
   showToast('Order confirmed! See how engineers think 👇', 'success');
+  markComplete(1);
 }
 initAutoSave();
 </script>

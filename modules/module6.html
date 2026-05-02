@@ -723,6 +723,7 @@ function submitQuiz() {
   document.getElementById('quizScoreNum').textContent = score + '/4';
   saveWorksheetData('m6_quiz', score + '/4');
   saveWorksheetData('m6_quiz_detail', quizDetail);
+  markComplete(6);
   var msgEl = document.getElementById('quizScoreMsg');
   if (score === 4) {
     msgEl.innerHTML = '🎉 Perfect score! You have mastered all 4 CT skills!';
